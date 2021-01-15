@@ -14,7 +14,7 @@ module.exports = {
     title: `Make a Gift`,
     description: `Make a Gift to Stanford`,
     author: `Stanford University Office of Development`,
-    siteUrl: ``,
+    siteUrl: `https://makeagift.stanford.edu`,
   },
   plugins: [
     `gatsby-plugin-anchor-links`,

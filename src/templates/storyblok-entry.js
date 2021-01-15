@@ -1,6 +1,5 @@
 import React from 'react'
 import Components from '../components/components.js'
-import Navi from '../components/navi.js'
 
 class StoryblokEntry extends React.Component {
   static getDerivedStateFromProps(props, state) {
@@ -13,11 +12,9 @@ class StoryblokEntry extends React.Component {
 
   static prepareStory(props) {
     const story = Object.assign({}, props.pageContext.story)
-    const globalNavi = Object.assign({}, props.pageContext.globalNavi)
     story.content = JSON.parse(story.content)
-    globalNavi.content = JSON.parse(globalNavi.content)
-    
-    return { story, globalNavi }
+
+    return { story }
   }
 
   constructor(props) {
@@ -28,11 +25,9 @@ class StoryblokEntry extends React.Component {
 
   render() {
     let content = this.state.story.content
-    let globalNavi = this.state.globalNavi.content
 
     return (
       <div>
-        <Navi blok={globalNavi}></Navi>
         {React.createElement(Components(content.component), {key: content._uid, blok: content})}
       </div>
     )

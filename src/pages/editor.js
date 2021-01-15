@@ -109,7 +109,7 @@ class StoryblokEntry extends React.Component {
 
   render() {
 
-    if (this.state.bad == true) {
+    if (this.state.bad === true) {
       return (
         <div className="centered-container">
           <h1>Error</h1>

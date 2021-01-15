@@ -2,18 +2,17 @@ import React from 'react'
 import Components from '../components/components.js'
 import SbEditable from 'storyblok-react'
 import config from '../../gatsby-config'
-import Navi from '../components/navi.js'
+import Loader from 'react-loader-spinner'
 
-let sbConfigs = config.plugins.filter((item) => {
+const sbConfigs = config.plugins.filter((item) => {
   return item.resolve === 'gatsby-source-storyblok'
 })
-let sbConfig = sbConfigs.length > 0 ? sbConfigs[0] : {}
+const sbConfig = sbConfigs.length > 0 ? sbConfigs[0] : {}
 
 const loadStoryblokBridge = function(cb) {
-  
   let script = document.createElement('script')
   script.type = 'text/javascript'
-  script.src = `//app.storyblok.com/f/storyblok-latest.js?t=${sbConfig.options.accessToken}`
+  script.src = `//app.storyblok.com/f/storyblok-latest.js`
   script.onload = cb
   document.getElementsByTagName('head')[0].appendChild(script)
 }
@@ -38,47 +37,66 @@ const getParam = function(val) {
 class StoryblokEntry extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {story: null, globalNavi: {content: {}}}
+    this.state = {story: null, bad: false}
   }
+
 
   componentDidMount() {
-    loadStoryblokBridge(() => { this.initStoryblokEvents() })
+
+    // Storyblok Preview API access key.
+    const key = getParam("access_key")
+
+    // Must have a storyblok key.
+    if (isNaN(getParam("_storyblok"))) {
+      this.setState({bad: true})
+      return
+    }
+
+    // Must have the API Access key.
+    if (key === '') {
+      this.setState({bad: true})
+      return
+    }
+
+    loadStoryblokBridge(() => {
+
+      // Init with access token from url.
+      window.storyblok.init({
+        accessToken: key
+      })
+
+      this.initStoryblokEvents()
+    })
   }
 
-  loadStory(payload) {
+  loadStory() {
     window.storyblok.get({
-      slug: getParam('path'), 
+      slug: window.storyblok.getParam('path'),
       version: 'draft',
       resolve_relations: sbConfig.options.resolveRelations || []
     }, (data) => {
       this.setState({story: data.story})
-      this.loadGlovalNavi(data.story.lang)
-    })
-  }
-
-  loadGlovalNavi(lang) {
-    const language = lang === 'default' ? '' : lang + '/'
-    window.storyblok.get({
-      slug: `${language}global-navi`, 
-      version: 'draft'
-    }, (data) => {
-      this.setState({globalNavi: data.story})
     })
   }
 
   initStoryblokEvents() {
-    this.loadStory({storyId: getParam('path')})
+
+    this.loadStory()
 
     let sb = window.storyblok
 
     sb.on(['change', 'published'], (payload) => {
-      this.loadStory(payload)
+      this.loadStory()
     })
 
     sb.on('input', (payload) => {
       if (this.state.story && payload.story.id === this.state.story.id) {
         payload.story.content = sb.addComments(payload.story.content, payload.story.id)
-        this.setState({story: payload.story})
+        sb.resolveRelations(payload.story, sbConfig.options.resolveRelations ||
+          [],
+          () => {
+            this.setState({story: payload.story})
+          })
       }
     })
 
@@ -90,19 +108,32 @@ class StoryblokEntry extends React.Component {
   }
 
   render() {
+
+    if (this.state.bad == true) {
+      return (
+        <div className="centered-container">
+          <h1>Error</h1>
+          <p>You can only access this page through https://app.storyblok.com.</p>
+        </div>
+      )
+    }
+
     if (this.state.story == null) {
-      return (<div></div>)
+      return (
+        <div className="centered-container">
+          <h1>Loading...</h1>
+          <Loader type="Oval" color="#00BFFF" height={125} width={125} />
+        </div>
+      )
     }
 
     let content = this.state.story.content
-    let globalNavi = this.state.globalNavi.content
 
     return (
       <SbEditable content={content}>
-      <div>
-        <Navi blok={globalNavi}></Navi>
-        {React.createElement(Components(content.component), {key: content._uid, blok: content})}
-      </div>
+        <div>
+          {React.createElement(Components(content.component), {key: content._uid, blok: content})}
+        </div>
       </SbEditable>
     )
   }

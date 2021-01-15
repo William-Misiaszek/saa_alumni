@@ -9,7 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
     resolve(
       graphql(
         `{
-          stories: allStoryblokEntry {
+          allStoryblokEntry {
             edges {
               node {
                 id
@@ -17,7 +17,6 @@ exports.createPages = ({ graphql, actions }) => {
                 created_at
                 uuid
                 slug
-                field_component
                 full_slug
                 content
                 is_startpage
@@ -33,30 +32,46 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors)
         }
 
-        const entries = result.data.stories.edges
-        const contents = entries.filter((entry) => {
-          return entry.node.field_component != 'global_navi'
-        })
+        const entries = result.data.allStoryblokEntry.edges
+        entries.forEach((entry, index) => {
+          let slug = `${entry.node.full_slug}`
+          slug = slug.replace(/^\/|\/$/g, '')
+          let pagePath = entry.node.full_slug == 'home' ? '' : slug + '/'
 
-        contents.forEach((entry, index) => {
-          const pagePath = entry.node.full_slug == 'home' ? '' : `${entry.node.full_slug}/`
-          const globalNavi = entries.filter((globalEntry) => {
-            return globalEntry.node.field_component == 'global_navi' && globalEntry.node.lang == entry.node.lang
-          })
-          if (!globalNavi.length) {
-            throw new Error('The global navigation item has not been found. Please create a content item with the content type global_navi in Storyblok.')
+          // Wire up the 404 page by setting the path to just 404 as Gatsby expects it.
+          if (pagePath.match(/^404/)) {
+            pagePath = "404"
+          }
+
+          // Wire up the 403 page by setting the path to just 403 as Gatsby expects it.
+          if (pagePath.match(/^403/)) {
+            pagePath = "403"
           }
 
           createPage({
-            path: `/${pagePath}`,
+            path: '/' + pagePath,
             component: storyblokEntry,
             context: {
-              globalNavi: globalNavi[0].node,
               story: entry.node
             }
           })
         })
       })
     )
+  })
+}
+
+// Alter Gatsby's webpack config.
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: "empty"
+    }
   })
 }

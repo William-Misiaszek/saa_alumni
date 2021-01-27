@@ -1,6 +1,8 @@
 # [ADAPT OOD Make A Gift](https://github.com/SU-SWS/ood_online_giving)
 ##### Version: 1.0.0
 
+<a href="https://codeclimate.com/github/SU-SWS/ood_online_giving/maintainability"><img src="https://api.codeclimate.com/v1/badges/a6f5fe28e280f0999a95/maintainability" /></a>
+
 Changelog: [Changelog.md](CHANGELOG.md)
 
 Description

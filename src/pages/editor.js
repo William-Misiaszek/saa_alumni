@@ -111,7 +111,7 @@ class StoryblokEntry extends React.Component {
 
     if (this.state.bad === true) {
       return (
-        <div className="centered-container">
+        <div className="su-cc">
           <h1>Error</h1>
           <p>You can only access this page through https://app.storyblok.com.</p>
         </div>
@@ -120,7 +120,7 @@ class StoryblokEntry extends React.Component {
 
     if (this.state.story == null) {
       return (
-        <div className="centered-container">
+        <div className="su-cc">
           <h1>Loading...</h1>
           <Loader type="Oval" color="#00BFFF" height={125} width={125} />
         </div>

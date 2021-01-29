@@ -27,6 +27,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }`
       ).then(result => {
+
         if (result.errors) {
           console.log(result.errors)
           reject(result.errors)
@@ -52,11 +53,27 @@ exports.createPages = ({ graphql, actions }) => {
             path: '/' + pagePath,
             component: storyblokEntry,
             context: {
+              slug: entry.node.full_slug,
               story: entry.node
             }
           })
         })
       })
     )
+  })
+}
+
+// Alter Gatsby's webpack config.
+exports.onCreateWebpackConfig = ({
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: "empty"
+    }
   })
 }

@@ -28,9 +28,9 @@ plugins:
     config:
       languages:
         javascript:
-          mass_threshold: 50
+          mass_threshold: 75
   eslint:
-    enabled: false
+    enabled: true
   fixme:
     enabled: true
     config:
@@ -46,6 +46,8 @@ plugins:
     enabled: false
   csslint:
     enabled: true
+  stylelint:
+    enabled: true
   coffeelint:
     enabled: false
   # SASS Lint requires a .sass-lint.yml file in the repo in order to tweak settings.
@@ -55,8 +57,8 @@ plugins:
     enabled: false
 exclude_patterns:
   - node_modules/
+  - "test/"
   - "**/__tests__/"
   - "**/tests/**/*"
   - "package.json"
-  - "webpack.config.js"
   - "**.min.*"

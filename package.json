@@ -24,9 +24,6 @@
     "sanitize-html": "^1.27.5",
     "storyblok-react": "^0.1.2"
   },
-  "devDependencies": {
-    "prettier": "^2.0.5"
-  },
   "keywords": [
     "Stanford"
   ],
@@ -34,7 +31,6 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

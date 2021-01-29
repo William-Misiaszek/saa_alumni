@@ -1,5 +1,3 @@
-const path = require('path');
-
 const activeEnv =
   process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
 
@@ -14,7 +12,7 @@ module.exports = {
     title: `Make a Gift`,
     description: `Make a Gift to Stanford`,
     author: `Stanford University Office of Development`,
-    siteUrl: `https://makeagift.stanford.edu`,
+    siteUrl: `https://makeagift-preview.stanford.edu`,
   },
   plugins: [
     `gatsby-plugin-anchor-links`,

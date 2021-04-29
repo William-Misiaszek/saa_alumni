@@ -1,5 +1,14 @@
 // Common variables for shared datasource in Storyblok
 
+export const borderColors = {
+  'digital-red': 'su-border-digital-red',
+  'electric-blue': 'su-border-saa-electric-blue',
+  'lagunita-light': 'su-border-lagunita-light',
+  'palo-verde': 'su-border-palo-verde',
+  'plum': 'su-border-plum',
+  'poppy': 'su-border-poppy',
+};
+
 export const bgPositionVertical = {
   top: 'su-bg-top',
   center: 'su-bg-center',
@@ -15,9 +24,9 @@ export const buttonSize = {
 export const buttonStyle = {
   'primary': 'su-border-digital-red su-bg-digital-red su-text-white hocus:su-bg-cardinal-red hocus:su-text-white hocus:su-border-cardinal-red',
   'secondary': 'su-border-digital-red su-text-digital-red-light hocus:su-bg-cardinal-red hocus:su-text-white',
-  'secondary-gradient': 'su-gradient-border su-text-saa-electric-blue hocus:su-text-white hocus:su-bg-gradient-to-tr hocus:su-from-palo-verde-dark hocus:su-to-saa-electric-blue',
+  'secondary-gradient': 'su-gradient-border su-border-to-rt-palo-verde-dark-to-saa-electric-blue su-text-saa-electric-blue hocus:su-text-white hocus:su-bg-gradient-to-tr hocus:su-from-palo-verde-dark hocus:su-to-saa-electric-blue',
   'ghost': 'su-border-digital-red-xlight su-bg-transparent su-text-white hocus:su-bg-cardinal-red hocus:su-text-white',
-  'ghost-gradient': 'su-gradient-border su-text-white su-bg-transparent hocus:su-text-white hocus:su-bg-gradient-to-tr hocus:su-from-palo-verde-dark hocus:su-to-saa-electric-blue',
+  'ghost-gradient': 'su-gradient-border su-border-to-rt-palo-verde-dark-to-saa-electric-blue su-text-white su-bg-transparent hocus:su-text-white hocus:su-bg-gradient-to-tr hocus:su-from-palo-verde-dark hocus:su-to-saa-electric-blue',
 }
 
 
@@ -62,16 +71,14 @@ export const objectPosition = {
   'top': 'su-object-top',
   'center': 'su-object-center',
   'bottom': 'su-object-bottom',
-  'top-left': 'su-object-left-top',
-  'top-right': 'su-object-right-top',
-  'center-left': 'su-object-left-center',
-  'center-right': 'su-object-right-center',
-  'bottom-left': 'su-object-left-bottom',
-  'bottom-right': 'su-object-right-bottom',
+  'left': 'su-object-left',
+  'right': 'su-object-right',
 };
 
-export const pageBgColors = {
+export const bgColors = {
   'foggy-light': 'su-bg-foggy-light',
+  'white': 'su-bg-white',
+  'black': 'su-bg-saa-black su-text-white',
 };
 
 export const pageTextColors = {
@@ -88,6 +95,28 @@ export const smallPaddingBottom = {
   lg: 'su-rs-pb-4',
   xl: 'su-rs-pb-5',
   xxl: 'su-rs-pb-6',
+};
+
+export const largePaddingBottom = {
+  none: '',
+  xxs: 'su-rs-pb-4',
+  xs: 'su-rs-pb-5',
+  sm: 'su-rs-pb-6',
+  md: 'su-rs-pb-7',
+  lg: 'su-rs-pb-8',
+  xl: 'su-rs-pb-9',
+  xxl: 'su-rs-pb-10',
+};
+
+export const largePaddingTop = {
+  none: '',
+  xxs: 'su-rs-pt-4',
+  xs: 'su-rs-pt-5',
+  sm: 'su-rs-pt-6',
+  md: 'su-rs-pt-7',
+  lg: 'su-rs-pt-8',
+  xl: 'su-rs-pt-9',
+  xxl: 'su-rs-pt-10',
 };
 
 export const tinyMarginBottom = {

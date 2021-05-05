@@ -13,13 +13,13 @@ const Hero = ({
     imageFocus,
     cta,
     image: {
-      filename,
-      alt
+      filename
     },
     sansSuper,
     sansSub,
     serifSuper,
     headline,
+    headingLevel,
     scrollTo
   },
   blok
@@ -48,7 +48,6 @@ const Hero = ({
               imageFocus={imageFocus}
               className='su-w-full su-h-full su-object-cover'
               loading='eager'
-              alt={alt}
             />
           </figure>
         )}
@@ -64,7 +63,7 @@ const Hero = ({
                   <p className='su-max-w-prose su-font-serif su-leading-display su-text-m1 md:su-text-m2 su-text-shadow su-mx-auto su-mb-05em'>{serifSuper}</p>
                 }
                 {headline &&
-                  <Heading level={1}
+                  <Heading level={headingLevel ?? 1}
                            font='serif'
                            weight='bold'
                            className={`su-leading-tight su-tracking-normal su-text-shadow-lg su-mb-02em ${headlineSize}`}
@@ -90,7 +89,7 @@ const Hero = ({
               <a href={`#${scrollTo}`} className='su-block su-mx-auto su-w-fit su-group'>
                 <SrOnlyText srText='Jump to main content' />
                 <ArrowDownIcon
-                  className='su-transition-colors su-text-digital-red-xlight su-w-40 su-h-40 su-p-6 su-border-2 su-border-cardinal-red su-rounded-full group-hover:su-text-white group-focus:su-text-white group-hover:su-bg-cardinal-red group-focus:su-bg-cardinal-red'
+                  className='su-transition-colors su-text-digital-red-xlight su-w-40 su-h-40 su-p-6 su-border-2 su-border-cardinal-red su-rounded-full group-hocus:su-text-white group-hocus:su-bg-cardinal-red'
                   aria-hidden='true' />
               </a>
             </FlexCell>

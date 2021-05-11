@@ -18,7 +18,7 @@ const Hero = ({
     isDarkGradient,
     imageFocus,
     cta,
-    image: { filename },
+    image: { filename } = {},
     sansSuper,
     sansSub,
     serifSuper,

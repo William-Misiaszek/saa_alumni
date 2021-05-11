@@ -10,7 +10,10 @@ require("dotenv").config({
 /**
  * Resolve relations for storyblok.
  */
-const storyblokRelations = ["localFooterPicker.localFooter"];
+const storyblokRelations = [
+  "localFooterPicker.localFooter",
+  "perkCard.perkPicker",
+];
 
 module.exports = {
   siteMetadata: {

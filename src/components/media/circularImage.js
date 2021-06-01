@@ -6,6 +6,7 @@ import CardImage from "./cardImage";
 const CircularImage = ({
   borderColor,
   filename,
+  alt,
   className,
   imageFocus,
   loading,
@@ -22,7 +23,8 @@ const CircularImage = ({
         imageBorderColor,
         className
       )}
-      aria-hidden="true"
+      aria-hidden={alt ? "false" : "true"}
+      {...props}
     >
       <CardImage
         filename={filename}
@@ -30,6 +32,7 @@ const CircularImage = ({
         imageFocus={imageFocus}
         className="su-object-cover su-w-full su-h-full"
         loading={loading ?? "lazy"}
+        alt={alt ?? ""}
       />
     </div>
   );

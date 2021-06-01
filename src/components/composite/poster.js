@@ -1,36 +1,46 @@
 import React from "react";
 import SbEditable from "storyblok-react";
-import { FlexBox, Heading } from "decanter-react";
+import { Container, FlexBox, Heading } from "decanter-react";
 import { dcnb } from "cnbuilder";
 import { render } from "storyblok-rich-text-react-renderer";
 import CreateBloks from "../../utilities/createBloks";
 import getNumBloks from "../../utilities/getNumBloks";
 import RichTextRenderer from "../../utilities/richTextRenderer";
 import CircularImage from "../media/circularImage";
+import {
+  bgPositionVertical,
+  bgTextColorPairs,
+} from "../../utilities/dataSource";
+import addBgImage from "../../utilities/addBgImage";
 
 const Poster = ({
   blok: {
     cta,
     borderColor,
-    isBigHeadline,
-    image: { filename } = {},
+    image: { filename, alt } = {},
+    bgImage: { filename: bgFilename } = {},
+    vCrop,
     imageFocus,
     headline,
+    isBigHeadline,
     headingLevel,
     text,
-    isIntroText,
+    isBigBodyText,
     layout,
+    theme,
   },
   blok,
 }) => {
   const numCta = getNumBloks(cta);
   const rendered = render(text);
   const numText = getNumBloks(rendered);
+  const colorTheme = bgTextColorPairs[theme] ?? bgTextColorPairs.white;
+  const bgCrop = bgPositionVertical[vCrop] ?? bgPositionVertical.center;
 
-  let wrapperClasses = "su-bg-white su-text-black su-cc su-rs-pt-3 su-rs-pb-5";
-  let imageWrapper = "";
-  let contentWrapper = "su-max-w-700";
-  let bodyText = "su-subheading";
+  let wrapperClasses;
+  let imageWrapper;
+  let contentWrapper;
+  let bodyText = "su-big-paragraph children:su-leading-snug";
   let headingSpacing = "su-mb-0";
 
   // Option to make headline font larger
@@ -40,35 +50,40 @@ const Poster = ({
     headlineSize = "su-type-4";
   }
 
-  if (isIntroText) {
-    bodyText = "su-intro-text";
+  if (isBigBodyText) {
+    bodyText = "su-subheading";
   }
 
   if (layout === "left") {
-    wrapperClasses = dcnb(
-      "su-flex su-flex-col su-justify-center md:su-flex-row",
-      wrapperClasses
-    );
+    wrapperClasses = "su-flex su-flex-col su-justify-center md:su-flex-row";
     imageWrapper =
       "su-min-w-[14rem] su-rs-mb-2 su-mx-auto md:su-rs-mr-4 md:su-mb-0 md:su-ml-0";
-    contentWrapper = dcnb("su-items-start", contentWrapper);
+    contentWrapper = "su-items-start md:su-flex-grow";
   } else {
-    wrapperClasses = dcnb(
-      "su-flex su-flex-col su-items-center",
-      wrapperClasses
-    );
-    contentWrapper = dcnb("su-items-center su-text-center", contentWrapper);
+    wrapperClasses = "su-flex su-flex-col su-items-center";
+    contentWrapper = "su-items-center su-text-center";
     imageWrapper = "su-rs-mb-2";
   }
 
-  // If text contains content, add margin bottom to headingh
+  // If text contains content, add margin bottom to heading
   if (numText) {
-    headingSpacing = "su-mb-13";
+    headingSpacing = "su-mb-04em";
   }
 
   return (
     <SbEditable content={blok}>
-      <div className={dcnb("poster su-basefont-23", wrapperClasses)}>
+      <Container
+        className={dcnb(
+          "poster su-basefont-23 su-rs-pt-5 su-rs-pb-6 su-bg-cover su-bg-no-repeat",
+          wrapperClasses,
+          bgCrop,
+          colorTheme
+        )}
+        style={addBgImage(
+          bgFilename,
+          "linear-gradient(240deg, rgba(24, 29, 28) 10%, rgba(98, 0, 89, 0.85) 60%, rgb(177, 4, 14) 100%)"
+        )}
+      >
         {filename?.startsWith("http") && (
           <CircularImage
             borderColor={borderColor}
@@ -76,9 +91,13 @@ const Poster = ({
             imageFocus={imageFocus}
             className={imageWrapper}
             loading="lazy"
+            alt={alt ?? ""}
           />
         )}
-        <FlexBox direction="col" className={contentWrapper}>
+        <FlexBox
+          direction="col"
+          className={dcnb("su-max-w-700", contentWrapper)}
+        >
           <Heading
             font="serif"
             weight="bold"
@@ -96,7 +115,7 @@ const Poster = ({
             </div>
           )}
         </FlexBox>
-      </div>
+      </Container>
     </SbEditable>
   );
 };

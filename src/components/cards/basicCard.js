@@ -33,7 +33,7 @@ const BasicCard = ({
   // Card content padding for non-minimal cards
   let bodyPadding = "su-rs-px-2 su-rs-pt-2 su-rs-pb-4";
 
-  // Basic card image has aspect ratio 4x3 for non-round option
+  // Basic card image has aspect ratio 3x2 for non-round option
   let cardImage = (
     <div className="su-aspect-w-3 su-aspect-h-2" aria-hidden="true">
       <CardImage

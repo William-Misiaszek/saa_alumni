@@ -17,6 +17,7 @@ import NavItem from "./navigation/navItem";
 import Page from "./page";
 import Perk from "./content-types/perk/perk";
 import PerkCard from "./cards/perkCard";
+import PerkCardHorizontal from "./cards/perkCardHorizontal";
 import Poster from "./composite/poster";
 import Section from "./layout/section";
 import Wysiwyg from "./simple/wysiwyg";
@@ -41,6 +42,7 @@ const ComponentList = {
   page: Page,
   perk: Perk,
   perkCard: PerkCard,
+  perkCardHorizontal: PerkCardHorizontal,
   poster: Poster,
   section: Section,
   wysiwyg: Wysiwyg,

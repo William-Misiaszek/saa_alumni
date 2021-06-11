@@ -14,6 +14,7 @@ const storyblokRelations = [
   "eventCard.eventPicker",
   "localFooterPicker.localFooter",
   "perkCard.perkPicker",
+  "perkCardHorizontal.perkPicker",
 ];
 
 module.exports = {

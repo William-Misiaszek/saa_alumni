@@ -16,6 +16,7 @@ import EventCard from "./cards/eventCard";
 import Grid from "./layout/grid";
 import Heading from "./simple/heading";
 import Hero from "./composite/hero";
+import IconCard from "./cards/iconCard";
 import LinkGroup from "./navigation/linkGroup";
 import LinkList from "./simple/linkList";
 import LocalFooter from "./identity/localFooter";
@@ -61,6 +62,7 @@ const ComponentList = {
   grid: Grid,
   heading: Heading,
   hero: Hero,
+  iconCard: IconCard,
   linkGroup: LinkGroup,
   linkList: LinkList,
   localFooter: LocalFooter,

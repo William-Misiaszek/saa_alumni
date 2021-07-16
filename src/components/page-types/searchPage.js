@@ -15,6 +15,7 @@ import SearchResults from "../search/searchResults";
 import SearchPager from "../search/searchPager";
 import SearchFacet from "../search/searchFacet";
 import SearchNoResults from "../search/searchNoResults";
+import SearchKeywordBanner from "../search/searchKeywordBanner";
 
 const SearchPage = (props) => {
   const { blok } = props;
@@ -144,6 +145,7 @@ const SearchPage = (props) => {
               </FlexCell>
             )}
             <FlexCell xs="full" lg={8}>
+              <SearchKeywordBanner queryText={query} />
               {results.nbHits > 0 && (
                 <>
                   <SearchResults results={results} />

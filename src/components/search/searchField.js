@@ -8,6 +8,7 @@ const SearchField = React.forwardRef(
   (
     {
       onSubmit,
+      onReset,
       onInput,
       autocompleteSuggestions,
       defaultValue,
@@ -40,10 +41,11 @@ const SearchField = React.forwardRef(
       setShowAutocomplete(true);
     };
 
-    const clearHandler = () => {
+    const clearHandler = (e) => {
+      e.preventDefault();
       setQuery("");
       setShowAutocomplete(false);
-      onSubmit("");
+      onReset();
     };
 
     const selectSuggestion = (e, suggestion) => {

@@ -16,7 +16,9 @@ const storyblokRelations = [
   "mastheadPicker.masthead",
   "perkCard.perkPicker",
   "perkCardHorizontal.perkPicker",
+  "storyCard.storyPicker",
   "alertPicker.alert",
+  "verticalNav.verticalNav",
 ];
 
 module.exports = {
@@ -32,7 +34,6 @@ module.exports = {
     },
   },
   plugins: [
-    `gatsby-plugin-anchor-links`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
     {
@@ -47,6 +48,27 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage(filter: {context: {isCanonical: {eq: true}}}) {
+            edges {
+              node {
+                path
+                context {
+                  isCanonical
+                }
+              }
+            }
+          }
+        }
+        `,
+        resolvePages: ({ allSitePage: { edges: allPages } }) =>
+          allPages.map((page) => ({ ...page.node })),
         excludes: [
           `/editor/**`,
           `/editor`,
@@ -81,6 +103,7 @@ module.exports = {
         mergeSecurityHeaders: false,
       },
     },
+    `gatsby-plugin-use-query-params`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

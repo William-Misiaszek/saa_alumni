@@ -10,6 +10,31 @@ export const borderColors = {
   poppy: "su-border-poppy",
 };
 
+export const bgColors = {
+  "digital-red": "su-bg-digital-red",
+  "digital-red-xlight": "su-bg-digital-red-xlight",
+  "electric-blue": "su-bg-saa-electric-blue",
+  "lagunita-light": "su-bg-lagunita-light",
+  "palo-verde": "su-bg-palo-verde",
+  plum: "su-bg-plum",
+  poppy: "su-bg-poppy",
+  "foggy-light": "su-bg-foggy-light",
+  white: "su-bg-white",
+  black: "su-bg-saa-black su-text-white",
+};
+
+export const bgTextColorPairs = {
+  "foggy-light": "su-bg-foggy-light su-text-black",
+  "black-10": "su-bg-black-10 su-text-black",
+  white: "su-bg-white su-text-black",
+  black: "su-bg-saa-black su-text-white",
+  "cardinal-red": "su-bg-cardinal-red su-text-white",
+  plum: "su-bg-plum su-text-white",
+  "gradient-red":
+    "su-bg-gradient-to-tr su-from-cardinal-red su-to-digital-red su-text-white",
+  "use-bg-image": "su-text-white",
+};
+
 export const bgPositionVertical = {
   top: "su-bg-top",
   center: "su-bg-center",
@@ -18,11 +43,11 @@ export const bgPositionVertical = {
 
 export const buttonSizes = {
   small:
-    "su-px-20 su-pt-10 su-pb-12 md:su-px-26 md:su-pt-14 md:su-pb-16 su-text-18 md:su-text-20",
+    "su-px-20 su-pt-10 su-pb-11 md:su-px-26 md:su-pt-14 md:su-pb-16 su-text-18 md:su-text-20",
   default:
-    "su-px-20 su-pt-14 su-pb-16 md:su-px-30 md:su-pt-16 md:su-pb-18 su-text-20 md:su-text-24",
+    "su-px-20 su-pt-10 su-pb-11 md:su-px-30 md:su-pt-16 md:su-pb-18 su-text-18 md:su-text-24",
   large:
-    "su-px-26 su-pt-16 su-pb-18 md:su-px-36 md:su-pt-[22px] md:su-pb-[24px] su-text-20 md:su-text-24",
+    "su-px-20 su-pt-10 su-pb-11 md:su-px-36 md:su-pt-[22px] md:su-pb-[24px] su-text-18 md:su-text-24",
 };
 
 export const buttonStyles = {
@@ -40,21 +65,10 @@ export const buttonStyles = {
 
 export const ctaGroupDisplay = {
   adjacent:
-    "su-flex-col lg:su-flex-row lg:su-flex-wrap lg:su-justify-center lg:su--mb-20",
+    "su-flex-col su-items-center lg:su-items-start lg:su-flex-row lg:su-flex-wrap lg:su-justify-center children:su-mx-10",
   "adjacent-left":
-    "su-flex-col su-items-start su--ml-10 lg:su-flex-row lg:su-flex-wrap lg:su-justify-start lg:su--mb-20",
-  stack: "su-flex-col",
-};
-
-export const heroicon = {
-  none: "none",
-  "arrow-right": "arrow-right",
-  "chevron-down": "chevron-down",
-  "chevron-right": "chevron-right",
-  download: "download",
-  email: "mail",
-  external: "arrow-up",
-  video: "play",
+    "su-flex-col su-items-start lg:su-flex-row lg:su-flex-wrap lg:su-justify-start su--ml-10 children:su-mx-10 ",
+  stack: "su-flex-col su-items-center children:su-mx-auto",
 };
 
 export const ctaLinkColor = {
@@ -71,13 +85,15 @@ export const ctaLinkIconColor = {
     "su-text-digital-red-light group-hocus:su-text-cardinal-red",
   "bright-red-hover-white":
     "su-text-digital-red-xlight group-hocus:su-text-black-20",
+  "white-hover-digital-red":
+    "su-text-white group-hocus:su-text-digital-red-xlight",
   black: "su-text-black group-hocus:su-text-black",
   white: "su-text-black-20 group-hocus:su-text-black-20",
 };
 
 export const ctaLinkTextSize = {
-  default: "su-text-20 md:su-text-21 xl:su-text-23",
-  large: "su-text-22 md:su-text-23 xl:su-text-25",
+  default: "su-text-19 md:su-text-21 xl:su-text-23",
+  large: "su-text-19 md:su-text-23 xl:su-text-25",
   small: "su-text-19 md:su-text-20 xl:su-text-21",
 };
 
@@ -87,23 +103,6 @@ export const objectPosition = {
   bottom: "su-object-bottom",
   left: "su-object-left",
   right: "su-object-right",
-};
-
-export const bgColors = {
-  "foggy-light": "su-bg-foggy-light",
-  white: "su-bg-white",
-  black: "su-bg-saa-black su-text-white",
-};
-
-export const bgTextColorPairs = {
-  "foggy-light": "su-bg-foggy-light su-text-black",
-  white: "su-bg-white su-text-black",
-  black: "su-bg-saa-black su-text-white",
-  "cardinal-red": "su-bg-cardinal-red su-text-white",
-  plum: "su-bg-plum su-text-white",
-  "gradient-red":
-    "su-bg-gradient-to-tr su-from-cardinal-red su-to-digital-red su-text-white",
-  "use-bg-image": "su-text-white",
 };
 
 export const pageTextColors = {
@@ -177,4 +176,22 @@ export const textAlign = {
   left: "su-text-left",
   center: "su-text-center",
   right: "su-text-right",
+};
+
+export const horizontalAlign = {
+  left: "",
+  center: "su-mx-auto",
+  right: "su-ml-auto",
+};
+
+export const justifyItems = {
+  start: "su-justify-items-start",
+  center: "su-justify-items-center",
+  end: "su-justify-items-end",
+};
+
+export const mediaAspectRatio = {
+  "16x9": "su-aspect-w-16 su-aspect-h-9",
+  "4x3": "su-aspect-w-4 su-aspect-h-3",
+  "1x1": "su-aspect-w-1 su-aspect-h-1",
 };

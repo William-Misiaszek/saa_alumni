@@ -1,15 +1,14 @@
 import React from "react";
 import SbEditable from "storyblok-react";
-import Icon from "react-hero-icon";
 import { SrOnlyText } from "decanter-react";
 import { dcnb } from "cnbuilder";
 import {
   buttonSizes,
   buttonStyles,
-  heroicon,
   textAlign,
 } from "../../utilities/dataSource";
 import SbLink from "../../utilities/sbLink";
+import HeroIcon from "../simple/heroIcon";
 
 const CtaButton = React.forwardRef(
   (
@@ -33,46 +32,13 @@ const CtaButton = React.forwardRef(
 
     // Button style
     const ctaButtonStyle = buttonStyles[buttonStyle] ?? buttonStyles.primary;
+    let buttonIconColor;
 
-    // For all button styles other than ghost-gradient, icon color is same as text color
-    let iconColor;
-
-    if (buttonStyle === "ghost-gradient") {
-      iconColor = "su-text-saa-electric-blue-light group-hocus:su-text-white";
+    if (buttonStyle === "secondary") {
+      buttonIconColor = "su-text-digital-red-light group-hocus:su-text-white";
+    } else if (buttonStyle === "secondary-gradient") {
+      buttonIconColor = "su-text-saa-electric-blue group-hocus:su-text-white";
     }
-
-    // Icon size/position finetuning based on icon choice
-    let iconClasses;
-
-    if (icon === "external") {
-      iconClasses =
-        "su-h-08em su-w-08em su-ml-4 su--mt-2 su-transform-gpu su-rotate-45 group-hocus:su-rotate-45";
-    } else if (icon === "email" || icon === "video") {
-      iconClasses = "su-h-08em su-w-08em su-ml-7 su--mt-2";
-    } else if (icon === "download") {
-      iconClasses = "su-h-08em su-w-08em su-ml-4 su--mt-3";
-    } else if (icon === "chevron-down") {
-      iconClasses = "su-h-[1.1em] su-w-[1.1em] su-ml-4 su--mt-3";
-    } else {
-      iconClasses = "su-h-1em su-w-1em su-ml-04em su--mt-2";
-    }
-
-    // Icon animation
-    let iconAnimate = "su-transition-transform group-hocus:su-transform-gpu";
-
-    if (icon === "external") {
-      iconAnimate = dcnb(
-        iconAnimate,
-        "group-hocus:su-translate-x-01em group-hocus:su--translate-y-01em"
-      );
-    } else if (icon === "download" || icon === "chevron-down") {
-      iconAnimate = dcnb(iconAnimate, "group-hocus:su-translate-y-02em");
-    } else {
-      iconAnimate = dcnb(iconAnimate, "group-hocus:su-translate-x-02em");
-    }
-
-    // Heroicon option
-    const linkIcon = heroicon[icon] ?? heroicon["arrow-right"];
 
     // Horizontal alignment
     const align = textAlign[propsAlign] ?? textAlign.left;
@@ -80,7 +46,7 @@ const CtaButton = React.forwardRef(
     return (
       <SbEditable content={blok}>
         {linkText && (
-          <div className={`cta-button su-block ${align}`}>
+          <div className={dcnb("cta-button su-block", align)}>
             <SbLink
               ref={ref}
               link={link}
@@ -94,11 +60,10 @@ const CtaButton = React.forwardRef(
               {linkText}
               {srText && <SrOnlyText srText={srText} />}
               {icon !== "none" && (
-                <Icon
-                  icon={linkIcon}
-                  type="solid"
-                  aria-hidden="true"
-                  className={`su-inline-block ${iconColor} ${iconClasses} ${iconAnimate}`}
+                <HeroIcon
+                  iconType={icon}
+                  className={dcnb("su-inline-block", buttonIconColor)}
+                  isAnimate
                 />
               )}
             </SbLink>

@@ -4,6 +4,7 @@ import { Container, Heading } from "decanter-react";
 import Layout from "../partials/layout";
 import CreateBloks from "../../utilities/createBloks";
 import getNumBloks from "../../utilities/getNumBloks";
+import Ankle from "../partials/ankle";
 import BasicContentNoSidebar from "../partials/basicContentNoSidebar";
 import BasicContentLeftSidebar from "../partials/basicContentLeftSidebar";
 
@@ -12,11 +13,13 @@ const BasicPage = (props) => {
   const {
     blok: {
       pageLayout,
+      title,
+      isSrOnlyTitle,
       hero,
       aboveContent,
       belowContent,
-      title,
-      isSrOnlyTitle,
+      ankleContent,
+      sectionMenu,
     },
     blok,
   } = props;
@@ -24,6 +27,7 @@ const BasicPage = (props) => {
   const numHero = getNumBloks(hero);
   const numAbove = getNumBloks(aboveContent);
   const numBelow = getNumBloks(belowContent);
+  const numAnkle = getNumBloks(ankleContent);
 
   // Only add top padding to Main Content if the Above Content region is populated or if page title is visually hidden
   let contentPadding = "su-rs-pb-7";
@@ -41,6 +45,14 @@ const BasicPage = (props) => {
           className="basic-page su-relative su-flex-grow su-w-full"
           width="full"
         >
+          <CreateBloks
+            blokSection={sectionMenu}
+            className={`${
+              numHero > 0
+                ? "su-rs-my-2"
+                : "su-rs-mt-2 su-mb-[-1.6rem] md:su-mb-[-5rem]"
+            } lg:su-hidden su-block  su-mx-auto su-max-w-[35rem]`}
+          />
           <header className="su-basefont-23">
             <CreateBloks blokSection={hero} />
             <Container>
@@ -50,7 +62,7 @@ const BasicPage = (props) => {
                 font="serif"
                 srOnly={isSrOnlyTitle}
                 id="page-title"
-                className="su-max-w-900 su-mb-0 su-rs-py-7 su-text-m4 md:su-text-m5 lg:su-text-m6 su-mx-auto su-max-w-1200"
+                className="su-max-w-900 su-mb-0 su-rs-py-5 xl:su-rs-py-7 su-text-m4 md:su-text-m5 lg:su-text-m6 su-mx-auto su-max-w-1200"
               >
                 {title}
               </Heading>
@@ -72,6 +84,7 @@ const BasicPage = (props) => {
               <CreateBloks blokSection={belowContent} />
             </div>
           )}
+          {numAnkle > 0 && <Ankle {...props} />}
         </Container>
       </Layout>
     </SbEditable>

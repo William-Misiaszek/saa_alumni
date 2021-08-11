@@ -1,7 +1,6 @@
 import SbEditable from "storyblok-react";
 import React from "react";
-import { FlexBox, Heading } from "decanter-react";
-import { ArrowUpIcon } from "@heroicons/react/solid";
+import { FlexBox, Heading, SrOnlyText } from "decanter-react";
 import {
   CalendarIcon,
   DesktopComputerIcon,
@@ -14,6 +13,7 @@ import SbLink from "../../../utilities/sbLink";
 import CardImage from "../../media/cardImage";
 import TabLabel from "../../simple/tabLabel";
 import DateBlock from "../../simple/dateBlock";
+import HeroIcon from "../../simple/heroIcon";
 
 const Event = ({
   blok: {
@@ -31,6 +31,8 @@ const Event = ({
   isBigHeadline,
   isMinimal,
   headingLevel,
+  tabText,
+  hideTab,
 }) => {
   // Link to external URL (always external for MVP)
   const eventLink = { linktype: "url", url: externalUrl } ?? "";
@@ -73,7 +75,7 @@ const Event = ({
   }
 
   let wrapperClasses =
-    "su-rs-pb-3 su-bg-white su-border su-border-solid su-border-black-10 su-shadow-sm";
+    "su-rs-pb-3 su-bg-white su-border su-border-solid su-border-black-30-opacity-40 su-bg-clip-padding su-shadow-sm focus-within:su-shadow-md hover:su-shadow-md";
   let headlinePadding = "su-rs-px-2";
   let detailsPadding = "su-rs-px-2";
 
@@ -83,24 +85,21 @@ const Event = ({
     detailsPadding = "";
   }
 
-  let headlineSize = "su-type-2 md:su-type-1 lg:su-type-2";
+  let headlineSize = "su-type-1";
 
   if (isBigHeadline) {
-    headlineSize = dcnb("xl:su-type-3", headlineSize);
+    headlineSize = dcnb("lg:su-type-2 xl:su-type-3", headlineSize);
   }
 
   const iconClasses =
     "su-inline-block su-flex-shrink-0 su-mt-01em su-mr-06em su-w-[1.1em]";
   let locationIcon = (
-    <LocationMarkerIcon className={iconClasses} aria-label="Event location" />
+    <LocationMarkerIcon className={iconClasses} aria-hidden="true" />
   );
 
   if (isVirtual) {
     locationIcon = (
-      <DesktopComputerIcon
-        className={iconClasses}
-        aria-label="Event is online"
-      />
+      <DesktopComputerIcon className={iconClasses} aria-hidden="true" />
     );
   }
 
@@ -110,13 +109,13 @@ const Event = ({
         direction="col"
         element="article"
         className={dcnb(
-          "event-card su-group su-relative su-overflow-hidden su-text-black su-break-words su-basefont-23 su-w-full su-max-w-500 md:su-max-w-600",
+          "event-card su-group su-relative su-overflow-hidden sm:su-max-w-[42rem] md:su-max-w-full su-text-black su-break-words su-basefont-23 su-w-full",
           wrapperClasses
         )}
       >
         {!isMinimal && (
           <div
-            className="perk-card-image-wrapper su-relative su-aspect-w-3 su-aspect-h-2"
+            className="event-card-image-wrapper su-relative su-aspect-w-3 su-aspect-h-2"
             aria-hidden="true"
           >
             {filename?.startsWith("http") && (
@@ -141,6 +140,7 @@ const Event = ({
           endHtmlDate={endHtmlDate}
           isSameDay={isSameDay}
           isMinimal={isMinimal}
+          aria-hidden="true"
           className={
             isMinimal
               ? ""
@@ -150,25 +150,26 @@ const Event = ({
         <SbLink
           link={eventLink}
           classes={dcnb(
-            "su-stretched-link su-z-20 su-rs-mt-0 su-mb-08em su-text-black su-no-underline hocus:su-underline su-underline-offset !su-underline-thick !su-underline-digital-red-xlight",
+            "su-stretched-link su-group su-z-20 su-rs-mt-0 su-mb-08em su-text-black hocus:su-text-black su-no-underline hocus:su-underline su-underline-offset !su-underline-thick !su-underline-digital-red-xlight",
             headlineSize,
             headlinePadding
           )}
         >
           <Heading
-            level={headingLevel ?? 3}
+            level={parseInt(headingLevel, 10) ?? 3}
             font="serif"
             tracking="normal"
             className="su-relative su-inline su-type-0"
           >
             {title}
           </Heading>
-          <ArrowUpIcon
-            className="su-relative su-inline-block su-transition su-transform-gpu su-rotate-45 group-hocus:su-rotate-45 su-ml-02em su-w-08em group-hocus:su-translate-x-01em group-hocus:su--translate-y-01em su-text-digital-red-xlight group-hocus:su-text-cardinal-red"
-            aria-hidden="true"
+          <HeroIcon
+            iconType="external"
+            className="su-relative su-inline-block su-text-digital-red-xlight"
+            isAnimate
           />
         </SbLink>
-        {!isMinimal && <TabLabel text="Event" />}
+        {!isMinimal && !hideTab && <TabLabel text={tabText || "Event"} />}
         <div
           className={dcnb(
             "event-card-details su-card-paragraph",
@@ -176,7 +177,8 @@ const Event = ({
           )}
         >
           <FlexBox direction="row" alignItems="start" className="su-mb-04em">
-            <CalendarIcon className={iconClasses} aria-label="Event date" />
+            <CalendarIcon className={iconClasses} aria-hidden="true" />
+            <SrOnlyText srText="Date: " />
             <span>
               {longStartDate}
               {!isSameDay && ` - ${longEndDate}`}
@@ -186,6 +188,9 @@ const Event = ({
           {location && (
             <FlexBox direction="row" alignItems="start" className="su-mb-04em">
               {locationIcon}
+              <SrOnlyText
+                srText={isVirtual ? "This event is virtual: " : "Location: "}
+              />
               <span>{location}</span>
             </FlexBox>
           )}

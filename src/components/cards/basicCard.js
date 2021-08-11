@@ -32,7 +32,7 @@ const BasicCard = ({
 
   // Default wrapper classes for white, non-minimal cards
   let wrapperClasses =
-    "su-bg-white su-text-black su-border su-border-solid su-border-transparent-black su-shadow";
+    "su-bg-white su-text-black su-border su-border-solid su-border-black-30-opacity-40 su-bg-clip-padding su-shadow-sm";
 
   // Card content padding for non-minimal cards
   let bodyPadding = "su-rs-px-2 su-rs-pt-2 su-rs-pb-4";
@@ -49,9 +49,10 @@ const BasicCard = ({
     </div>
   );
 
-  if (isRound) {
+  if (isRound && filename) {
     // If image is round, we need to add padding above the image
     wrapperClasses = dcnb("su-rs-pt-3", wrapperClasses);
+
     cardImage = (
       <CircularImage
         borderColor={borderColor}
@@ -64,8 +65,13 @@ const BasicCard = ({
   }
 
   if (isMinimal) {
-    wrapperClasses = "";
-    bodyPadding = "su-rs-pt-2";
+    wrapperClasses = "su-max-w-600";
+    bodyPadding = "";
+
+    // Add top padding to content if the minimal card has an image
+    if (filename) {
+      bodyPadding = "su-rs-pt-2";
+    }
   }
 
   // Option to use light text (only for minimal card option)
@@ -93,7 +99,7 @@ const BasicCard = ({
     <SbEditable content={blok}>
       <div
         className={dcnb(
-          "basic-card su-w-full su-max-w-600 su-basefont-23",
+          "basic-card su-w-full su-basefont-23 su-break-words",
           wrapperClasses
         )}
       >

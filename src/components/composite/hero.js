@@ -24,25 +24,21 @@ const Hero = ({
     sansSub,
     serifSuper,
     headline,
-    headingLevel,
-    scrollTo,
   },
   blok,
 }) => {
-  let heroHeadlineSize =
-    "su-text-m3 md:su-text-m5 lg:su-text-m7 su-mx-auto su-max-w-900";
+  let heroHeadlineSize = "md:su-text-m5 lg:su-text-m7 su-mx-auto su-max-w-900";
 
   if (headlineSize === "large") {
-    heroHeadlineSize = "su-text-m4 md:su-text-m6 lg:su-text-m8";
+    heroHeadlineSize = "md:su-text-m6 lg:su-text-m8";
   } else if (headlineSize === "small") {
-    heroHeadlineSize =
-      "su-text-m3 md:su-text-m5 lg:su-text-m6 su-mx-auto su-max-w-900";
+    heroHeadlineSize = "md:su-text-m5 lg:su-text-m6 su-mx-auto su-max-w-900";
   }
 
   let gradientFrom = "su-from-transparent";
 
   if (isDarkGradient) {
-    gradientFrom = "su-from-transparent-black-20";
+    gradientFrom = "su-from-black-true-opacity-20";
   }
 
   const numCta = getNumBloks(cta);
@@ -86,11 +82,11 @@ const Hero = ({
                 )}
                 {headline && (
                   <Heading
-                    level={parseInt(headingLevel, 10) ?? 1}
+                    level={2}
                     font="serif"
                     weight="bold"
                     className={dcnb(
-                      "su-leading-tight su-tracking-normal su-text-shadow-lg su-mb-02em",
+                      "su-leading-tight su-tracking-normal su-text-shadow-lg su-mb-02em su-text-m4",
                       heroHeadlineSize
                     )}
                   >
@@ -115,12 +111,12 @@ const Hero = ({
             >
               <p className="su-mb-02em">Scroll to explore</p>
               <a
-                href={`#${scrollTo}`}
+                href="#page-title"
                 className="su-block su-mx-auto su-w-fit su-group"
               >
                 <SrOnlyText srText="Jump to main content" />
                 <ArrowDownIcon
-                  className="su-transition-colors su-text-digital-red-xlight su-w-40 su-h-40 su-p-6 su-border-2 su-border-cardinal-red su-rounded-full group-hocus:su-text-white group-hocus:su-bg-cardinal-red"
+                  className="su-transition-colors su-text-digital-red-xlight su-w-40 su-h-40 su-p-6 su-border-2 su-border-cardinal-red su-rounded-full group-hocus:su-text-white group-hocus:su-bg-cardinal-red-dark"
                   aria-hidden="true"
                 />
               </a>

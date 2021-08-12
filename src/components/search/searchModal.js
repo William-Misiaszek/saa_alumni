@@ -71,7 +71,7 @@ const SearchModal = ({ isOpen, setIsOpen, onClose }) => {
           onSubmit={(queryText) => searchSubmit(queryText)}
         />
         {story && content && (
-          <div className="su-mt-108">
+          <div>
             <SearchSuggestions blok={content} />
           </div>
         )}

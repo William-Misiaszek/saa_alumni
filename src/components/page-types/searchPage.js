@@ -10,6 +10,8 @@ import {
   ArrayParam,
 } from "use-query-params";
 import Icon from "react-hero-icon";
+import qs from "query-string";
+import { useLocation } from "@reach/router";
 import Layout from "../partials/layout";
 import SearchField from "../search/searchField";
 import SearchResults from "../search/searchResults";
@@ -211,10 +213,21 @@ const SearchPage = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, page, selectedFacets]);
 
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const params = qs.parse(search);
+    setPageParam(undefined);
+    setQueryParam(params.q || undefined);
+    setPage(0);
+    setQuery(params.q);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search]);
+
   const wrapperClasses = `su-flex-grow su-w-auto su-border-0 su-border-b su-border-solid su-border-black-60`;
 
-  const clearBtnClasses = `su-flex su-items-center su-bg-transparent hover:su-bg-transparent su-text-21 su-font-semibold
-  hover:su-text-black su-border-none su-text-black-70 su-p-0 focus:su-bg-transparent focus:su-text-black-70 su-rs-mr-1`;
+  const clearBtnClasses = `su-flex su-items-center su-bg-transparent hocus:su-underline hover:su-bg-transparent su-text-21 su-font-semibold
+  hover:su-text-black su-border-none su-text-black-70 su-p-0 focus:su-bg-transparent focus:su-text-black-70 su-rs-mr-1 su-flex su-items-center`;
 
   const inputClasses = `su-border-0 su-text-30 su-w-full su-flex-1 su-rs-px-1 su-py-10 su-text-m2 su-outline-none focus:su-ring-0 focus:su-ring-transparent`;
 

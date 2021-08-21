@@ -126,7 +126,8 @@ const SearchPage = (props) => {
     if (filters) {
       Object.values(filters).forEach((set) => {
         Object.values(set.getElementsByTagName("input")).forEach((checkbox) => {
-          checkbox.setAttribute("checked", false);
+          // eslint-disable-next-line no-param-reassign
+          checkbox.checked = false;
         });
       });
     }

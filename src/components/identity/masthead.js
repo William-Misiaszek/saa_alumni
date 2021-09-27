@@ -6,6 +6,7 @@ import CreateBloks from '../../utilities/createBloks';
 import Logo from './logo';
 import OpenSearchModalButton from '../search/openSearchModalButton';
 import SearchModal from '../search/searchModal';
+import * as styles from './global-header/GlobalHeaderStyles';
 
 const Masthead = ({ blok: { mainNav, utilityNav }, blok, hasHero, isDark }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -26,11 +27,8 @@ const Masthead = ({ blok: { mainNav, utilityNav }, blok, hasHero, isDark }) => {
         width="full"
         className="masthead-mobile su-relative lg:su-hidden su-bg-cardinal-red-xdark"
       >
-        <nav
-          aria-label="Utility Menu"
-          className="su-w-full su-text-right su-bg-digital-red"
-        >
-          <ul className="su-cc su-list-unstyled su-inline-block su-link-white su-link-no-underline su-link-regular su-text-14 sm:su-text-16 children:su-inline-block children:su-ml-[2em] children:su-mb-0 children:su-leading-[4rem] su-underline-offset">
+        <nav aria-label="Utility Menu" className={styles.utilNavMobile}>
+          <ul className={styles.utilNavMenuMobile}>
             <CreateBloks
               blokSection={utilityNav}
               className="first:su-ml-0"
@@ -73,14 +71,11 @@ const Masthead = ({ blok: { mainNav, utilityNav }, blok, hasHero, isDark }) => {
               direction="row"
               className="su-rs-my-0 xl:su-mb-0 su-flex-grow"
             >
-              <nav
-                aria-label="Utility Menu"
-                className="su-inline-block su-text-right su-flex-grow"
-              >
-                <ul className="su-list-unstyled su-inline-block su-link-white su-link-no-underline su-link-regular su-text-18 children:su-inline-block children:su-leading-[3.4rem] children:su-mr-[2em] children:su-mb-0 su-underline-offset">
+              <nav aria-label="Utility Menu" className={styles.utilNav}>
+                <ul className={styles.utilNavMenu}>
                   <CreateBloks
                     blokSection={utilityNav}
-                    className="first:su-ml-0 children:hocus:su-underline-digital-red-xlight children:hocus:su-underline-thick"
+                    className={styles.utilNavItem}
                     hasExternalIcon
                   />
                 </ul>

@@ -20,7 +20,7 @@ const CardImage = ({
   let originalImg = '';
   let imgSrc = '';
 
-  if (filename != null) {
+  if (filename) {
     let imgWidth = '';
 
     // Get image width from URL of storyblok image

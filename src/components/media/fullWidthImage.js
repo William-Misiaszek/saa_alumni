@@ -25,7 +25,7 @@ const FullWidthImage = ({
   let imgSrc = '';
   let imgAspectRatio = '';
 
-  if (filename != null) {
+  if (filename) {
     // Get image size from URL of storyblok image
     const originalWidth = getImageSize(filename).width;
     const originalHeight = getImageSize(filename).height;

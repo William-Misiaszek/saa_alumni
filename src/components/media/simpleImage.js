@@ -46,8 +46,9 @@ const SimpleImage = ({
   }
 
   let processedImg = '';
-  if (filename != null) {
+  if (filename) {
     const originalWidth = getImageSize(filename).width;
+
     const originalHeight = getImageSize(filename).height;
     const imgAspectRatio = originalWidth / originalHeight;
 

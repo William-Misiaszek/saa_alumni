@@ -10,6 +10,7 @@ import * as styles from './TripPage.styles';
 import { TripPageHeroSection } from './TripPageHeroSection';
 import { TripPageOverviewSection } from './TripPageOverviewSection';
 import { TripPageFacultySection } from './TripPageFacultySection';
+import { TripPageItinerarySection } from './TripPageItinerarySection';
 
 export const TripPageProps = {
   blok: TripContent,
@@ -38,6 +39,12 @@ const TripPage = (props) => {
       facultyHeading,
       facultyBody,
       facultyBelowContent,
+      // Itinerary Section
+      itineraryHeading,
+      itineraryBody,
+      itineraryAboveContent,
+      itineraryBelowContent,
+      itineraryItems,
     } = {},
   } = props;
   const printContainerRef = useRef(null);
@@ -81,7 +88,14 @@ const TripPage = (props) => {
               facultyBody={facultyBody}
               facultyBelowContent={facultyBelowContent}
             />
-            {/* TODO: Itinerary Section */}
+            {/* Itinerary Section */}
+            <TripPageItinerarySection
+              itineraryHeading={itineraryHeading}
+              itineraryBody={itineraryBody}
+              itineraryItems={itineraryItems}
+              itineraryAboveContent={itineraryAboveContent}
+              itineraryBelowContent={itineraryBelowContent}
+            />
             {/* TODO: Details Section */}
             {/* TODO: Related Trips */}
           </Container>

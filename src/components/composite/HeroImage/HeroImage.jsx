@@ -12,6 +12,7 @@ export const HeroImageProps = {
   className: PropTypes.string,
   children: PropTypes.element,
   overlay: PropTypes.oneOf(['normal', 'dark', false]),
+  aspectRatio: PropTypes.string,
 };
 
 export const HeroImage = ({
@@ -21,20 +22,22 @@ export const HeroImage = ({
   className,
   children,
   overlay = 'normal',
+  aspectRatio,
 }) => (
   <Container className={dcnb('hero', className, styles.root)} width="full">
     {filename && (
-      <figure className={styles.imgWrapper}>
+      <figure className={styles.imgWrapper({ children })}>
         <FullWidthImage
           filename={filename}
           smartFocus={focus}
           className={styles.img}
           loading="eager"
+          aspectRatio={aspectRatio}
           alt={alt}
         />
       </figure>
     )}
-    <div className={styles.overlay({ overlay })} aria-hidden />
+    {overlay && <div className={styles.overlay({ overlay })} aria-hidden />}
     {children && <Container className={styles.content}>{children}</Container>}
   </Container>
 );

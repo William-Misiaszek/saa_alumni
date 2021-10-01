@@ -1,8 +1,10 @@
 import { dcnb } from 'cnbuilder';
 
 export const root = 'su-relative su-bg-saa-black lg:su-top-0';
-export const imgWrapper =
-  'su-absolute su-top-0 su-overflow-hidden su-w-full su-h-full';
+export const imgWrapper = ({ children }) =>
+  dcnb('su-top-0 su-overflow-hidden su-w-full su-h-full', {
+    'su-absolute': children,
+  });
 export const img = 'su-w-full su-h-full su-object-cover';
 export const overlay = ({ overlay: overlayType }) =>
   dcnb(
@@ -12,4 +14,4 @@ export const overlay = ({ overlay: overlayType }) =>
       'su-from-transparent': overlayType === 'normal',
     }
   );
-export const content = 'su-relative su-rs-pt-9 su-rs-pb-8';
+export const content = 'su-relative su-rs-pt-10 su-rs-pb-8';

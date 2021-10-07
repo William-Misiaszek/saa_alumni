@@ -23,12 +23,29 @@ const storyblokRelations = [
   'tripCard.trip',
 ];
 
+// Support for Gatsby CLI
+let siteUrl = 'http://localhost:8000';
+
+// Support for Production site builds.
+if (process.env.CONTEXT === 'production') {
+  siteUrl = process.env.URL;
+}
+// Support for non-production netlify builds (branch/preview)
+else if (process.env.CONTEXT !== 'production' && process.env.NETLIFY === true) {
+  siteUrl = process.env.DEPLOY_PRIME_URL;
+}
+// Support for Netlify CLI.
+else if (process.env.NETLIFY_DEV === true) {
+  siteUrl = 'http://localhost:64946';
+}
+
 module.exports = {
   siteMetadata: {
     title: `Stanford Alumni Association`,
     description: `Stanford Alumni Association`,
     author: `Stanford University Alumni Association`,
-    siteUrl: `https://alumni-preview.stanford.edu`,
+    // eslint-disable-next-line
+    siteUrl: siteUrl,
 
     // This key is for metadata only and can be statically queried
     storyblok: {
@@ -82,11 +99,17 @@ module.exports = {
       },
     },
     {
+      /**
+       * NOTE: This needs to be updated, but we need to address the way storyblok
+       * links are resolved post v4.1.3. See the following PR comment for more details:
+       * https://github.com/SU-SWS/saa_alumni/pull/202#issuecomment-938025770
+       */
       resolve: 'gatsby-source-storyblok',
       options: {
         accessToken: process.env.GATSBY_STORYBLOK_ACCESS_TOKEN,
         homeSlug: 'home',
         resolveRelations: storyblokRelations,
+        resolveLinks: 'url',
         version: activeEnv === 'production' ? 'published' : 'draft',
       },
     },

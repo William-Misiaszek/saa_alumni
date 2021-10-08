@@ -3,6 +3,7 @@ import { dcnb } from 'cnbuilder';
 import { useReactToPrint } from 'react-to-print';
 import SbEditable from 'storyblok-react';
 import { Container } from 'decanter-react';
+import useScrollSpy from 'react-use-scrollspy';
 import Layout from '../../partials/layout';
 import { TripContent } from '../../../types/TripType';
 import * as styles from './TripPage.styles';
@@ -69,6 +70,8 @@ const TripPage = (props) => {
   const printTrip = useReactToPrint({
     content: () => printContainerRef.current,
   });
+
+  // Check whether each of the sections have content
   const renderFacultySection =
     facultyHeading ||
     hasRichText(facultyBody) ||
@@ -83,6 +86,19 @@ const TripPage = (props) => {
     detailsHeading ||
     hasRichText(detailsBody) ||
     getNumBloks(detailsBelowContent) > 0;
+
+  // For implementing scrollspy for the section nav
+  const sectionRefs = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
+  const activeSection = useScrollSpy({
+    sectionElementRefs: sectionRefs,
+    offsetPx: -200,
+  });
 
   return (
     <SbEditable content={blok}>
@@ -100,6 +116,7 @@ const TripPage = (props) => {
               subtitle={subtitle}
               shortDescription={shortDescription}
               heroImage={heroImage}
+              ref={sectionRefs[0]}
             />
             {/* Trip Section Sticky Nav */}
             {(renderFacultySection ||
@@ -111,6 +128,7 @@ const TripPage = (props) => {
                 renderDetailsSection={renderDetailsSection}
                 inquireURL={inquireURL}
                 reservationURL={reservationURL}
+                activeSection={activeSection}
                 ariaLabel="Section Menu"
               />
             )}
@@ -127,6 +145,7 @@ const TripPage = (props) => {
               reservationURL={reservationURL}
               overviewBelowContent={overviewBelowContent}
               onPrint={printTrip}
+              ref={sectionRefs[1]}
             />
             {/* Faculty Section */}
             {renderFacultySection && (
@@ -135,6 +154,7 @@ const TripPage = (props) => {
                 facultyBody={facultyBody}
                 facultyBelowContent={facultyBelowContent}
                 isCenterFacultyHeader={isCenterFacultyHeader}
+                ref={sectionRefs[2]}
               />
             )}
             {/* Itinerary Section */}
@@ -146,6 +166,7 @@ const TripPage = (props) => {
                 itineraryAboveContent={itineraryAboveContent}
                 itineraryBelowContent={itineraryBelowContent}
                 isCenterItineraryHeader={isCenterItineraryHeader}
+                ref={sectionRefs[3]}
               />
             )}
             {/* Details Section */}
@@ -155,6 +176,7 @@ const TripPage = (props) => {
                 detailsBody={detailsBody}
                 detailsBelowContent={detailsBelowContent}
                 isCenterDetailsHeader={isCenterDetailsHeader}
+                ref={sectionRefs[4]}
               />
             )}
             {/* Related Trips */}

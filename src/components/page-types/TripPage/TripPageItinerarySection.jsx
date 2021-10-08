@@ -17,7 +17,7 @@ export const TripPageItinerarySectionProps = {
   isCenterItineraryHeader: PropTypes.bool,
 };
 
-export const TripPageItinerarySection = (props) => {
+export const TripPageItinerarySection = React.forwardRef((props, ref) => {
   const {
     itineraryHeading,
     itineraryBody,
@@ -28,31 +28,33 @@ export const TripPageItinerarySection = (props) => {
   } = props;
 
   return (
-    <TripPageSectionWrapper
-      heading="Itinerary"
-      isCenter={isCenterItineraryHeader}
-    >
-      <TripPageSectionHeader
+    <div ref={ref}>
+      <TripPageSectionWrapper
+        heading="Itinerary"
         isCenter={isCenterItineraryHeader}
-        heading={itineraryHeading}
-        body={itineraryBody}
-      />
-      {itineraryAboveContent && itineraryAboveContent.length > 0 && (
-        <div className="trip-page-itinerary-above-content">
-          <CreateBloks blokSection={itineraryAboveContent} />
-        </div>
-      )}
-      {itineraryItems && itineraryItems.length > 0 && (
-        <div className={dcnb('trip-page-itinerary-items', styles.itinerary)}>
-          <CreateBloks blokSection={itineraryItems} />
-        </div>
-      )}
-      {itineraryBelowContent && itineraryBelowContent.length > 0 && (
-        <div className="trip-page-itinerary-below-content">
-          <CreateBloks blokSection={itineraryBelowContent} />
-        </div>
-      )}
-    </TripPageSectionWrapper>
+      >
+        <TripPageSectionHeader
+          isCenter={isCenterItineraryHeader}
+          heading={itineraryHeading}
+          body={itineraryBody}
+        />
+        {itineraryAboveContent && itineraryAboveContent.length > 0 && (
+          <div className="trip-page-itinerary-above-content">
+            <CreateBloks blokSection={itineraryAboveContent} />
+          </div>
+        )}
+        {itineraryItems && itineraryItems.length > 0 && (
+          <div className={dcnb('trip-page-itinerary-items', styles.itinerary)}>
+            <CreateBloks blokSection={itineraryItems} />
+          </div>
+        )}
+        {itineraryBelowContent && itineraryBelowContent.length > 0 && (
+          <div className="trip-page-itinerary-below-content">
+            <CreateBloks blokSection={itineraryBelowContent} />
+          </div>
+        )}
+      </TripPageSectionWrapper>
+    </div>
   );
-};
+});
 TripPageItinerarySection.propTypes = TripPageItinerarySectionProps;

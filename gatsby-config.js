@@ -24,10 +24,9 @@ const storyblokRelations = [
 ];
 
 const siteUrl =
-  process.env.GATSBY_SITE_URL ||
-  (process.env.CONTEXT === "production"
+  process.env.CONTEXT === 'production'
     ? process.env.URL
-    : process.env.DEPLOY_PRIME_URL);
+    : process.env.DEPLOY_PRIME_URL;
 
 module.exports = {
   siteMetadata: {

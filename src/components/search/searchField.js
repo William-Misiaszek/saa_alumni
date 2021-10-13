@@ -1,7 +1,6 @@
 import React, { useState, createRef, useEffect } from 'react';
 import { X, Search } from 'react-hero-icon/solid';
 import SearchAutocomplete from './searchAutocomplete';
-import useEscape from '../../hooks/useEscape';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const SearchField = React.forwardRef(

@@ -1,8 +1,8 @@
 import React from 'react';
 import sanitize from 'sanitize-html';
-import useEscape from "../../hooks/useEscape";
+import useEscape from '../../hooks/useEscape';
 
-const searchAutocomplete = ({
+const SearchAutocomplete = ({
   autocompleteSuggestions,
   setShowAutocomplete,
   showAutocomplete,
@@ -23,7 +23,7 @@ const searchAutocomplete = ({
   return (
     <div
       className={`${autocompleteContainerClasses}
-      ${showAutocomplete && autocompleteSuggestions.length ? "" : "su-hidden"}`}
+      ${showAutocomplete && autocompleteSuggestions.length ? '' : 'su-hidden'}`}
     >
       {Array.isArray(autocompleteSuggestions) && (
         <ul
@@ -42,18 +42,18 @@ const searchAutocomplete = ({
                           ${
                             index === selectedSuggestion
                               ? autocompleteLinkFocusClasses
-                              : ""
+                              : ''
                           }
                         `}
               onClick={(e) => onSelect(e, suggestion.query)}
               onKeyDown={(e) => {
                 // On Enter or Spacebar
-                if (e.key === "Enter" || e.key === " ") {
+                if (e.key === 'Enter' || e.key === ' ') {
                   onSelect(e, suggestion.query);
                 }
               }}
               onFocus={(e) => setSelectedSuggestion(index)}
-              aria-selected={selectedSuggestion === index ? "true" : "false"}
+              aria-selected={selectedSuggestion === index ? 'true' : 'false'}
               id={`search-autocomplete-listbox-${index}`}
             >
               {
@@ -78,4 +78,4 @@ const searchAutocomplete = ({
   );
 };
 
-export default searchAutocomplete;
+export default SearchAutocomplete;

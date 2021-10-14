@@ -10,6 +10,7 @@ exports.createPages = ({ graphql, actions }) => {
     // Omit non-page entities from page generation
     const contentTypesToOmit = [
       "alert",
+      "globalHeader",
       "localFooter",
       "masthead",
       "redirect", // NOTE: Redirects are omitted as they are specifically generated below

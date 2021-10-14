@@ -26,7 +26,7 @@ const storyblokRelations = [
 const siteUrl =
   process.env.CONTEXT === 'production'
     ? process.env.URL
-    : process.env.DEPLOY_PRIME_URL;
+    : process.env.DEPLOY_PRIME_URL || 'http://localhost:8000';
 
 module.exports = {
   siteMetadata: {

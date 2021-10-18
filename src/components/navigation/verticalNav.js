@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { dcnb } from "cnbuilder";
-import UseEscape from "../../hooks/useEscape";
-import UseOnClickOutside from "../../hooks/useOnClickOutside";
-import CreateStories from "../../utilities/createStories";
+import React, { useState, useRef } from 'react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { dcnb } from 'cnbuilder';
+import useEscape from '../../hooks/useEscape';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
+import CreateStories from '../../utilities/createStories';
+import { isExpanded } from '../../utilities/menuHelpers';
 
 const VerticalNav = ({ blok: { verticalNav }, className, id, pageLink }) => {
   const [navOpened, setNavOpened] = useState(false);
@@ -14,29 +15,27 @@ const VerticalNav = ({ blok: { verticalNav }, className, id, pageLink }) => {
     setNavOpened(!navOpened);
   };
 
-  const isExpanded = (x) => x.getAttribute("aria-expanded") === "true";
-
   let NavIcon = MenuIcon;
   if (navOpened) {
     NavIcon = XIcon;
   }
 
   // Close menu if escape key is pressed and return focus to the menu button
-  UseEscape(() => {
+  useEscape(() => {
     if (burgerRef.current && isExpanded(burgerRef.current)) {
       setNavOpened(false);
       burgerRef.current.focus();
     }
   });
 
-  UseOnClickOutside(ref, () => setNavOpened(false));
+  useOnClickOutside(ref, () => setNavOpened(false));
 
   return (
     <nav
       className={dcnb(
-        "su-relative",
+        'su-relative',
         className,
-        navOpened ? "su-shadow-xl" : ""
+        navOpened ? 'su-shadow-xl' : ''
       )}
       id={id}
       aria-label="Section Menu"
@@ -45,19 +44,19 @@ const VerticalNav = ({ blok: { verticalNav }, className, id, pageLink }) => {
       <button
         type="button"
         className={dcnb(
-          "su-group lg:su-hidden su-w-full su-flex su-justify-between su-font-semibold su-items-center su-mt-20 su-transition-colors su-border-solid su-border su-border-black-30 su-py-12 su-px-20 hocus:su-bg-digital-red hocus:su-border-digital-red hocus:su-text-white hocus:su-shadow-lg",
+          'su-group lg:su-hidden su-w-full su-flex su-justify-between su-font-semibold su-items-center su-mt-20 su-transition-colors su-border-solid su-border su-border-black-30 su-py-12 su-px-20 hocus:su-bg-digital-red hocus:su-border-digital-red hocus:su-text-white hocus:su-shadow-lg',
           navOpened
-            ? "su-bg-digital-red su-text-white su-border-digital-red"
-            : "su-text-digital-red-light"
+            ? 'su-bg-digital-red su-text-white su-border-digital-red'
+            : 'su-text-digital-red-light'
         )}
         onClick={toggleNav}
-        aria-label={`${navOpened ? "Close" : "Open"} section menu`}
+        aria-label={`${navOpened ? 'Close' : 'Open'} section menu`}
         aria-expanded={!!navOpened}
         ref={burgerRef}
       >
-        <span>{navOpened ? "Close" : "Section menu"}</span>
+        <span>{navOpened ? 'Close' : 'Section menu'}</span>
         <NavIcon
-          aria-hidden="true"
+          aria-hidden
           className="su-transition-colors su-w-[2.4rem] group-hocus:su-text-white"
         />
       </button>
@@ -69,9 +68,10 @@ const VerticalNav = ({ blok: { verticalNav }, className, id, pageLink }) => {
       <CreateStories
         stories={verticalNav}
         pageLink={pageLink}
-        className={`${
-          navOpened ? "su-block" : "su-hidden"
-        } lg:su-hidden su-absolute su-z-20 su-shadow-xl su-bg-white su-w-full`}
+        className={dcnb(
+          'lg:su-hidden su-absolute su-z-20 su-shadow-xl su-bg-white su-w-full',
+          `${navOpened ? 'su-block' : 'su-hidden'}`
+        )}
         aria-hidden={!navOpened}
       />
     </nav>

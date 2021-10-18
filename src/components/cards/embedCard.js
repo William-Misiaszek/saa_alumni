@@ -12,11 +12,10 @@
  * is also not good practice to inject and manipulate the page outside of
  * REACT as that can lead to irregularities and troubles.
  */
-import React, { useEffect, useRef, useState } from "react";
-import SbEditable from "storyblok-react";
-import postscribe from "postscribe";
-import Loader from "react-loader-spinner";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import React, { useEffect, useRef, useState } from 'react';
+import SbEditable from 'storyblok-react';
+import postscribe from 'postscribe';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const EmbedCard = ({ blok: { embed: html }, blok }) => {
   const myEmbed = useRef(null);
@@ -26,7 +25,7 @@ const EmbedCard = ({ blok: { embed: html }, blok }) => {
   useEffect(() => {
     if (!html) return;
 
-    if (html.includes("script")) {
+    if (html.includes('script')) {
       postscribe(`#${uniqueId}`, html, {
         done: () => {
           setScriptLoaded(true);
@@ -37,7 +36,7 @@ const EmbedCard = ({ blok: { embed: html }, blok }) => {
       // https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment
       const miniDom = document.createRange().createContextualFragment(html);
       // Clear the container.
-      myEmbed.current.innerHTML = "";
+      myEmbed.current.innerHTML = '';
       // Append the new content.
       myEmbed.current.appendChild(miniDom);
     }
@@ -49,7 +48,7 @@ const EmbedCard = ({ blok: { embed: html }, blok }) => {
 
   return (
     <SbEditable content={blok}>
-      {html.includes("script") ? (
+      {html.includes('script') ? (
         <>
           <div
             id={uniqueId}
@@ -59,13 +58,7 @@ const EmbedCard = ({ blok: { embed: html }, blok }) => {
           />
           {!scriptLoaded && (
             <>
-              <Loader
-                type="TailSpin"
-                color="#00BFFF"
-                height={50}
-                width={50}
-                timeout={30000}
-              />
+              <ClipLoader color="#00BFFF" height={50} width={50} />
               <p>Loading...</p>
             </>
           )}

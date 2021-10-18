@@ -1,7 +1,7 @@
-import React, { useState, createRef, useEffect } from "react";
-import { X, Search } from "react-hero-icon/solid";
-import SearchAutocomplete from "./searchAutocomplete";
-import UseOnClickOutside from "../../hooks/useOnClickOutside";
+import React, { useState, createRef, useEffect } from 'react';
+import { X, Search } from 'react-hero-icon/solid';
+import SearchAutocomplete from './searchAutocomplete';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const SearchField = React.forwardRef(
   (
@@ -22,7 +22,7 @@ const SearchField = React.forwardRef(
     },
     ref
   ) => {
-    const [query, setQuery] = useState(defaultValue || "");
+    const [query, setQuery] = useState(defaultValue || '');
     const [showAutocomplete, setShowAutocomplete] = useState(false);
     const [selectedSuggestion, setSelectedSuggestion] = useState(null);
     const inputWrapper = createRef();
@@ -43,7 +43,7 @@ const SearchField = React.forwardRef(
 
     const clearHandler = (e) => {
       e.preventDefault();
-      setQuery("");
+      setQuery('');
       setShowAutocomplete(false);
       setSelectedSuggestion(null);
       onReset();
@@ -61,14 +61,14 @@ const SearchField = React.forwardRef(
       setQuery(defaultValue);
     }, [defaultValue]);
 
-    UseOnClickOutside(inputWrapper, () => {
+    useOnClickOutside(inputWrapper, () => {
       setShowAutocomplete(false);
     });
 
     // If no suggestion is selected, or if the last suggested item is selected,
     // using the down arrow will set focus on the first suggestion
     const handleArrowKeys = (e) => {
-      if (e.key === "ArrowDown") {
+      if (e.key === 'ArrowDown') {
         if (
           selectedSuggestion === null ||
           selectedSuggestion === autocompleteSuggestions.length - 1
@@ -79,14 +79,14 @@ const SearchField = React.forwardRef(
         }
         // if the first suggested selection is selected,
         // using the up arrow will loop back to set focus on the last suggestion
-      } else if (e.key === "ArrowUp") {
+      } else if (e.key === 'ArrowUp') {
         if (selectedSuggestion === 0) {
           setSelectedSuggestion(autocompleteSuggestions.length - 1);
         } else {
           setSelectedSuggestion(selectedSuggestion - 1);
         }
       } else if (
-        e.key === "Enter" &&
+        e.key === 'Enter' &&
         autocompleteSuggestions[selectedSuggestion]
       ) {
         selectSuggestion(e, autocompleteSuggestions[selectedSuggestion].query);
@@ -109,17 +109,17 @@ const SearchField = React.forwardRef(
                   role="combobox"
                   aria-autocomplete="list"
                   aria-controls="search-autocomplete-listbox"
-                  aria-expanded={showAutocomplete ? "true" : "false"}
+                  aria-expanded={showAutocomplete ? 'true' : 'false'}
                   aria-activedescendant={
                     selectedSuggestion !== null
                       ? `search-autocomplete-listbox-${selectedSuggestion}`
-                      : ""
+                      : ''
                   }
                   aria-haspopup="listbox"
                   onChange={inputHandler}
                   onKeyDown={handleArrowKeys}
                   className={inputClasses}
-                  placeholder={placeholder || ""}
+                  placeholder={placeholder || ''}
                   value={query}
                   ref={inputRef}
                 />

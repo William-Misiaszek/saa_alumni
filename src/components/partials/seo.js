@@ -1,8 +1,8 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import SbEditable from "storyblok-react";
-import UseSiteMetadata from "../../hooks/useSiteMetadata";
-import transformImage from "../../utilities/transformImage";
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import SbEditable from 'storyblok-react';
+import useSiteMetadata from '../../hooks/useSiteMetadata';
+import transformImage from '../../utilities/transformImage';
 
 /**
  * Get the canonical URL for the current page.
@@ -19,12 +19,12 @@ function getCanonicalUrl(blok, siteUrl, location = {}) {
   if (!blok.canonicalURL) return canonicalUrl;
 
   // If an absolute URL was specified...
-  if (blok.canonicalURL.linktype === "url") {
+  if (blok.canonicalURL.linktype === 'url') {
     canonicalUrl = blok.canonicalURL.url;
   }
   // If the user referenced another page within Storyblok...
   else if (
-    blok.canonicalURL.linktype === "story" &&
+    blok.canonicalURL.linktype === 'story' &&
     blok.canonicalURL.cached_url
   ) {
     canonicalUrl = `${siteUrl}/${blok.canonicalURL.cached_url}`;
@@ -41,7 +41,7 @@ function getCanonicalUrl(blok, siteUrl, location = {}) {
  */
 
 const Seo = ({ location, blok: { title: theTitle, seo }, blok }) => {
-  const { title, description, siteUrl } = UseSiteMetadata();
+  const { title, description, siteUrl } = useSiteMetadata();
 
   // If no SEO fields are filled in, use site default description from gatsby.config and page title
   if (seo == null) {
@@ -53,22 +53,22 @@ const Seo = ({ location, blok: { title: theTitle, seo }, blok }) => {
   }
 
   // Use the title in SEO component, otherwise use the page title
-  const seoTitle = seo.title || theTitle || "";
+  const seoTitle = seo.title || theTitle || '';
   const ogTitle = seo.og_title || seoTitle;
 
   // Use the description in SEO component, otherwise use the one from gatsby.config
-  const seoDescription = seo.description || description || "";
+  const seoDescription = seo.description || description || '';
   const ogDescription = seo.og_description || seoDescription;
 
-  let ogImage = seo.og_image ?? "";
-  let twitterImage = seo.twitter_image ?? "";
+  let ogImage = seo.og_image ?? '';
+  let twitterImage = seo.twitter_image ?? '';
 
-  if (ogImage !== "") {
-    ogImage = transformImage(ogImage, "/1200x630");
+  if (ogImage !== '') {
+    ogImage = transformImage(ogImage, '/1200x630');
   }
 
-  if (twitterImage !== "") {
-    twitterImage = transformImage(twitterImage, "/1200x600");
+  if (twitterImage !== '') {
+    twitterImage = transformImage(twitterImage, '/1200x600');
   }
 
   const canonicalUrl = getCanonicalUrl(blok, siteUrl, location);
@@ -78,22 +78,22 @@ const Seo = ({ location, blok: { title: theTitle, seo }, blok }) => {
       <Helmet titleTemplate={`%s | ${title}`} title={seoTitle}>
         {!blok.noIndex && <link rel="canonical" href={canonicalUrl} />}
         {blok.noIndex && <meta name="robots" content="noindex" />}
-        {seoDescription !== "" && (
+        {seoDescription !== '' && (
           <meta name="description" content={seoDescription} />
         )}
-        {ogTitle !== "" && <meta property="og:title" content={ogTitle} />}
-        {ogDescription !== "" && (
+        {ogTitle !== '' && <meta property="og:title" content={ogTitle} />}
+        {ogDescription !== '' && (
           <meta property="og:description" content={ogDescription} />
         )}
-        {ogImage !== "" && <meta property="og:image" content={ogImage} />}
-        <meta name="twitter:card" content="summary" />
+        {ogImage !== '' && <meta property="og:image" content={ogImage} />}
+        <meta name="twitter:card" content="summary_large_image" />
         {seo.twitter_title && (
           <meta name="twitter:title" content={seo.twitter_title} />
         )}
         {seo.twitter_description && (
           <meta name="twitter:description" content={seo.twitter_description} />
         )}
-        {twitterImage !== "" && (
+        {twitterImage !== '' && (
           <meta name="twitter:image" content={twitterImage} />
         )}
       </Helmet>

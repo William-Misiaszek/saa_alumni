@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Container } from "decanter-react";
-import { tabbable } from "tabbable";
-import { XIcon } from "@heroicons/react/solid";
-import UseFocusTrap from "../../hooks/useFocusTrap";
-import UseEscape from "../../hooks/useEscape";
+import React, { useEffect, useRef, useState } from 'react';
+import { Container } from 'decanter-react';
+import { tabbable } from 'tabbable';
+import { XIcon } from '@heroicons/react/solid';
+import useFocusTrap from '../../hooks/useFocusTrap';
+import useEscape from '../../hooks/useEscape';
 
 const Modal = ({ children, isOpen, onClose, ariaLabel, initialFocus }) => {
   const closeButton = useRef();
@@ -29,41 +29,41 @@ const Modal = ({ children, isOpen, onClose, ariaLabel, initialFocus }) => {
     setLastTabbableRef({ current: getLastTabbableItem() });
   }, [children]);
 
-  UseFocusTrap(closeButton, lastTabbableRef, isOpen);
+  useFocusTrap(closeButton, lastTabbableRef, isOpen);
 
-  UseEscape(() => {
+  useEscape(() => {
     // Only do this if the search modal is open
     if (isOpen) {
       const searchInputModal =
-        document.getElementsByClassName("search-input-modal")[0];
+        document.getElementsByClassName('search-input-modal')[0];
       const mastheadDesktop =
-        document.getElementsByClassName("masthead-desktop")[0];
+        document.getElementsByClassName('masthead-desktop')[0];
 
       // Only close the modal with Escape key if the autocomplete dropdown is not open
-      if (searchInputModal.getAttribute("aria-expanded") !== "true") {
+      if (searchInputModal.getAttribute('aria-expanded') !== 'true') {
         closeButton.current.click();
 
-        if (getComputedStyle(mastheadDesktop, null).display === "none") {
-          document.getElementById("masthead-search-button-mobile").focus();
+        if (getComputedStyle(mastheadDesktop, null).display === 'none') {
+          document.getElementById('masthead-search-button-mobile').focus();
         } else {
-          document.getElementById("masthead-search-button-desktop").focus();
+          document.getElementById('masthead-search-button-desktop').focus();
         }
       }
     }
   });
 
   const lockScroll = () => {
-    const overlay = document.querySelector(".su-modal");
+    const overlay = document.querySelector('.su-modal');
     const scrollbarWidth = `${overlay.offsetWidth - overlay.clientWidth}px`;
 
-    document.getElementsByTagName("html")[0].style.overflowY = "hidden";
-    document.getElementsByTagName("body")[0].style.paddingRight =
+    document.getElementsByTagName('html')[0].style.overflowY = 'hidden';
+    document.getElementsByTagName('body')[0].style.paddingRight =
       scrollbarWidth;
   };
 
   const unlockScroll = () => {
-    document.getElementsByTagName("html")[0].style.overflowY = "scroll";
-    document.getElementsByTagName("body")[0].style.paddingRight = "0";
+    document.getElementsByTagName('html')[0].style.overflowY = 'scroll';
+    document.getElementsByTagName('body')[0].style.paddingRight = '0';
   };
 
   useEffect(() => {
@@ -84,10 +84,10 @@ const Modal = ({ children, isOpen, onClose, ariaLabel, initialFocus }) => {
     <div
       className={`su-modal
       su-fixed su-w-full su-h-full su-top-0 su-left-0 su-items-center su-justify-center su-z-50
-      ${isOpen ? "su-flex" : "su-hidden"}
+      ${isOpen ? 'su-flex' : 'su-hidden'}
     `}
       aria-label={ariaLabel}
-      aria-hidden={isOpen ? "false" : "true"}
+      aria-hidden={isOpen ? 'false' : 'true'}
       role="dialog"
       tabIndex="-1"
     >

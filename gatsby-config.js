@@ -1,9 +1,9 @@
 const activeEnv =
-  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development";
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development';
 
 console.log(`Using environment config: '${activeEnv}'`);
 
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
@@ -11,21 +11,33 @@ require("dotenv").config({
  * Resolve relations for storyblok.
  */
 const storyblokRelations = [
-  "eventCard.eventPicker",
-  "localFooterPicker.localFooter",
-  "mastheadPicker.masthead",
-  "perkCard.perkPicker",
-  "perkCardHorizontal.perkPicker",
-  "storyCard.storyPicker",
-  "alertPicker.alert",
-  "verticalNav.verticalNav",
+  'eventCard.eventPicker',
+  'globalHeaderPicker.globalHeader',
+  'localFooterPicker.localFooter',
+  'mastheadPicker.masthead',
+  'perkCard.perkPicker',
+  'perkCardHorizontal.perkPicker',
+  'storyCard.storyPicker',
+  'alertPicker.alert',
+  'verticalNav.verticalNav',
+  'tripCard.trip',
 ];
 
-const siteUrl =
-  process.env.GATSBY_SITE_URL ||
-  (process.env.CONTEXT === "production"
-    ? process.env.URL
-    : process.env.DEPLOY_PRIME_URL);
+// Support for Gatsby CLI
+let siteUrl = 'http://localhost:8000';
+
+// Support for Production site builds.
+if (process.env.CONTEXT === 'production') {
+  siteUrl = process.env.URL;
+}
+// Support for non-production netlify builds (branch/preview)
+else if (process.env.CONTEXT !== 'production' && process.env.NETLIFY) {
+  siteUrl = process.env.DEPLOY_PRIME_URL;
+}
+// Support for Netlify CLI.
+else if (process.env.NETLIFY_DEV === true) {
+  siteUrl = 'http://localhost:64946';
+}
 
 module.exports = {
   siteMetadata: {
@@ -44,11 +56,11 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
         policy: [
-          { userAgent: "*", allow: "/" },
-          { userAgent: "*", disallow: "/editor/" },
+          { userAgent: '*', allow: '/' },
+          { userAgent: '*', disallow: '/editor/' },
         ],
       },
     },
@@ -86,9 +98,9 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-google-tagmanager",
+      resolve: 'gatsby-plugin-google-tagmanager',
       options: {
-        id: "GTM-TJ9MSJ3",
+        id: 'GTM-TJ9MSJ3',
 
         // Include GTM in development.
         //
@@ -99,17 +111,22 @@ module.exports = {
         // should be an object or a function that is executed in the browser
         //
         // Defaults to null
-        defaultDataLayer: { platform: "gatsby" },
+        defaultDataLayer: { platform: 'gatsby' },
       },
     },
     {
-      resolve: "gatsby-source-storyblok",
+      /**
+       * NOTE: This needs to be updated, but we need to address the way storyblok
+       * links are resolved post v4.1.3. See the following PR comment for more details:
+       * https://github.com/SU-SWS/saa_alumni/pull/202#issuecomment-938025770
+       */
+      resolve: 'gatsby-source-storyblok',
       options: {
         accessToken: process.env.GATSBY_STORYBLOK_ACCESS_TOKEN,
-        homeSlug: "home",
+        homeSlug: 'home',
         resolveRelations: storyblokRelations,
-        version: activeEnv === "production" ? "published" : "draft",
-        // version: 'draft'  // would show any including drafts
+        resolveLinks: 'url',
+        version: activeEnv === 'production' ? 'published' : 'draft',
       },
     },
     {

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-function UseOnClickOutside(ref, handler) {
+function useOnClickOutside(ref, handler) {
   useEffect(() => {
     const listener = (event) => {
       // Do nothing if clicking ref's element or descendent elements
@@ -12,16 +12,16 @@ function UseOnClickOutside(ref, handler) {
       handler(event);
     };
 
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
-    document.addEventListener("keyup", listener);
+    document.addEventListener('mousedown', listener);
+    document.addEventListener('touchstart', listener);
+    document.addEventListener('keyup', listener);
 
     return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-      document.addEventListener("keyup", listener);
+      document.removeEventListener('mousedown', listener);
+      document.removeEventListener('touchstart', listener);
+      document.addEventListener('keyup', listener);
     };
   }, [ref, handler]);
 }
 
-export default UseOnClickOutside;
+export default useOnClickOutside;

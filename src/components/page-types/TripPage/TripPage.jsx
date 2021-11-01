@@ -8,6 +8,8 @@ import Layout from '../../partials/layout';
 import { TripContent } from '../../../types/TripType';
 import * as styles from './TripPage.styles';
 import Ankle from '../../partials/ankle/ankle';
+import getNumBloks from '../../../utilities/getNumBloks';
+import hasRichText from '../../../utilities/hasRichText';
 
 import { TripPageHeroSection } from './TripPageHeroSection';
 import { TripPageOverviewSection } from './TripPageOverviewSection';
@@ -17,8 +19,6 @@ import { TripPageExtensionSection } from './TripPageExtensionSection';
 import { TripPageDetailsSection } from './TripPageDetailsSection';
 import { TripPageSectionNav } from './TripPageSectionNav';
 import { TripPageRelatedTripsSection } from './TripPageRelatedTripsSection';
-import getNumBloks from '../../../utilities/getNumBloks';
-import hasRichText from '../../../utilities/hasRichText';
 
 export const TripPageProps = {
   blok: TripContent,
@@ -38,7 +38,6 @@ const TripPage = (props) => {
       overviewBody,
       startDate,
       endDate,
-      durationText,
       cost,
       tripSize,
       minAge,
@@ -47,31 +46,37 @@ const TripPage = (props) => {
       reservationURL,
       overviewBelowContent,
       // Faculty
+      hideFacultySection,
       facultyHeading,
       facultyBody,
       facultyBelowContent,
       isCenterFacultyHeader,
       // Itinerary Section
+      hideItinerarySection,
       itineraryHeading,
       itineraryBody,
       itineraryAboveContent,
       itineraryItems,
       isCenterItineraryHeader,
       // Trip Extension Section
+      hideExtensionSection,
       extendHeading,
       extendIntro,
       extendBody,
       extendStartDate,
       extendEndDate,
       extendPrice,
+      extendTripSize,
       extendItinerary,
       isCenterExtendHeader,
       // Details Section
+      hideDetailsSection,
       detailsHeading,
       detailsBody,
       detailsBelowContent,
       isCenterDetailsHeader,
       // Related Trips,
+      hideRelatedTrips,
       relatedTrips,
       // Ankle
       ankleContent,
@@ -84,23 +89,28 @@ const TripPage = (props) => {
 
   // Check whether each of the sections have content
   const renderFacultySection =
-    facultyHeading !== '' ||
-    hasRichText(facultyBody) ||
-    getNumBloks(facultyBelowContent) > 0;
+    !hideFacultySection &&
+    (facultyHeading !== '' ||
+      hasRichText(facultyBody) ||
+      getNumBloks(facultyBelowContent) > 0);
   const renderItinerarySection =
-    itineraryHeading !== '' ||
-    hasRichText(itineraryBody) ||
-    getNumBloks(itineraryItems) > 0 ||
-    getNumBloks(itineraryAboveContent) > 0;
+    !hideItinerarySection &&
+    (itineraryHeading !== '' ||
+      hasRichText(itineraryBody) ||
+      getNumBloks(itineraryItems) > 0 ||
+      getNumBloks(itineraryAboveContent) > 0);
   const renderExtensionSection =
-    extendHeading !== '' ||
-    hasRichText(extendIntro) ||
-    hasRichText(extendBody) ||
-    getNumBloks(extendItinerary) > 0;
+    !hideExtensionSection &&
+    (extendHeading !== '' ||
+      hasRichText(extendIntro) ||
+      hasRichText(extendBody) ||
+      getNumBloks(extendItinerary) > 0);
   const renderDetailsSection =
-    detailsHeading !== '' ||
-    hasRichText(detailsBody) ||
-    getNumBloks(detailsBelowContent) > 0;
+    !hideDetailsSection &&
+    (detailsHeading !== '' ||
+      hasRichText(detailsBody) ||
+      getNumBloks(detailsBelowContent) > 0);
+  const renderRelatedTrips = !hideRelatedTrips && getNumBloks(relatedTrips) > 0;
 
   // For implementing scrollspy for the section nav
   const sectionRefs = [
@@ -154,7 +164,6 @@ const TripPage = (props) => {
               overviewBody={overviewBody}
               startDate={startDate}
               endDate={endDate}
-              durationText={durationText}
               cost={cost}
               tripSize={tripSize}
               minAge={minAge}
@@ -196,6 +205,7 @@ const TripPage = (props) => {
                 extendStartDate={extendStartDate}
                 extendEndDate={extendEndDate}
                 extendPrice={extendPrice}
+                extendTripSize={extendTripSize}
                 isCenterExtendHeader={isCenterExtendHeader}
               />
             )}
@@ -210,7 +220,7 @@ const TripPage = (props) => {
               />
             )}
             {/* Related Trips */}
-            {getNumBloks(relatedTrips) > 0 && (
+            {renderRelatedTrips && (
               <TripPageRelatedTripsSection relatedTrips={relatedTrips} />
             )}
             {getNumBloks(ankleContent) > 0 && <Ankle isDark {...props} />}

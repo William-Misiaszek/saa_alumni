@@ -32,7 +32,7 @@ export const bgTextColorPairs = {
   plum: 'su-bg-plum su-text-white',
   'gradient-red':
     'su-bg-gradient-to-tr su-from-cardinal-red su-to-digital-red su-text-white',
-  'use-bg-image': 'su-text-white',
+  'use-bg-image': 'su-bg-black su-text-white',
 };
 
 export const bgPositionVertical = {
@@ -45,7 +45,7 @@ export const buttonSizes = {
   small:
     'su-px-20 su-pt-10 su-pb-11 md:su-px-26 md:su-pt-14 md:su-pb-16 su-text-18 md:su-text-20',
   'small-short':
-    'su-px-20 su-pt-7 su-pb-8 md:su-px-26 md:su-pt-10 md:su-pb-12 su-text-18 md:su-text-20',
+    'su-px-20 su-pt-7 su-pb-8 md:su-px-26 md:su-pt-8 md:su-pb-10 su-text-18 md:su-text-20',
   default:
     'su-px-20 su-pt-10 su-pb-11 md:su-px-30 md:su-pt-16 md:su-pb-18 su-text-18 md:su-text-24',
   large:
@@ -63,6 +63,8 @@ export const buttonStyles = {
     'su-border-digital-red-xlight su-bg-transparent su-text-white hocus:su-bg-cardinal-red-xdark hocus:su-text-white',
   'ghost-gradient':
     'su-gradient-border su-border-to-rt-palo-verde-dark-to-saa-electric-blue su-text-white su-bg-transparent hocus:su-text-white hocus:su-bg-gradient-to-tr hocus:su-from-palo-verde-dark hocus:su-to-saa-electric-blue',
+  'palo-verde-gradient':
+    'su-border-palo-verde-dark su-bg-palo-verde-dark su-text-white hocus:su-text-white hocus:su-bg-gradient-to-tr hocus:su-from-palo-verde-dark hocus:su-to-saa-electric-blue hocus:su-gradient-border hocus:su-border-to-rt-palo-verde-dark-to-saa-electric-blue',
 };
 
 export const ctaGroupDisplay = {
@@ -99,6 +101,15 @@ export const objectPosition = {
 export const pageTextColors = {
   dark: 'su-text-black su-link-digital-red hover:su-link-sky-dark focus:su-link-sky-dark',
   light: 'su-text-white su-link-white hover:su-link-white focus:su-link-white',
+};
+
+export const posterGradients = {
+  'digital-red-plum-black':
+    'linear-gradient(240deg, rgba(24, 29, 28, 0.95) 10%, rgba(98, 0, 89, 0.85) 60%, rgb(177, 4, 14) 100%)',
+  'sky-dark-lagunita-dark-black':
+    'linear-gradient(240deg, rgba(24, 29, 28, 0.95) 10%, rgba(0, 107, 129, 0.85) 60%, rgb(1, 104, 149) 100%)',
+  'palo-verde-dark-palo-alto-dark-black':
+    'linear-gradient(240deg, rgba(24, 29, 28, 0.95) 10%, rgba(1, 66, 64, 0.85) 60%, rgb(1, 126, 124) 100%)',
 };
 
 export const smallPaddingBottom = {
@@ -185,4 +196,17 @@ export const mediaAspectRatio = {
   '16x9': 'su-aspect-w-16 su-aspect-h-9',
   '4x3': 'su-aspect-w-4 su-aspect-h-3',
   '1x1': 'su-aspect-w-1 su-aspect-h-1',
+};
+
+export const superheadStyles = {
+  'gradient-underline': {
+    light:
+      'su-text-black hocus:su-text-saa-electric-blue su-border-saa-electric-blue su-gradient-border su-border-to-r-palo-verde-dark-to-saa-electric-blue su-border-b-[4px] su-border-solid hocus:su-no-gradient-border',
+    dark: 'su-text-white hocus:su-text-saa-electric-blue-light su-border-saa-electric-blue-light su-gradient-border su-border-to-r-palo-verde-dark-to-saa-electric-blue su-border-b-[4px] su-border-solid su-transition-colors hocus:su-no-gradient-border',
+  },
+  'red-back-link': {
+    light:
+      'su-text-digital-red-light hocus:su-text-cardinal-red su-underline-offset hocus:su-underline',
+    dark: 'su-text-digital-red-xlight hocus:su-text-white su-underline-offset hocus:su-underline',
+  },
 };

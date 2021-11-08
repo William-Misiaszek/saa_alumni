@@ -28,9 +28,9 @@ import LinkGroup from './navigation/linkGroup';
 import LinkList from './simple/linkList';
 import LocalFooter from './identity/localFooter';
 import LocalFooterPicker from './identity/localFooterPicker';
-import MainMenuGroup from './navigation/mainMenuGroup';
-import MainNav from './navigation/mainNav';
-import MainNavItem from './navigation/mainNavItem';
+import MainMenuGroup from './navigation/MainNav/mainMenuGroup';
+import MainNav from './navigation/MainNav/mainNav';
+import MainNavItem from './navigation/MainNav/mainNavItem';
 import Masthead from './identity/masthead';
 import MastheadPicker from './identity/mastheadPicker';
 import NavItem from './navigation/navItem';
@@ -53,6 +53,8 @@ import SimpleImage from './media/simpleImage';
 import Story from './content-types/story/story';
 import StoryCard from './cards/storyCard';
 import { SBTripCard } from './storyblok/tripCard';
+import { SBTsContentPicker } from './storyblok/tsContentPicker';
+import { SBTsContentTemplate } from './storyblok/tsContentTemplate';
 import TripFilterPage from './page-types/TripFilterPage/TripFilterPage';
 import TripPage from './page-types/TripPage/TripPage';
 import { SBUtilityNav } from './storyblok/utilityNav';
@@ -118,6 +120,8 @@ const ComponentList = {
   trip: TripPage,
   tripCard: SBTripCard,
   tripFilterPage: TripFilterPage,
+  tsContentPicker: SBTsContentPicker,
+  tsContentTemplate: SBTsContentTemplate,
   utilityNav: SBUtilityNav,
   verticalNav: VerticalNav,
   verticalNavWrapper: VerticalNavWrapper,

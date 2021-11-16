@@ -47,6 +47,9 @@ const Modal = ({
     document.getElementsByTagName('body')[0].style.paddingRight =
       scrollbarWidth;
     document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+    document.getElementsByTagName('body')[0].style.position = 'fixed';
+    document.getElementsByTagName('body')[0].style.left = '0';
+    document.getElementsByTagName('body')[0].style.right = '0';
   };
 
   const unlockScroll = () => {
@@ -55,6 +58,9 @@ const Modal = ({
       .setAttribute('style', 'overflow-y: visible!important');
     document.getElementsByTagName('body')[0].style.paddingRight = '0';
     document.getElementsByTagName('body')[0].style.overflowY = 'visible';
+    document.getElementsByTagName('body')[0].style.position = 'relative';
+    document.getElementsByTagName('body')[0].style.left = 'unset';
+    document.getElementsByTagName('body')[0].style.right = 'unset';
   };
 
   useEffect(() => {
@@ -76,6 +82,7 @@ const Modal = ({
       className={styles.root({ isOpen, type })}
       aria-label={ariaLabel}
       aria-hidden={!isOpen}
+      aria-modal={isOpen}
       role="dialog"
       tabIndex="-1"
     >
@@ -86,6 +93,7 @@ const Modal = ({
             ref={closeButton}
             onClick={onClose}
             className={styles.closeButton}
+            aria-label="Close modal"
           >
             Close
             <XIcon className={styles.closeIcon({ type })} aria-hidden />

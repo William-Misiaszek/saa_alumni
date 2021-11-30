@@ -8,8 +8,7 @@ import OpenSearchModalButton from '../search/openSearchModalButton';
 import SearchModal from '../search/searchModal';
 import * as styles from './global-header/GlobalHeader.styles';
 import useEscape from '../../hooks/useEscape';
-import useMediaQuery from '../../hooks/useMediaQuery';
-import { breakpoints } from '../../contexts/GlobalContext';
+import useDisplay from '../../hooks/useDisplay';
 
 const Masthead = ({
   blok: { mainNav, utilityNav, searchPageUrl },
@@ -18,8 +17,10 @@ const Masthead = ({
   isDark,
 }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const desktopRef = useRef(null);
+  const mobileRef = useRef(null);
   const openSearchRef = useRef(null);
-  const isDesktop = useMediaQuery(`(min-width: ${breakpoints.lg}px)`);
+  const openSearchMobileRef = useRef(null);
 
   let mainNavBgColorXl =
     'xl:su-bg-transparent xl:su-bg-gradient-to-b xl:su-from-masthead-black-top xl:su-to-masthead-black-bottom su-backface-hidden';
@@ -31,9 +32,17 @@ const Masthead = ({
     mainNavBgColorLg = 'su-bg-saa-black';
   }
 
+  const returnFocus = () => {
+    if (openSearchRef.current) {
+      openSearchRef.current.focus();
+    } else if (openSearchMobileRef.current) {
+      openSearchMobileRef.current.focus();
+    }
+  };
+
   const handleClose = () => {
     setModalOpen(false);
-    openSearchRef.current.focus();
+    returnFocus();
   };
 
   useEscape(() => {
@@ -45,15 +54,21 @@ const Masthead = ({
       // Only close the modal with Escape key if the autocomplete dropdown is not open
       if (searchInputModal.getAttribute('aria-expanded') !== 'true') {
         setModalOpen(false);
-        openSearchRef.current.focus();
+        returnFocus();
       }
     }
   });
 
+  // Use the useDisplay hook to determine whether to display the desktop of mobile header
+  const { showDesktop, showMobile } = useDisplay();
+
   return (
     <SbEditable content={blok}>
-      {!isDesktop ? (
-        <div className="masthead-mobile su-relative su-w-full lg:su-hidden su-bg-cardinal-red-xdark">
+      {showMobile && (
+        <div
+          className="masthead-mobile su-relative su-w-full lg:su-hidden su-bg-cardinal-red-xdark"
+          ref={mobileRef}
+        >
           <nav aria-label="Utility Menu" className={styles.utilNavMobile}>
             <ul className={styles.utilNavMenuMobile}>
               <CreateBloks
@@ -70,16 +85,17 @@ const Masthead = ({
             <OpenSearchModalButton
               openOpen={modalOpen}
               setModalOpen={setModalOpen}
-              id="masthead-search-button-mobile"
-              ref={openSearchRef}
+              ref={openSearchMobileRef}
             />
             <CreateBloks blokSection={mainNav} className="su-flex-shrink-0" />
           </FlexBox>
         </div>
-      ) : (
+      )}
+      {showDesktop && (
         <div
           className={`masthead-desktop su-hidden lg:su-block su-w-full su-z-20
           ${hasHero ? 'su-absolute' : 'su-relative'}`}
+          ref={desktopRef}
         >
           <FlexBox>
             <FlexCell
@@ -111,7 +127,6 @@ const Masthead = ({
                 <OpenSearchModalButton
                   openOpen={modalOpen}
                   setModalOpen={setModalOpen}
-                  id="masthead-search-button-desktop"
                   ref={openSearchRef}
                 />
               </FlexBox>

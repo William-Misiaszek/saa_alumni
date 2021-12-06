@@ -1,8 +1,11 @@
 import React from 'react';
 import SbEditable from 'storyblok-react';
 import { dcnb } from 'cnbuilder';
-import { Container, Grid, GridCell, Skiplink } from 'decanter-react';
+import { Grid } from '../../layout/Grid';
+import { GridCell } from '../../layout/GridCell';
+import { Container } from '../../layout/Container';
 import { Heading } from '../../simple/Heading';
+import { Skiplink } from '../../accessibility/Skiplink';
 import Layout from '../../partials/layout';
 import CreateBloks from '../../../utilities/createBloks';
 import { useTripFilters } from '../../../hooks/useTripFilters';
@@ -45,9 +48,9 @@ const TripFilterPage = (props) => {
 
   return (
     <SbEditable content={blok}>
-      <Layout isDark hasHero={filename} {...props}>
+      <Layout isDark hasHero={filename !== ''} {...props}>
         <Container
-          element="main"
+          as="main"
           id="main-content"
           className={styles.page}
           width="full"
@@ -67,7 +70,6 @@ const TripFilterPage = (props) => {
                 font="serif"
                 size={7}
                 align="center"
-                weight="bold"
                 leading="tight"
                 tracking="normal"
                 className={styles.heading}
@@ -90,7 +92,7 @@ const TripFilterPage = (props) => {
             </GridCell>
             <GridCell xs={1} lg={3} className={styles.filterSidebar}>
               <Skiplink anchorLink="#filtered-trips-list">
-                Skip pass filters to trip list
+                Skip past filters to trip list
               </Skiplink>
               <Heading
                 level={2}

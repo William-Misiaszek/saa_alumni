@@ -48,7 +48,7 @@ const TripFilterPage = (props) => {
 
   return (
     <SbEditable content={blok}>
-      <Layout isDark hasHero={filename !== ''} {...props}>
+      <Layout isDark hasHero {...props}>
         <Container
           as="main"
           id="main-content"

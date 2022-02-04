@@ -1,0 +1,82 @@
+.event-list {
+  @apply su-grid su-grid-cols-1 md:su-grid-cols-2 xl:su-grid-cols-3 su-justify-items-center su-items-stretch su-gap-y-xl md:su-gap-y-[5rem] xl:su-gap-y-[7rem] su-grid-gap su-p-0;
+}
+
+.event {
+  @apply su-flex su-flex-col su-relative su-overflow-hidden sm:su-max-w-[42rem] md:su-max-w-full su-text-black su-break-words su-w-full su-rs-pb-3 su-bg-white su-border su-border-solid su-bg-clip-padding su-shadow-sm focus-within:su-shadow-md hover:su-shadow-md su-backface-hidden su-border-black-30-opacity-40 su-mb-0;
+}
+
+.event-card {
+  @apply su-basefont-23;
+}
+
+.event-img__wrapper {
+  @apply su-relative su-aspect-w-3 su-aspect-h-2;
+}
+
+.event-img {
+  @apply su-object-cover;
+}
+
+.event-short-date {
+  @apply su-relative su-flex su-flex-col su-text-white su-items-center su-justify-center su-mb-08em su-mt-[-5.6rem] lg:su-mt-[-6.3rem] su-w-fit su-z-0 su-rs-ml-1 su-w-[11.2rem] lg:su-w-[12.6rem] su-h-[11.2rem] lg:su-h-[12.6rem];
+}
+
+.event-short-date::before {
+  @apply su-rounded-full su-bg-gradient-to-tr su-from-cardinal-red su-to-digital-red su-absolute su-h-full su-w-full su-inset-0;
+  content: '';
+}
+
+.event:hover .event-short-date::before {
+  @apply su-from-digital-red su-to-digital-red-light su-z-0;
+}
+
+.event-short-date::after {
+  @apply su-absolute su-z-0 su-flex su-w-fit su-bg-cardinal-red su-rounded-full su-w-[10rem] lg:su-w-[11.4rem] su-h-[10rem] lg:su-h-[11.4rem] su-left-[.6rem] su-top-[.6rem];
+  content: '';
+}
+
+.event-short-date .month {
+  @apply su-mb-8 su-uppercase su-leading-trim su-text-20 lg:su-text-22 su-z-[1] su-leading-none su-no-underline su-ml-[-1.2em] md:su-ml-[-1.6em];
+}
+
+.event-short-date .day {
+  @apply su-font-bold su-font-serif su-leading-trim su-text-m5 md:su-text-m4 lg:su-text-m5 su-z-[1];
+}
+
+.event-type {
+  @apply su-font-sans su-font-semibold su-rs-px-2;
+}
+
+.event-title {
+  @apply su-z-20 su-rs-mt-0 su-mb-08em su-type-1 su-rs-px-2;
+}
+
+.event-title__link {
+  @apply su-no-underline hocus:su-underline su-underline-offset !su-underline-thick !su-underline-digital-red-xlight su-text-black hocus:su-text-black su-font-serif;
+}
+
+.event-title__link::before {
+  @apply su-block su-absolute su-z-[1] su-inset-0 su-pointer-events-auto su-bg-transparent su-align-middle;
+  content: "";
+}
+
+.event-title__link::after {
+  content: "";
+  background: url("../assets/arrow-right.svg") no-repeat;
+  @apply su-transition su-bg-cover su-w-08em su-h-[0.8em] su-relative su-top-[0.1em] su-ml-02em su--rotate-45 su-transform-gpu su-inline-block su-text-digital-red-light;
+}
+
+.event-title__link:hover::after {
+  @apply su-translate-x-01em su--translate-y-01em su-text-cardinal-red;
+}
+
+.start-time {
+  @apply su-card-paragraph su-rs-px-2 su-flex su-flex-row su-items-start su-mb-04em;
+}
+
+.start-time::before {
+  content: "";
+  background-image: url("../assets/calendar.svg");
+  @apply su-inline-block su-bg-cover su-flex-shrink-0 su-mt-2 md:su-mt-3 su-mr-06em su-w-[1em] su-h-[1em];
+}

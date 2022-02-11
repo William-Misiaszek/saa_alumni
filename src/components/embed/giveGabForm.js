@@ -20,10 +20,11 @@ const GiveGabForm = ({
     pre_markup,
     url,
     post_markup,
-    trip_id,
-    trip_name,
+    deposit_amount: depositAmount,
+    trip_id: tripId,
+    trip_name: tripName,
     extension,
-    extension_amount,
+    extension_amount: extensionAmount,
   },
   blok,
 }) => {
@@ -31,7 +32,13 @@ const GiveGabForm = ({
   const { user, isAuthenticated, isAuthenticating } = useContext(AuthContext);
   const preBlok = { markup: pre_markup };
   const postBlok = { markup: post_markup };
-  const ggForm = { trip_id, trip_name, extension, extension_amount };
+  const ggForm = {
+    depositAmount,
+    tripId,
+    tripName,
+    extension,
+    extensionAmount,
+  };
 
   if (isAuthenticating) {
     return (
@@ -51,8 +58,7 @@ const GiveGabForm = ({
 
   // If the user is logged in, provide the prefill variables to the window.
   if (isAuthenticated) {
-    // TODO: Determine how the trip_id, trip_name, extension, and extension_amount information will be handled
-    // TODO: Set the window variables for the pre populated forms.
+    // TODO: Remove console log before merging!
     console.log(user, ggForm);
     setGiveGabVars(user, ggForm);
   }

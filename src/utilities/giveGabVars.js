@@ -180,16 +180,18 @@ const setGiveGabVars = (user, ggForm) => {
     }
   }
 
+  // TODO: Determine is specification of spouse relationship is needed
   // Find a spouse by relationship key.
-  const spouse = user?.relationships
-    ? findSignificantOther(user.relationships)
-    : {};
+  // const spouse = user?.relationships
+  //   ? findSignificantOther(user.relationships)
+  //   : {};
 
   // Concatenate street address 2 and 3.
   const street2 = [address?.streetAddress2, address?.streetAddress3]
     .join(' ')
     .trim();
 
+  // Information from StoryBlok GiveGabForm Component
   window.su_trip_id = ggForm?.tripId || '';
   window.su_trip_title = ggForm?.tripTitle || '';
   window.su_deposit_amount = ggForm?.depositAmount || '';
@@ -207,7 +209,6 @@ const setGiveGabVars = (user, ggForm) => {
   window.su_pronouns = user?.pronouns || '';
   window.su_birthDate = user?.birthDate || '';
   window.su_affiliation_type = user?.affiliationType || '';
-  // window.su_title = user?.prefix || null; |
 
   // Used within the Registration and Additional Payment request form
   // TODO: Determine if additional mapping is needed for different country/postal code formats.
@@ -219,11 +220,12 @@ const setGiveGabVars = (user, ggForm) => {
   window.su_country = lookup.byCountry(address?.addressCountry)?.iso2;
 
   // Might be used within the Registration form for additional travelers
-  window.su_sp_first_name = spouse?.relatedContactFirstName || '';
-  window.su_sp_last_name = spouse?.relatedContactLastName || '';
-  window.su_sp_middle_initial =
-    spouse?.relatedContactMiddleName?.substring(0, 1) || '';
-  window.su_sp_title = spouse?.relatedContactPrefix || null;
+  // TODO: Determine how the additional travelers mapping will go and if spouse needs to be seperated out.
+  // window.su_sp_first_name = spouse?.relatedContactFirstName || '';
+  // window.su_sp_last_name = spouse?.relatedContactLastName || '';
+  // window.su_sp_middle_initial =
+  //   spouse?.relatedContactMiddleName?.substring(0, 1) || '';
+  // window.su_sp_title = spouse?.relatedContactPrefix || null;
 };
 
 export default setGiveGabVars;

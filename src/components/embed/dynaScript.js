@@ -24,7 +24,7 @@ const DynaScript = ({ src, id, ...props }) => {
     };
     script.onerror = () => {
       alert(
-        'Sorry, we are experiencing technical difficulties. Please try refreshing your browser or return later to make your gift. Thank you for giving to Stanford!'
+        'Sorry, we are experiencing technical difficulties. Please try refreshing your browser or return later to book your trip. Thank you!'
       );
     };
 

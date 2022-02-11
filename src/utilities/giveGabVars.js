@@ -192,6 +192,7 @@ const setGiveGabVars = (user, ggForm) => {
 
   window.su_trip_id = ggForm?.tripId || '';
   window.su_trip_title = ggForm?.tripTitle || '';
+  window.su_deposit_amount = ggForm?.depositAmount || '';
   window.su_extension = ggForm?.extension || '';
   window.su_extension_amount = ggForm?.extensionAmount || '';
 

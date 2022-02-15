@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import React, { useContext, useEffect } from 'react';
-import nextId from 'react-id-generator';
 import { Helmet } from 'react-helmet';
 import SbEditable from 'storyblok-react';
 import ClipLoader from 'react-spinners/ClipLoader';

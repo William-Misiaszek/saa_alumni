@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import nextId from 'react-id-generator';
 import { Helmet } from 'react-helmet';
 import SbEditable from 'storyblok-react';
@@ -16,6 +16,7 @@ import AuthContext from '../../contexts/AuthContext';
 const GiveGabForm = ({
   blok: {
     css_styles,
+    error_text: errorText,
     head_js,
     pre_markup,
     url,
@@ -25,20 +26,23 @@ const GiveGabForm = ({
     trip_name: tripName,
     extension,
     extension_amount: extensionAmount,
+    uuid,
   },
   blok,
 }) => {
-  const htmlId = nextId('su-givegab-');
+  const htmlId = uuid;
   const { user, isAuthenticated, isAuthenticating } = useContext(AuthContext);
   const preBlok = { markup: pre_markup };
   const postBlok = { markup: post_markup };
-  const ggForm = {
-    depositAmount,
-    tripId,
-    tripName,
-    extension,
-    extensionAmount,
-  };
+
+  useEffect(() => {
+    // Information from StoryBlok GiveGabForm Component
+    window.su_trip_id = tripId || '';
+    window.su_trip_name = tripName || '';
+    window.su_deposit_amount = depositAmount || '';
+    window.su_extension = extension || '';
+    window.su_extension_amount = extensionAmount || '';
+  }, [tripId, tripName, depositAmount, extension, extensionAmount]);
 
   if (isAuthenticating) {
     return (
@@ -58,9 +62,7 @@ const GiveGabForm = ({
 
   // If the user is logged in, provide the prefill variables to the window.
   if (isAuthenticated) {
-    // TODO: Remove console log before merging!
-    console.log(user, ggForm);
-    setGiveGabVars(user, ggForm);
+    setGiveGabVars(user);
   }
   return (
     <SbEditable content={blok}>
@@ -80,7 +82,7 @@ const GiveGabForm = ({
       >
         <div className="su-rs-p-5">
           <Embed blok={preBlok} />
-          <DynaScript src={url} id={htmlId} />
+          <DynaScript src={url} id={htmlId} errorText={errorText} />
         </div>
         <div className="su-rs-mt-3 children:children:su-p-38 md:children:children:su-p-72 xl:children:children:su-p-76 children:children:empty:su-p-0">
           <Embed blok={postBlok} />

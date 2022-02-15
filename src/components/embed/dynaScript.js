@@ -7,7 +7,12 @@ import ClipLoader from 'react-spinners/ClipLoader';
  *
  * @param {*} props
  */
-const DynaScript = ({ src, id, ...props }) => {
+const DynaScript = ({
+  errorText = 'Sorry, we are experiencing technical difficulties. Please try refreshing your browser or return to this form later. Thank you!',
+  src,
+  id,
+  ...props
+}) => {
   const scriptRef = useRef();
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
@@ -23,9 +28,7 @@ const DynaScript = ({ src, id, ...props }) => {
       }
     };
     script.onerror = () => {
-      alert(
-        'Sorry, we are experiencing technical difficulties. Please try refreshing your browser or return later to book your trip. Thank you!'
-      );
+      alert(errorText);
     };
 
     scriptRef.current.appendChild(script);
@@ -33,7 +36,7 @@ const DynaScript = ({ src, id, ...props }) => {
     return () => {
       mounted = false;
     };
-  }, [src, setScriptLoaded, scriptRef]);
+  }, [src, errorText, setScriptLoaded, scriptRef]);
 
   return (
     <>

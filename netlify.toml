@@ -15,6 +15,7 @@
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
+    Content-Security-Policy = "default-src https: 'unsafe-inline'; form-action https:; img-src https: data:"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=2592000"
@@ -46,7 +47,7 @@
   [plugins.inputs]
     endpoint = 'https://vault.stanford.edu'
     # Order doesn't matter here as these will be fetch asyncronously. Try not to have dupes.
-    secrets = ['secret/data/projects/adapt/saml', 'secret/data/projects/adapt/tsgg']
+    secrets = ['secret/data/projects/adapt/certs', 'secret/data/projects/adapt/alumni']
     # Set which environment variables to use for the approle login
     secretId = 'VAULT_SECRET_ID'
     roleId = 'VAULT_ROLE_ID'

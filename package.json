@@ -21,6 +21,7 @@
     "body-parser": "^1.19.1",
     "cnbuilder": "^2.7.1",
     "cookie-parser": "^1.4.6",
+    "country-code-lookup": "^0.0.20",
     "decanter": "^7.0.0-beta.2",
     "gatsby": "^4.3.0",
     "gatsby-link": "^4.3.0",

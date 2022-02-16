@@ -20,6 +20,7 @@ import { SBGlobalHeader } from './storyblok/globalHeader';
 import { SBGlobalHeaderPicker } from './storyblok/globalHeaderPicker';
 import { SBGrid } from './storyblok/grid';
 import { SBHeading } from './storyblok/heading';
+import GiveGabForm from './embed/giveGabForm';
 import Hero from './composite/hero';
 import IconCard from './cards/iconCard';
 import Itinerary from './composite/itinerary';
@@ -83,6 +84,7 @@ const ComponentList = {
   embedVideo: EmbedVideo,
   event: Event,
   eventCard: EventCard,
+  giveGabForm: GiveGabForm,
   globalHeader: SBGlobalHeader,
   globalHeaderPicker: SBGlobalHeaderPicker,
   grid: SBGrid,

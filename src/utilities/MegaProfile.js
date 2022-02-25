@@ -15,6 +15,10 @@ export class MegaProfile {
       baseURL: this.url,
       // Other request defaults? Headers?
     });
+
+    if (this.auth.isAuthenticated()) {
+      this.setAuthHeaders();
+    }
   }
 
   setAuthHeaders = () => {

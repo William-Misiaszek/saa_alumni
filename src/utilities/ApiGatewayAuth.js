@@ -6,7 +6,7 @@ export class ApiGatewayAuth {
     this.clientId = config.clientId || process.env.API_GATEWAY_AUTH_CLIENT_ID;
     this.clientSecret =
       config.clientSecret || process.env.API_GATEWAY_AUTH_CLIENT_SECRET;
-    this.token = config.token;
+    this.token = config.token || false;
     // TODO: Configurable?
     this.grantType = 'CLIENT_CREDENTIALS';
   }

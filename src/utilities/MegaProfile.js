@@ -23,6 +23,7 @@ export class MegaProfile {
 
   setAuthHeaders = () => {
     this.client.defaults.headers.common.Authorization = `Bearer ${this.auth.token.access_token}`;
+    console.log('Set auth headers', this.client.defaults.headers.common);
   };
 
   /**

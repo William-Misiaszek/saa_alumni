@@ -2,6 +2,7 @@ import React from 'react';
 
 /**
  * Wildcard 404 component/page
+ * https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/#purely-client-only-app
  */
 const Wildcard404 = ({ location }) => {
   const destinationURL = 'https://cardinalalumni.stanford.edu';

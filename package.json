@@ -102,6 +102,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.23.2",
+    "gatsby-disable-404": "^0.2.1",
     "netlify-cli": "^6.9.30",
     "node-vault": "^0.9.22",
     "postcss": "^8.3.5",

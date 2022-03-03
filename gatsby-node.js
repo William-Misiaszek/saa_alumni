@@ -129,7 +129,6 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
-
 // Alter Gatsby's webpack config.
 exports.onCreateWebpackConfig = ({
   stage,

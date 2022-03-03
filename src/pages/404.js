@@ -2,7 +2,13 @@ import React from 'react';
 
 /**
  * Wildcard 404 component/page
- * https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/#purely-client-only-app
+ *
+ * Netlify's gatsby essential plugin adds a wildcard `/*` to support DSG.
+ * When the DSG function and no page is available it will return this component.
+ *
+ * @see
+ * https://github.com/netlify/netlify-plugin-gatsby/blob/main/plugin/src/index.ts#L83-L86
+ * https://github.com/netlify/netlify-plugin-gatsby/blob/main/plugin/src/templates/utils.ts#L97
  */
 const Wildcard404 = ({ location }) => {
   const destinationURL = 'https://cardinalalumni.stanford.edu';

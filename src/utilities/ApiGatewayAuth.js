@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from 'qs';
 
 export class ApiGatewayAuth {
   constructor(config = {}) {
@@ -7,7 +8,6 @@ export class ApiGatewayAuth {
     this.clientSecret =
       config.clientSecret || process.env.API_GATEWAY_AUTH_CLIENT_SECRET;
     this.token = config.token || false;
-    // TODO: Configurable?
     this.grantType = 'client_credentials';
   }
 
@@ -19,12 +19,10 @@ export class ApiGatewayAuth {
       client_secret: this.clientSecret,
       grant_type: this.grantType,
     };
-    const headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    };
-    const result = await axios.post(this.url, { body }, { headers });
+    const result = await axios.post(this.url, qs.stringify(body), {
+      headers: { 'Content-type': 'application/x-www-form-urlencoded' },
+    });
     this.token = result.data;
-
     return this.token;
   };
 }

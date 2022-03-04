@@ -8,20 +8,21 @@ export class ApiGatewayAuth {
       config.clientSecret || process.env.API_GATEWAY_AUTH_CLIENT_SECRET;
     this.token = config.token || false;
     // TODO: Configurable?
-    this.grantType = 'CLIENT_CREDENTIALS';
+    this.grantType = 'client_credentials';
   }
 
   isAuthenticated = () => !!this.token;
 
   authenticate = async () => {
-    const params = {
+    const body = {
       client_id: this.clientId,
       client_secret: this.clientSecret,
       grant_type: this.grantType,
     };
-    const result = await axios.post(this.url, undefined, {
-      params,
-    });
+    const headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    const result = await axios.post(this.url, { body }, { headers });
     this.token = result.data;
 
     return this.token;

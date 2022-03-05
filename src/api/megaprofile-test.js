@@ -10,8 +10,7 @@ export default async function handler(req, res) {
     const mp = new MegaProfile();
     const { data } = await mp.get();
     res.status(200).json(data);
-    // res.status(200).json({ mesage: 'something is happening...' });
-  } catch (error) {
-    res.status(500).json(error.response.data);
+  } catch (e) {
+    res.status(500).json(e.response.data);
   }
 }

@@ -14,16 +14,15 @@ export class MegaProfile {
     this.client = axios.create({
       baseURL: this.url,
       // Other request defaults? Headers?
+      params: {
+        token: this.authenticate(),
+      },
     });
-
-    if (this.auth.isAuthenticated()) {
-      this.setAuthHeaders();
-    }
   }
 
-  setAuthHeaders = () => {
-    this.client.defaults.headers.common.Authorization = `Bearer ${this.auth.token.access_token}`;
-    console.log('Set auth headers', this.client.defaults.headers.common);
+  // Set Token
+  setToken = () => {
+    this.client.defaults.params.token = this.auth.token.access_token;
   };
 
   /**
@@ -31,7 +30,7 @@ export class MegaProfile {
    */
   authenticate = async () => {
     await this.auth.authenticate();
-    this.setAuthHeaders();
+    return this.setToken();
   };
 
   // Generic request handler w/ auth check
@@ -40,7 +39,6 @@ export class MegaProfile {
     if (!this.auth.isAuthenticated()) {
       await this.authenticate();
     }
-
     const result = await this.client.request(config);
     return result;
   };

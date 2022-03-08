@@ -1,5 +1,6 @@
 import React, { createContext } from 'react';
 import AuthIdleTimeoutOverlay from '../components/auth/AuthIdleTimeoutOverlay';
+import setGiveGabVars from '../utilities/giveGabVars';
 
 const initialAuthState = {
   user: null,
@@ -30,13 +31,12 @@ class AuthContextProvider extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const url = `${window.location.protocol}//${window.location.host}/api/auth/session`;
     fetch(url).then(async (res) => {
       if (res.status === 200) {
-        const body = await res.json();
         this.dispatch({ type: 'setAuthenticated', payload: true });
-        this.dispatch({ type: 'setUser', payload: body });
+        this.dispatch({ type: 'setUser', payload: data });
         this.dispatch({ type: 'setAuthenticating', payload: false });
       } else {
         this.dispatch({ type: 'setAuthenticated', payload: false });
@@ -58,6 +58,10 @@ class AuthContextProvider extends React.Component {
   render() {
     const { children } = this.props;
     const { user, isAuthenticated, isAuthenticating } = this.state;
+    console.log(user);
+    if (isAuthenticated) {
+      setGiveGabVars(user);
+    }
     return (
       <AuthContext.Provider
         value={{

@@ -88,6 +88,8 @@ exports.createPages = ({ graphql, actions }) => {
               isCanonical,
               noIndex,
             },
+            // TODO: Remove this test before merging!
+            defer: pagePath === 'resources/learn/',
           });
         });
       })

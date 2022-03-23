@@ -33,7 +33,16 @@ export class MegaProfile {
     if (!this.auth.isAuthenticated()) {
       await this.authenticate();
     }
-    const result = await this.client.request(config);
+
+    const result = await this.client
+      .request(config)
+      .then((response) => response)
+      .catch((error) => error);
+
+    if (result.status === 404) {
+      result.data = {};
+      return result;
+    }
     return result;
   };
 

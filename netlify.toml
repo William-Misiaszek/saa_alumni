@@ -65,11 +65,6 @@
     context = 'branch-deploy'
     branch = 'staging'
 
-# [[plugins]]
-# package = "/plugins/netlify-plugin-wildcard-404-redirect"
-#   [plugins.inputs]
-#   destination = "https://cardinalalumni.stanford.edu/:splat"
-
 [[plugins]]
 package = "@netlify/plugin-gatsby"
 

@@ -6,7 +6,6 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { Container } from '../layout/Container';
 import Embed from './embed';
 import DynaScript from './dynaScript';
-import setGiveGabVars from '../../utilities/giveGabVars';
 import AuthContext from '../../contexts/AuthContext';
 
 // Give Gab Form Component
@@ -29,16 +28,21 @@ const GiveGabForm = ({
   blok,
 }) => {
   const htmlId = uuid;
-  const { user, isAuthenticated, isAuthenticating } = useContext(AuthContext);
+  const { isAuthenticating } = useContext(AuthContext);
   const preBlok = { markup: pre_markup };
   const postBlok = { markup: post_markup };
+  // TODO: ADAPT-4776 The ciid is subject to change. Please update once the final name has been confirmed
+  let ggUrl;
+  if (tripId) {
+    ggUrl = `${url}?ciid=${tripId}`;
+  }
 
   useEffect(() => {
     // Information from StoryBlok GiveGabForm Component
-    // TODO: The ciid is subject to change. Please update once the final name has been confirmed
+    // TODO: ADAPT-4776 The ciid is subject to change. Please update once the final name has been confirmed
     window.ciid = tripId || '';
     window.amt = depositAmount || '';
-    // TODO: The following fields does not exist within the GG form yet.
+    // TODO: ADAPT-4681/ADAPT-4776 The following fields does not exist within the GG form yet.
     window.su_trip_name = tripName || '';
     window.su_extension = extension || '';
     window.su_extension_amount = extensionAmount || '';
@@ -60,10 +64,6 @@ const GiveGabForm = ({
     );
   }
 
-  // If the user is logged in, provide the prefill variables to the window.
-  if (isAuthenticated) {
-    setGiveGabVars(user);
-  }
   return (
     <SbEditable content={blok}>
       {css_styles && (

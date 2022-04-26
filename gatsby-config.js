@@ -22,6 +22,7 @@ const storyblokRelations = [
   'tripNotifyMe.notifyMeText',
   'tripCustomJourneys.trip',
   'tripCustomJourneys.customJourneysText',
+  'registrationFormPage.trip',
 ];
 
 // Support for Gatsby CLI

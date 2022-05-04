@@ -14,6 +14,7 @@ import AuthenticatedPage from '../../auth/AuthenticatedPage';
 const FormPage = (props) => {
   const {
     blok: {
+      trip,
       title,
       isSrOnlyTitle,
       heroImage: { filename, alt, focus } = {},
@@ -64,7 +65,7 @@ const FormPage = (props) => {
                       {title}
                     </Heading>
                   )}
-                  <CreateBloks blokSection={formContent} />
+                  <CreateBloks blokSection={formContent} trip={trip} />
                 </div>
               </GridCell>
               <GridCell

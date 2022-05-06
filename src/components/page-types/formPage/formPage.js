@@ -1,5 +1,6 @@
 import React from 'react';
 import SbEditable from 'storyblok-react';
+import { dcnb } from 'cnbuilder';
 import { Container } from '../../layout/Container';
 import { Heading } from '../../simple/Heading';
 import Layout from '../../partials/layout';
@@ -21,10 +22,20 @@ const FormPage = (props) => {
       formContent,
       giveGabForm,
       ankleContent,
+      isSingleColumn,
     },
     blok,
   } = props;
   const numAnkle = getNumBloks(ankleContent);
+  let contentStyle = 'su-sticky su-top-0 su-h-fit';
+  let formCardStyle = 'su-rs-mt-7 lg:su-col-start-7 xl:su-col-start-7';
+  let bgCardStyle = false;
+
+  if (isSingleColumn) {
+    contentStyle = '';
+    formCardStyle = 'lg:su-col-start-4 xl:su-col-start-4';
+    bgCardStyle = 'su-bg-saa-black';
+  }
 
   return (
     <AuthenticatedPage>
@@ -51,8 +62,12 @@ const FormPage = (props) => {
               xs={12}
               className="su-relative su-cc su-z-10 su-rs-pb-8 su-rs-pt-6"
             >
-              <GridCell xs={12} lg={5} xl={5}>
-                <div className="su-sticky su-top-0 su-h-fit su-text-white">
+              <GridCell
+                xs={12}
+                lg={isSingleColumn ? 12 : 5}
+                xl={isSingleColumn ? 12 : 5}
+              >
+                <div className={dcnb('su-text-white', contentStyle)}>
                   {title && (
                     <Heading
                       level={1}
@@ -60,7 +75,7 @@ const FormPage = (props) => {
                       font="serif"
                       srOnly={isSrOnlyTitle}
                       id="page-title"
-                      className="su-rs-mt-5"
+                      className={isSingleColumn ? 'su-rs-mt-5' : 'su-rs-mt-7'}
                     >
                       {title}
                     </Heading>
@@ -71,10 +86,13 @@ const FormPage = (props) => {
               <GridCell
                 xs={12}
                 lg={6}
-                xl={5}
-                className="su-rs-mt-5 lg:su-col-start-7 xl:su-col-start-7"
+                xl={isSingleColumn ? 6 : 5}
+                className={formCardStyle}
               >
-                <CreateBloks blokSection={giveGabForm} />
+                <CreateBloks
+                  blokSection={giveGabForm}
+                  bgCardStyle={bgCardStyle}
+                />
               </GridCell>
             </Grid>
             {numAnkle > 0 && <Ankle isDark {...props} />}

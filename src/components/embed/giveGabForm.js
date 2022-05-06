@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import SbEditable from 'storyblok-react';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { dcnb } from 'cnbuilder';
 import { Container } from '../layout/Container';
 import Embed from './embed';
 import DynaScript from './dynaScript';
@@ -21,6 +22,7 @@ const GiveGabForm = ({
     uuid,
   },
   blok,
+  bgCardStyle,
 }) => {
   const htmlId = uuid;
   const { isAuthenticating } = useContext(AuthContext);
@@ -32,7 +34,10 @@ const GiveGabForm = ({
       <div
         aria-live="polite"
         aria-busy="true"
-        className="su-bg-gradient-to-tl su-to-saa-black su-from-saa-black-opacity-40 su-backdrop-blur-sm su-shadow-lg su-text-white su-rs-p-5"
+        className={dcnb(
+          'su-shadow-lg su-text-white su-rs-p-5 md:su-rs-p-6 su-bg-gradient-to-tl su-to-saa-black su-from-saa-black-opacity-40 su-backdrop-blur-sm',
+          bgCardStyle
+        )}
       >
         <ClipLoader color="#00BFFF" height={50} width={50} />
         <p>Loading form...</p>
@@ -57,9 +62,12 @@ const GiveGabForm = ({
       )}
       <Container
         width="full"
-        className="children:backdrop-opacity-30 children:su-bg-gradient-to-tl children:su-backdrop-blur-sm children:su-shadow-lg children:su-text-white"
+        className={dcnb(
+          'children:su-text-white children:backdrop-opacity-30 children:su-bg-gradient-to-tl children:su-backdrop-blur-sm children:su-shadow-lg',
+          bgCardStyle
+        )}
       >
-        <div className="form-gradient su-rs-p-5 2xl:su-pb-[10.8rem]">
+        <div className="form-gradient su-rs-p-5 md:su-rs-p-6 2xl:su-pb-[10.8rem]">
           <Embed blok={preBlok} />
           <DynaScript src={url} id={htmlId} errorText={errorText} />
         </div>

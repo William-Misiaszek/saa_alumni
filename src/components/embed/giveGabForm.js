@@ -63,7 +63,7 @@ const GiveGabForm = ({
       <Container
         width="full"
         className={dcnb(
-          'children:su-text-white children:backdrop-opacity-30 children:su-bg-gradient-to-tl children:su-backdrop-blur-sm children:su-shadow-lg',
+          'children:backdrop-opacity-30 children:su-bg-gradient-to-tl children:su-backdrop-blur-sm children:su-shadow-lg children:su-text-white',
           bgCardStyle
         )}
       >

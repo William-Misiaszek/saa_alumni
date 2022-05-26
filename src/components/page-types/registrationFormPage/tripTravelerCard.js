@@ -28,7 +28,7 @@ const TripTravelerCard = ({ traveler }) => {
     traveler.removeBtn = false;
     dispatch({
       type: 'removeTraveler',
-      payload: traveler.did,
+      payload: traveler.su_did,
     });
   };
 
@@ -66,7 +66,7 @@ const TripTravelerCard = ({ traveler }) => {
           id="page-title"
           className="su-text-m2"
         >
-          {traveler.dname}
+          {traveler.su_dname}
         </Heading>
         {traveler?.removeBtn ? (
           <button

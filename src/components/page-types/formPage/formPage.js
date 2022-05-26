@@ -52,13 +52,15 @@ const FormPage = (props) => {
   const { userProfile } = useContext(AuthContext);
 
   useEffect(() => {
+    window.su_trip_id = trip?.content?.tripId;
+    window.su_trip_name = trip?.content?.title;
     if (userProfile) {
       setGiveGabVars(userProfile);
     }
     return () => {
       unsetGiveGabVars();
     };
-  }, [userProfile]);
+  }, [userProfile, trip]);
 
   return (
     <AuthenticatedPage>

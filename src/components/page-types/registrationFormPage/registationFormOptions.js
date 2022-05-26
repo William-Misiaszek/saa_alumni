@@ -6,7 +6,6 @@ export const findSelectOption = (select = [], value) => {
   return null;
 };
 
-export const regType = ['Primary registrant', 'Related contact'];
 export const prefixSelectList = [
   'Dr.',
   'Miss',
@@ -79,21 +78,13 @@ export const relationshipSelectList = [
   'Grandchild',
   'Aunt/Uncle',
   'Niece/Nephew',
-  'GreatGrandchild',
-  'GreatGrandparent',
+  'Great Grandchild',
+  'Great Grandparent',
   'Relative',
   'Sibling',
   'Spouse/Partner',
   'Step-child',
   'Step-parent',
+  'Self',
   'Guest',
-];
-
-export const affiliationSelectList = [
-  'None',
-  'Alum',
-  'Current Student',
-  'Faculty',
-  'Parent of Undergraduate Student',
-  'Staff',
 ];

@@ -67,7 +67,7 @@ const findPhoneNumberType = (phoneNumbers, type) => {
  * @returns {string}
  *   The preferred phone number type
  */
-export const findPreferredPhoneNumberType = (phoneNumbers) => {
+export const findPhoneNumber = (phoneNumbers) => {
   let phoneNumber;
   if (Array.isArray(phoneNumbers)) {
     phoneNumber = findPreferredPhoneNumber(phoneNumbers);
@@ -82,6 +82,36 @@ export const findPreferredPhoneNumberType = (phoneNumbers) => {
     }
   }
   return phoneNumber;
+};
+
+/**
+ * Find the user's preferred phone number.
+ *
+ * @param {array} phoneNumbers
+ *   An array of objects containing phone numbers.
+ * @param {string} prefPhoneNumber
+ *   Preferred phone number.
+ *
+ * @returns {string|boolean}
+ *   The pref phone number type
+ */
+export const findPreferredPhoneNumberType = (
+  phoneNumbers = [],
+  prefPhoneNumber
+) => {
+  let pref = 'Home Phone';
+
+  if (phoneNumbers[0]?.preferredPhoneNumberType === null) {
+    return pref;
+  }
+
+  phoneNumbers.forEach((val, ind, arr) => {
+    if (val?.phoneNumber === prefPhoneNumber) {
+      pref = val.phoneNumberType;
+    }
+  });
+
+  return pref;
 };
 
 /**
@@ -151,7 +181,7 @@ const findEmailType = (emails, type) => {
  * @returns {string}
  *   The preferred email type
  */
-export const findPreferredEmailType = (emails) => {
+export const findEmail = (emails) => {
   let email;
   if (Array.isArray(emails)) {
     email = findPreferredEmail(emails);
@@ -166,6 +196,33 @@ export const findPreferredEmailType = (emails) => {
     }
   }
   return email;
+};
+
+/**
+ * Find the user's preferred email type.
+ *
+ * @param {array} emails
+ *   An array of objects containing email type.
+ * @param {string} prefEmail
+ *   Preferred email type.
+ *
+ * @returns {string|boolean}
+ *   The pref email type
+ */
+export const findPreferredEmailType = (emails = [], prefEmail) => {
+  let pref = 'Home Email';
+
+  if (emails[0]?.preferredEmailType === null) {
+    return pref;
+  }
+
+  emails.forEach((val, ind, arr) => {
+    if (val?.email === prefEmail) {
+      pref = val.preferredEmailType;
+    }
+  });
+
+  return pref;
 };
 
 /**
@@ -235,7 +292,7 @@ const findAddressType = (addresses, type) => {
  * @returns {string}
  *   The preferred address type
  */
-export const findPreferredAddressType = (addresses) => {
+export const findAddress = (addresses) => {
   let address;
   if (Array.isArray(addresses)) {
     address = findPreferredAddress(addresses);
@@ -267,13 +324,13 @@ const setGiveGabVars = (userProfile) => {
   // If entity has preferred valid mailing address (either Home or Business), use that address first
   // If entity has no preference then use valid Home mailing address
   // If neither preferred or Home exist then use valid Business mailing address
-  const address = findPreferredAddressType(userProfile?.addresses);
+  const address = findAddress(userProfile?.addresses);
 
   // Find the preferred email address. If none, use the one they logged in with.
-  const email = findPreferredEmailType(userProfile?.emails);
+  const email = findEmail(userProfile?.emails);
 
   // Find the preferred phone number.
-  const phoneNumber = findPreferredPhoneNumberType(userProfile?.phoneNumbers);
+  const phoneNumber = findPhoneNumber(userProfile?.phoneNumbers);
 
   // Concatenate street address 2 and 3.
   const street2 = [address?.streetAddress2, address?.streetAddress3]
@@ -326,10 +383,4 @@ const unsetGiveGabVars = () => {
   delete window.su_phone;
 };
 
-export {
-  findPreferredPhoneNumber,
-  findPreferredEmail,
-  findPreferredAddress,
-  setGiveGabVars,
-  unsetGiveGabVars,
-};
+export { setGiveGabVars, unsetGiveGabVars };

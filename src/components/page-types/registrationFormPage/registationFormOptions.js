@@ -1,9 +1,14 @@
 export const findSelectOption = (select = [], value) => {
-  if (select.includes(value)) {
-    const index = select.findIndex((item) => item.indexOf(value) !== -1);
-    return select[index];
-  }
-  return null;
+  let selected = null;
+  select?.forEach((option) => {
+    if (value === option) {
+      selected = option;
+    }
+    if (value?.includes(option)) {
+      selected = option;
+    }
+  });
+  return selected;
 };
 
 export const prefixSelectList = [
@@ -88,3 +93,7 @@ export const relationshipSelectList = [
   'Self',
   'Guest',
 ];
+
+export const emailTypeList = ['Home', 'Business', 'Other'];
+
+export const phoneNumberTypeList = ['Home', 'Business', 'Mobile'];

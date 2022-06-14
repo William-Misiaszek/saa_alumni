@@ -61,6 +61,14 @@ const RegistrationFormPage = (props) => {
     window.su_trip_url = tripUrl;
     window.su_trip_start_date = startDate;
     window.su_trip_end_date = endDate;
+    // Global function for the trip cancellation policy link in givegab.
+    // GG Doesn't support dynamic urls in their forms so we added an onclick
+    // with this function.
+    window.navigateToTripPolicy = () => {
+      const destUrl = new URL(tripUrl, window.location.origin);
+      destUrl.hash = 'cancellation-policy';
+      window.location.href = destUrl;
+    };
 
     // Trip extension related data
     window.su_pre_extension_name = extendHeading;

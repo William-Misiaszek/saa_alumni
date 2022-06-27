@@ -6,7 +6,7 @@ import { FormContext } from '../../../contexts/FormContext';
 import FaIcon from '../../simple/faIcon';
 
 const TripTravelerCard = ({ traveler }) => {
-  const [state, dispatch] = useContext(FormContext);
+  const [, dispatch] = useContext(FormContext);
 
   const addRelationship = () => {
     traveler.removeBtn = true;

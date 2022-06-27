@@ -2,7 +2,7 @@ import { dcnb } from 'cnbuilder';
 
 export const root = ({ type, isOpen }) =>
   dcnb(
-    'su-modal su-fixed su-w-screen su-h-full su-overscroll-contain su-overflow-y-scroll su-overflow-x-hidden su-top-0 su-left-0 su-items-center su-justify-center su-z-50',
+    'su-modal su-fixed su-w-screen su-h-full su-overscroll-contain su-overflow-y-scroll su-overflow-x-hidden su-top-0 su-left-0 su-items-center su-justify-center su-z-[60]',
     {
       'su-flex': isOpen,
       'su-hidden': !isOpen,
@@ -25,6 +25,6 @@ export const closeButton =
   'su-group su-bg-transparent su-text-white hocus:su-bg-transparent su-font-semibold hocus:su-underline su-text-m1 su-flex su-items-end focus:su-outline-none';
 export const closeIcon = ({ type }) =>
   dcnb('su-inline-block su-h-[1.1em] su-w-[1.1em] su-ml-4', {
-    'su-transition-colors group-hocus:su-text-palo-verde-light':
+    'su-transition-colors group-hover:su-text-palo-verde-light group-focus:su-text-palo-verde-light':
       type === 'trip-filter',
   });

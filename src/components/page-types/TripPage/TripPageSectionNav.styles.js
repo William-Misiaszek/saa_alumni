@@ -6,7 +6,7 @@ export const menu = 'su-flex su-list-unstyled su-bg-saa-black';
 export const listItem = 'su-mb-0';
 export const link = ({ isActive }) =>
   dcnb(
-    'su-block su-text-white su-transition-colors su-font-bold su-leading-snug su-no-underline focus:su-outline-none su-underline-offset hocus:su-text-digital-red-xlight su-px-20 su-py-[4rem] su-border-b-[5px] su-border-solid su-border-transparent hocus:su-border-digital-red-xlight su-text-21',
+    'su-block su-text-white su-transition-colors su-font-bold su-leading-snug su-no-underline focus:su-outline-none su-underline-offset-[3px] hocus:su-text-digital-red-xlight su-px-20 su-py-[4rem] su-border-b-[5px] su-border-solid su-border-transparent hocus:su-border-digital-red-xlight su-text-21',
     {
       'su-text-digital-red-xlight !su-border-digital-red-xlight': isActive,
     }
@@ -27,10 +27,13 @@ export const burger = ({ navOpened }) =>
     }
   );
 export const burgerIcon = ({ navOpened }) =>
-  dcnb('su-transition-colors su-w-[2.4rem] group-hocus:su-text-white', {
-    'su-text-white': navOpened,
-    'su-text-digital-red-xlight': !navOpened,
-  });
+  dcnb(
+    'su-transition-colors su-w-[2.4rem] group-hover:su-text-white group-focus:su-text-white',
+    {
+      'su-text-white': navOpened,
+      'su-text-digital-red-xlight': !navOpened,
+    }
+  );
 export const menuMobile = ({ navOpened }) =>
   dcnb(
     'su-flex su-flex-col su-absolute su-z-20 su-bg-saa-black su-shadow-xl su-bg-white su-w-full',

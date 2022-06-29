@@ -32,8 +32,10 @@ class ggTripForm {
   };
 
   mountAdditionalScripts = () => {
+    // document.head.innerHTML +=
+    // '<link rel="stylesheet" href="https://tsgg--stanford-alumni.netlify.app/scripts/travel-study/gg-form.css" type="text/css"/>';
     document.head.innerHTML +=
-      '<link rel="stylesheet" href="https://tsgg--stanford-alumni.netlify.app/scripts/travel-study/gg-form.css" type="text/css"/>';
+      '<link rel="stylesheet" href="http://localhost:8000/scripts/travel-study/gg-form.css" type="text/css"/>';
     document.head.innerHTML +=
       '<script key="stripe" src="https://js.stripe.com/v3" type="text/javascript" />';
   };
@@ -166,11 +168,11 @@ class ggTripForm {
     content.className = 'gg-form-wrapper flex-container';
 
     const sidebar = document.createElement('aside');
-    sidebar.className = 'gg-form-sidebar flex-lg-5-of-12';
+    sidebar.className = 'gg-form-sidebar flex-lg-4-of-12';
     sidebar.innerHTML += this.getTripInfoBox(this.trips, this.uuid);
 
     const main = document.createElement('section');
-    main.className = 'gg-form-main flex-lg-7-of-12';
+    main.className = 'gg-form-main flex-lg-8-of-12';
     const ggScript = document.createElement('div');
     ggScript.className = 'gg-script-wrapper';
     ggScript.appendChild(this.getGGScript());

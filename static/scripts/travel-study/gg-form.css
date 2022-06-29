@@ -85,19 +85,19 @@
 }
 
 .gg-form-sidebar h2 {
-  font-size: 33px;
+  font-size: 4.1rem;
   padding: 0;
 }
 
 .gg-form-sidebar a {
-  font-size: 25px;
+  font-size: 2.1rem;
 }
 
 .gg-form-sidebar .summary-item {
   display: flex;
   flex-direction: column;
   line-height: 2.7rem;
-  margin-bottom: 6.1rem;
+  margin-bottom: 7.2rem;
   padding-bottom: 1.9rem;
   border-bottom: 1px solid #585754;
 }
@@ -108,7 +108,7 @@
 
 .gg-form-sidebar .summary-item h3 {
   font-weight: 600;
-  font-size: 2.1rem;
+  font-size: 3.3rem;
   margin-bottom: 2.7rem;
 }
 
@@ -261,12 +261,17 @@
 }
 
 .ggeTally {
+  border: 0 solid;
   border-color: transparent;
   border-image-slice: 1;
   border-image-source: linear-gradient(0deg,var(--su-palo-verde-dark) 84.05%,var(--su-electric-blue) 0);
   border-width: 2px;
   margin-bottom: 7.2rem;
   padding: 2.6rem 2.6rem 4.5rem;
+}
+
+.ggeTally table {
+  margin: 0;
 }
 
 .ggeTally tr {
@@ -278,6 +283,11 @@
   padding-top: 0;
   padding-bottom: 3.2rem;
   border-bottom: 1px solid var(--su-black-30);
+}
+
+.ggeTally .ggeTally--money:last-child {
+  padding: 0;
+  border-bottom: unset;
 }
 
 .ggeTally .ggeTally--total {
@@ -327,6 +337,7 @@
   color: var(--su-white);
   position: relative;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 6.2rem;
 }
 
 .ggeWidget .ggeButton--forward {

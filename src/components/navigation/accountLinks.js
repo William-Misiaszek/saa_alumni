@@ -27,8 +27,6 @@ const AccountLinks = ({ mainLinkClasses }) => {
   const ref = useRef(null);
   const buttonRef = useRef(null);
   const [expanded, setExpanded] = useState(false);
-
-  console.log('FINAL DESTINATION', location.pathname);
   const loginParams = new URLSearchParams({
     final_destination: location.pathname,
   });

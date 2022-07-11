@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 
 export const isStoryblokEditor = async (req) => {
+  console.log('isStoryBlokEditor headers', req.headers);
   if (req.headers.referer) {
     const { referer } = req.headers;
     const url = new URL(referer);

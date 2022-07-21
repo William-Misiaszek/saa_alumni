@@ -36,6 +36,10 @@
   font-weight: 600;
 }
 
+.gg-autocomplete-wrapper {
+  position: relative;
+}
+
 .gg-autocomplete-wrapper .autoComplete_wrapper > ul {
   position: absolute;
   max-height: 226px;

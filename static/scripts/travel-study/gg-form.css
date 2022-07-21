@@ -25,6 +25,7 @@
 .gg-autocomplete {
   height: 6.4rem;
   font-size: 2.1rem;
+  border-radius: 3px;
 }
 
 .gg-autocomplete-wrapper label {

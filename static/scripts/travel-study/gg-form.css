@@ -18,18 +18,26 @@
 .gg-staff-name {
   font-weight: 600;
   font-size: 2.1rem;
-  margin-bottom: 3.6rem;
+  margin-bottom: 0;
 }
 
 /* GG Trip Autocomplete */
 .gg-autocomplete {
-  height: 6.4rem;
-  font-size: 2.1rem;
+  background: var(--su-white);
+  padding-left: 21px;
+  border: 1px solid var(--su-black-20);
+  border-bottom: 2px solid var(--su-black-20);
   border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 2.1rem;
+  height: 6.4rem;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .gg-autocomplete-wrapper label {
   font-size: 2.1rem;
+  margin-bottom: 0.33em;
+  font-weight: 600;
 }
 
 .gg-form-autocomplete h2 {
@@ -213,6 +221,7 @@
   border-radius: 3px;
   box-sizing: border-box;
   font-size: 2.1rem;
+  font-family: 'Source Sans Pro', sans-serif;
   height: 6.4rem;
 }
 
@@ -304,6 +313,7 @@
   margin-right: 2rem;
 }
 
+.gg-form-autocomplete .ggeButton,
 .ggeWidget .ggeButton {
   display: flex;
   width: fit-content;
@@ -312,6 +322,7 @@
   text-transform: none;
   padding: 1.4rem 2.6rem;
   font-weight: 400;
+  line-height: 2em;
 }
 
 /* Solid Button */
@@ -327,6 +338,10 @@
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
   padding-left: 3rem;
   margin-top: 3.6rem;
+}
+
+.gg-form-autocomplete .ggeButton {
+  margin-top: 5.8rem;
 }
 
 .gg-form-autocomplete .ggeButton--forward:focus,
@@ -488,7 +503,7 @@
   position: absolute;
   inset: -0.6rem;
   border-radius: 100%;
-  background: (--su-electric-blue-light);
+  background: var(--su-electric-blue-light);
   opacity: 0.6;
 }
 
@@ -572,8 +587,12 @@
   font-size: 2.5rem;
 }
 
-.ggeConfirmation .ggeConfirmationMessage > div:last-child {
-  padding-top: 6rem;
+/* .ggeConfirmation .ggeConfirmationMessage > div:last-child { */
+  /* padding-top: 6rem; */
+/* } */
+
+.ggeConfirmation .ggeConfirmationMessage p:last-child {
+  margin-bottom: 0;
 }
 
 .ggeConfirmation .ggeConfirmationMessage p {
@@ -583,8 +602,9 @@
 .ggeConfirmation h1 {
   font-size: 3rem;
   font-weight: 600;
-  padding-top: 11.9rem;
-  margin-bottom: 3rem,
+  padding-top: 9.3rem;
+  margin-bottom: 3rem;
+  margin-top: 0;
 }
 
 .ggeConfirmation .ggeTally--header {
@@ -676,6 +696,7 @@
   font-size: 2.1rem;
   font-weight: 600;
   color: var(--su-black);
+  border: none;
 }
 
 .ggeWidget .ggeButton.ggeButton--tallyEditRegistrant::after {
@@ -688,6 +709,7 @@
   padding-left: 3.8rem;
   font-size: 1.8rem;
   color: var(--black);
+  background-color: transparent;
 }
 
 .ggeWidget .ggeTally__multireg__buttons {
@@ -719,6 +741,7 @@
 
 .ggeWidget .ggeButton.ggeButton--tallyEditRegistrant:hover {
   text-decoration-line: none;
+  background-color: transparent;
 }
 
 .ggeWidget .ggeButton.ggeButton--tallyDeleteRegistrant::after {
@@ -766,6 +789,8 @@
   background-position: left center;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='20' viewBox='0 0 21 20' fill='none'%3E%3Cpath d='M10.5 7V10M10.5 10V13M10.5 10H13.5M10.5 10H7.5M19.5 10C19.5 14.9706 15.4706 19 10.5 19C5.52944 19 1.5 14.9706 1.5 10C1.5 5.02944 5.52944 1 10.5 1C15.4706 1 19.5 5.02944 19.5 10Z' stroke='%23F83535' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   box-shadow: none;
+  margin-top: 4.8rem;
+  margin-bottom: 2rem;
 }
 
 .ggeWidget .ggeButton--addRegistrant:hover,
@@ -774,10 +799,14 @@
 }
 
 /* Hold Trip Payment Header */
-.staff-hold-trip-registration .ggeSection ggeSection--payment h2 {
+.staff-hold-trip-registration .ggeSection ggeSection--payment h1 {
   display: none;
 }
 
 .staff-hold-trip-registration .ggeTally {
-  margin-bottom: 2.1rem;
+  margin-bottom: 2.2rem;
+}
+
+.staff-hold-trip-registration .ggeConfirmationMessage .ggeTally {
+  display: none;
 }

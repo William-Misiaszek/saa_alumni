@@ -182,11 +182,8 @@ const InterstitialPage = (props) => {
                       {tripTitle}:<br />
                       Registration
                     </Heading>
-                    {hasRichText(body) && (
-                      <RichTextRenderer
-                        wysiwyg={body}
-                        className="su-intro-text su-text-center children:su-leading-snug children:!su-mb-06em children:last:!su-mb-0"
-                      />
+                    {body && (
+                      <p className="su-subheading su-text-center">{body}</p>
                     )}
                   </GridCell>
                 </Grid>

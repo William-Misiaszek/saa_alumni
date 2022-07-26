@@ -799,7 +799,7 @@
 }
 
 /* Hold Trip Payment Header */
-.staff-hold-trip-registration .ggeSection ggeSection--payment h1 {
+.staff-hold-trip-registration .ggeSection--payment h1 {
   display: none;
 }
 

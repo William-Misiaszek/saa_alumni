@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import { useLocation } from '@reach/router';
+import { dcnb } from 'cnbuilder';
 import AuthContext from '../../contexts/AuthContext';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import useEscape from '../../hooks/useEscape';
@@ -63,73 +64,95 @@ const AccountLinks = ({ mainLinkClasses }) => {
 
   return (
     <AuthContext.Consumer>
-      {({ isAuthenticated, userProfile }) => (
+      {({ isAuthenticated, isAuthenticating, userProfile }) => (
         <>
-          {isAuthenticated && (
-            <li className="su-text-white su-relative" ref={ref}>
-              <button
-                type="button"
-                ref={buttonRef}
-                aria-expanded={expanded}
-                onClick={() => setExpanded(!expanded)}
-                className="su-flex su-items-center su-py-8 su-group"
-              >
-                <span
-                  className={`su-inline-block su-mr-10 ${
-                    showDesktop ? '' : 'su-sr-only'
-                  }`}
-                >{`Hi, ${userProfile.name.fullNameParsed.firstName} ${userProfile.name.fullNameParsed.lastName}`}</span>
-                <SrOnlyText>
-                  {`${expanded ? ' Close' : ' Open'} user menu`}
-                </SrOnlyText>
-                <Initial string={userProfile.name.fullNameParsed.firstName} />
-                <ChevronDownIcon
-                  className={`su-inline-block lg:su-relative su-ml-8 su-w-[19px] lg:su-w-[19px] lg:su-pt-0 lg:su-pb-0 lg:su-px-0 su-text-white lg:group-hover:su-text-digital-red-xlight group-focus:su-text-digital-red-xlight su-transition
-            ${expanded ? 'su-rotate-180 su-transform-gpu' : ''}`}
-                  aria-hidden="true"
-                />
-              </button>
-              <ul
-                className={`su-transform-gpu su-transition su-origin-top md:su-origin-top-right su-bg-cardinal-red-xdark su-z-10 su-list-none su-absolute su-rs-px-1 su-rs-pt-0 su-rs-pb-1 children:su-mb-02em su-w-screen su-mr-[-2rem] sm:su-mr-[-3rem] md:su-w-[32rem] su-right-0 su-text-left
-                  ${
-                    expanded
-                      ? 'su-scale-y-100 md:su-scale-x-100 su-opacity-100 su-visible'
-                      : 'su-scale-y-0 md:su-scale-x-0 su-opacity-0 su-invisible'
-                  }
-                `}
-                aria-hidden={!expanded}
-              >
-                {links.map((link) => (
-                  <li className={link.classes} key={link.url}>
-                    <a href={link.url} className={linkClasses}>
-                      {link.text}
-                      {link.icon && (
-                        <HeroIcon
-                          iconType="arrow-right"
-                          isAnimate
-                          className="su-relative su-inline-block su-mt-0 su-text-digital-red-xlight group-hover:su-text-white group-focus:su-text-white"
-                        />
-                      )}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {isAuthenticating && (
+            <li className="su-pt-10 su-pb-10 lg:su-pt-0 lg:su-pb-0">
+              <div className="su-spinner su-flex su-relative su-w-[4rem] su-h-[4rem]">
+                <div className="su-block su-absolute su-w-[4rem] su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
+                <div className="su-block su-absolute su-w-[4rem] su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin su-delay-75" />
+                <div className="su-block su-absolute su-w-[4rem] su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
+                <div className="su-block su-absolute su-w-[4rem] su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
+              </div>
             </li>
           )}
 
-          {!isAuthenticated && (
+          {!isAuthenticating && (
             <>
-              <NavItem
-                className={mainLinkClasses}
-                blok={{
-                  link: {
-                    url: `/api/auth/login${
-                      loginParams ? `?${loginParams.toString()}` : ''
-                    }`,
-                  },
-                  text: 'Login',
-                }}
-              />
+              {isAuthenticated && (
+                <li
+                  className="su-text-white su-relative su-pt-10 su-pb-10 lg:su-pt-0 lg:su-pb-0"
+                  ref={ref}
+                >
+                  <button
+                    type="button"
+                    ref={buttonRef}
+                    aria-expanded={expanded}
+                    onClick={() => setExpanded(!expanded)}
+                    className="su-flex su-items-center su-group"
+                  >
+                    <span
+                      className={`su-inline-block su-mr-10 ${
+                        showDesktop ? '' : 'su-sr-only'
+                      }`}
+                    >{`Hi, ${userProfile.name.fullNameParsed.firstName} ${userProfile.name.fullNameParsed.lastName}`}</span>
+                    <SrOnlyText>
+                      {`${expanded ? ' Close' : ' Open'} user menu`}
+                    </SrOnlyText>
+                    <Initial
+                      string={userProfile.name.fullNameParsed.firstName}
+                    />
+                    <ChevronDownIcon
+                      className={`su-inline-block lg:su-relative su-ml-8 su-w-[19px] lg:su-w-[19px] lg:su-pt-0 lg:su-pb-0 lg:su-px-0 su-text-white lg:group-hover:su-text-digital-red-xlight group-focus:su-text-digital-red-xlight su-transition
+                ${expanded ? 'su-rotate-180 su-transform-gpu' : ''}`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                  <ul
+                    className={`su-transform-gpu su-transition su-origin-top md:su-origin-top-right su-bg-cardinal-red-xdark su-z-10 su-list-none su-absolute su-rs-px-1 su-rs-pt-0 su-rs-pb-1 children:su-mb-02em su-w-screen su-mr-[-2rem] sm:su-mr-[-3rem] md:su-w-[32rem] su-right-0 su-mt-8 su-text-left
+                      ${
+                        expanded
+                          ? 'su-scale-y-100 md:su-scale-x-100 su-opacity-100 su-visible'
+                          : 'su-scale-y-0 md:su-scale-x-0 su-opacity-0 su-invisible'
+                      }
+                    `}
+                    aria-hidden={!expanded}
+                  >
+                    {links.map((link) => (
+                      <li className={link.classes} key={link.url}>
+                        <a href={link.url} className={linkClasses}>
+                          {link.text}
+                          {link.icon && (
+                            <HeroIcon
+                              iconType="arrow-right"
+                              isAnimate
+                              className="su-relative su-inline-block su-mt-0 su-text-digital-red-xlight group-hover:su-text-white group-focus:su-text-white"
+                            />
+                          )}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+              {!isAuthenticated && (
+                <>
+                  <NavItem
+                    className={dcnb(
+                      'su-pt-10 su-pb-10 lg:su-pt-0 lg:su-pb-0',
+                      mainLinkClasses
+                    )}
+                    blok={{
+                      link: {
+                        url: `/api/auth/login${
+                          loginParams ? `?${loginParams.toString()}` : ''
+                        }`,
+                      },
+                      text: 'Log in',
+                    }}
+                  />
+                </>
+              )}
             </>
           )}
         </>

@@ -1,20 +1,17 @@
-/* eslint-disable no-alert */
 import React, { useRef, useEffect, useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
+import GiveGabErrorMessage from './giveGabErrorMessage';
 
 /**
  * Dynamically load a script after the component has been mounted.
  *
  * @param {*} props
  */
-const DynaScript = ({
-  errorText = 'Sorry, we are experiencing technical difficulties. Please try refreshing your browser or return to this form later. Thank you!',
-  src,
-  id,
-  ...props
-}) => {
+const DynaScript = ({ errorBlok, src, id, ...props }) => {
   const scriptRef = useRef();
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptError, setScriptError] = useState(false);
+  const isDark = true;
 
   // When the component mounts load the script.
   useEffect(() => {
@@ -28,7 +25,7 @@ const DynaScript = ({
       }
     };
     script.onerror = () => {
-      alert(errorText);
+      setScriptError(true);
     };
 
     scriptRef.current.appendChild(script);
@@ -36,7 +33,7 @@ const DynaScript = ({
     return () => {
       mounted = false;
     };
-  }, [src, errorText, setScriptLoaded, scriptRef]);
+  }, [src, setScriptLoaded, scriptRef]);
 
   return (
     <>
@@ -46,11 +43,14 @@ const DynaScript = ({
         aria-busy={!scriptLoaded}
         id={id}
       />
-      {!scriptLoaded && (
+      {!scriptLoaded && !scriptError && (
         <>
           <ClipLoader color="#00BFFF" height={50} width={50} aria-busy="true" />
           Loading...
         </>
+      )}
+      {scriptError && errorBlok && (
+        <GiveGabErrorMessage blok={errorBlok} isDark={isDark} />
       )}
     </>
   );

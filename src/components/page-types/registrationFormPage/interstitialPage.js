@@ -33,6 +33,7 @@ import {
 import { GridCell } from '../../layout/GridCell';
 import { FlexBox } from '../../layout/FlexBox';
 import FaIcon from '../../simple/faIcon';
+import HeroIcon from '../../simple/heroIcon';
 
 const InterstitialPage = (props) => {
   const {
@@ -181,18 +182,26 @@ const InterstitialPage = (props) => {
                       Registration
                     </Heading>
                     {body && (
-                      <p className="su-subheading su-text-center">{body}</p>
+                      <p className="su-subheading su-text-center su-mb-0">
+                        {body}
+                      </p>
                     )}
                   </GridCell>
                 </Grid>
-                <Grid xs={12}>
+                <Grid gap xs={12} className="su-rs-mb-5">
                   <GridCell xs={12} md={6}>
-                    <Heading level={3} align="left" font="serif">
+                    <Heading
+                      level={3}
+                      size={5}
+                      align="left"
+                      font="serif"
+                      className="su-mb-0"
+                    >
                       Add existing connections and past travelers to your trip
                     </Heading>
                   </GridCell>
                   <GridCell xs={12} md={7} lg={8}>
-                    <p className="su-intro-text">
+                    <p className="su-intro-text su-mb-0 su-rs-mt-1">
                       We recommend adding the people listed below in this step,
                       as you won’t be able to later. You will be able to add
                       people not listed below later in the process.
@@ -201,7 +210,10 @@ const InterstitialPage = (props) => {
                 </Grid>
                 <Grid gap xs={12}>
                   <GridCell xs={12} md={7} lg={8}>
-                    <FlexBox direction="col" gap>
+                    <FlexBox
+                      direction="col"
+                      className="children:su-mb-18 children:last-child:su-mb-0"
+                    >
                       <TripTravelerCard traveler={primaryRegistrant} />
                       {relationships?.length > 0 ? (
                         <>
@@ -230,16 +242,14 @@ const InterstitialPage = (props) => {
                           <FlexBox justifyContent="center">
                             <Link
                               to={`${slug}/form`}
-                              className="su-button su-mt-36 su-px-20 su-pt-10 su-pb-11 md:su-px-36 md:su-pt-[22px] md:su-pb-[24px] su-text-18 md:su-text-24"
+                              className="su-rs-mt-2 su-group su-flex su-items-end su-text-18 md:su-text-24 su-font-regular su-no-underline su-border-3 su-border-digital-red-xlight su-text-white hocus:su-bg-digital-red hocus:su-border-digital-red hocus:su-text-white hocus:su-shadow-md su-px-20 su-pt-10 su-pb-11 md:su-px-30 md:su-pt-16 md:su-pb-18"
                               state={{ travelers: value[0].travelersData }}
                             >
                               Next
-                              <FaIcon
-                                iconChoice="fa-long-arrow-right"
-                                iconType="far"
-                                isOutline="false"
-                                fixedWidth
-                                className="su-ml-02em su-transition-colors"
+                              <HeroIcon
+                                iconType="arrow-right"
+                                className="su-w-1em su-text-digital-red-xlight group-hocus:su-text-white"
+                                isAnimate
                               />
                             </Link>
                           </FlexBox>

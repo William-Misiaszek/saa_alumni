@@ -69,7 +69,6 @@ const ProtectedContentWrapper = ({ blok }) => {
   ) {
     return (
       <div aria-live="polite" role="status" className="su-text-center">
-        {/* TODO: Confirm with Bhavika whether the login message should be hardcoded */}
         <Heading level={3} size={3} font="serif">
           Uh oh. This is embarassing.
         </Heading>

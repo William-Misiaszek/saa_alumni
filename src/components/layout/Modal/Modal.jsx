@@ -86,7 +86,7 @@ const Modal = ({
       role="dialog"
       tabIndex="-1"
     >
-      <div className={styles.wrapper({ type })}>
+      <div className={styles.wrapper()}>
         <div className={styles.closeButtonWrapper({ type })}>
           <button
             type="button"
@@ -95,7 +95,6 @@ const Modal = ({
             className={styles.closeButton}
             aria-label="Close modal"
           >
-            Close
             <XIcon className={styles.closeIcon({ type })} aria-hidden />
           </button>
         </div>

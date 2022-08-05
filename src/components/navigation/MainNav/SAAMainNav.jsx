@@ -2,13 +2,14 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { dcnb } from 'cnbuilder';
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { MenuIcon } from '@heroicons/react/outline';
 import CreateBloks from '../../../utilities/createBloks';
 import useEscape from '../../../hooks/useEscape';
-import useOnClickOutside from '../../../hooks/useOnClickOutside';
 import * as styles from './mainNav.styles';
-import { isExpanded } from '../../../utilities/menuHelpers';
 import { SBBlokType } from '../../../types/storyblok/SBBlokType';
+import Modal from '../../layout/Modal/Modal';
+import AccountLinks from '../accountLinks';
+import UserHeaderIcon from '../userHeaderIcon';
 
 /**
  * This Main Nav is only used on the SAA subsites
@@ -21,28 +22,33 @@ export const SAAMainNavProps = {
 };
 
 const SAAMainNav = ({ menuItems, ariaLabel }) => {
-  const [menuOpened, setMenuOpened] = useState(false);
-  const ref = useRef(null);
-  const burgerRef = useRef(null);
+  const [mainMenuOpened, setMainMenuOpened] = useState(false);
+  const [utilityMenuOpen, setUtilityMenuOpen] = useState(false);
+  const mainMenuRef = useRef(null);
+  const userMenuRef = useRef(null);
 
-  const toggleMenu = () => {
-    setMenuOpened(!menuOpened);
+  const toggleMainMenu = () => {
+    setMainMenuOpened(!mainMenuOpened);
   };
 
-  let NavIcon = MenuIcon;
-  if (menuOpened) {
-    NavIcon = XIcon;
-  }
+  const toggleUserMenu = () => {
+    setUtilityMenuOpen(!utilityMenuOpen);
+  };
 
-  // Close menu if escape key is pressed and return focus to the menu button
-  useEscape(() => {
-    if (burgerRef.current && isExpanded(burgerRef.current)) {
-      setMenuOpened(false);
-      burgerRef.current.focus();
+  const handleClose = () => {
+    if (mainMenuOpened) {
+      mainMenuRef.current.focus();
+      setMainMenuOpened(false);
     }
-  });
+    if (utilityMenuOpen) {
+      userMenuRef.current.focus();
+      setUtilityMenuOpen(false);
+    }
+  };
 
-  useOnClickOutside(ref, () => setMenuOpened(false));
+  useEscape(() => {
+    handleClose();
+  });
 
   return (
     <>
@@ -57,26 +63,58 @@ const SAAMainNav = ({ menuItems, ariaLabel }) => {
       <nav
         className={dcnb('saa-main-nav-mobile', styles.rootMobile)}
         aria-label={ariaLabel}
-        ref={ref}
       >
         <button
           type="button"
-          className={styles.burgerMobileSAA}
-          onClick={toggleMenu}
-          aria-expanded={menuOpened}
-          aria-label={menuOpened ? 'Close Menu' : 'Open Menu'}
-          ref={burgerRef}
+          className={dcnb('su-ml-20', styles.menuCircles)}
+          onClick={toggleMainMenu}
+          aria-expanded={mainMenuOpened}
+          aria-label={mainMenuOpened ? 'Close Main Menu' : 'Open Main Menu'}
+          ref={mainMenuRef}
         >
-          <NavIcon aria-hidden="true" className={styles.burgerIconMobile} />
-          {menuOpened ? 'Close' : 'Menu'}
+          <MenuIcon aria-hidden="true" className={styles.burgerIconMobile} />
         </button>
-        <ul
-          className={styles.menuMobileSAA({ menuOpened })}
-          aria-hidden={!menuOpened}
-        >
-          <CreateBloks blokSection={menuItems} />
-        </ul>
       </nav>
+
+      <nav className="main-nav-mobile lg:su-hidden" aria-label="Main Menu">
+        <button
+          type="button"
+          onClick={toggleUserMenu}
+          aria-expanded={setUtilityMenuOpen}
+          aria-label={setUtilityMenuOpen ? 'Close User Menu' : 'Open User Menu'}
+          ref={userMenuRef}
+          className="su-ml-20 su-rounded-full"
+        >
+          <UserHeaderIcon menuCircle />
+        </button>
+      </nav>
+
+      <Modal
+        isOpen={mainMenuOpened || utilityMenuOpen}
+        onClose={() => {
+          handleClose();
+        }}
+        ariaLabel={`Stanford Alumni websites ${
+          (mainMenuOpened && 'Main Menu') || (utilityMenuOpen && 'User Menu')
+        }`}
+      >
+        <div className="su-h-[6.5rem] su-px-20 su-font-20 su-text-white su-flex su-justify-center su-items-center">
+          {mainMenuOpened && 'Menu'}
+          {utilityMenuOpen && <UserHeaderIcon />}
+        </div>
+        {mainMenuOpened && (
+          <ul
+            className={styles.menuMobileSAA({ mainMenuOpened })}
+            aria-hidden={!mainMenuOpened}
+          >
+            <CreateBloks blokSection={menuItems} />
+          </ul>
+        )}
+
+        {utilityMenuOpen && (
+          <AccountLinks mainLinkClasses={styles.utilNavItem} />
+        )}
+      </Modal>
     </>
   );
 };

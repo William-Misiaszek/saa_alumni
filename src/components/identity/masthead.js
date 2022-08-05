@@ -77,7 +77,6 @@ const Masthead = ({
                 className="first:su-ml-0 su-link-regular"
                 hasExternalIcon
               />
-              <AccountLinks />
             </ul>
           </nav>
           <FlexBox className="su-cc" alignItems="center">
@@ -117,7 +116,7 @@ const Masthead = ({
                 direction="row"
                 className="su-rs-my-0 xl:su-mb-0 su-flex-grow"
               >
-                <nav aria-label="Utility Menu" className={styles.utilNav}>
+                <nav aria-label="" className={styles.utilNav}>
                   <ul className={styles.utilNavMenu}>
                     <CreateBloks
                       blokSection={utilityNav}

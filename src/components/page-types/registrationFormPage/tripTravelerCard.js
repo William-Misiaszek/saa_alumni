@@ -11,15 +11,11 @@ const TripTravelerCard = ({ traveler }) => {
   const { travelersData } = state;
 
   useEffect(() => {
-    if (
+    setRemoveBtn(
       travelersData.find(
         (selectedTraveler) => selectedTraveler.su_did === traveler.su_did
       )
-    ) {
-      setRemoveBtn(true);
-    } else {
-      setRemoveBtn(false);
-    }
+    );
   }, [travelersData, setRemoveBtn, traveler]);
 
   const addRelationship = () => {

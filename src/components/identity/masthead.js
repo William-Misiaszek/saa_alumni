@@ -116,7 +116,7 @@ const Masthead = ({
                 direction="row"
                 className="su-rs-my-0 xl:su-mb-0 su-flex-grow"
               >
-                <nav aria-label="" className={styles.utilNav}>
+                <nav aria-label="Utility Menu" className={styles.utilNav}>
                   <ul className={styles.utilNavMenu}>
                     <CreateBloks
                       blokSection={utilityNav}

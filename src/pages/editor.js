@@ -71,6 +71,7 @@ const initBridge = function (key, sbResolveRelations, setStory) {
         }
       })
       .catch((error) => {
+        /* eslint-disable no-console */
         console.log(error);
       });
   });

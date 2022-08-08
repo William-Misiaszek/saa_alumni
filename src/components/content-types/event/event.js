@@ -102,7 +102,8 @@ const Event = ({
     if (isDark) {
       textColor = 'su-text-black-20';
       headlineColor = 'su-text-white hocus:su-text-white';
-      headlineIconColor = 'su-text-digital-red-light group-hocus:su-text-white';
+      headlineIconColor =
+        'su-text-digital-red-light group-hover:su-text-white group-focus:su-text-white';
     }
   }
 
@@ -179,7 +180,7 @@ const Event = ({
         <SbLink
           link={eventLink}
           classes={dcnb(
-            'su-stretched-link su-group su-z-20 su-rs-mt-0 su-mb-08em su-no-underline hocus:su-underline su-underline-offset !su-underline-thick !su-underline-digital-red-xlight',
+            'su-stretched-link su-group su-z-20 su-rs-mt-0 su-mb-08em su-no-underline hocus:su-underline su-underline-offset-[3px] su-decoration-[0.12em] su-decoration-digital-red-xlight focus:su-outline-none',
             headlineSize,
             headlinePadding,
             headlineColor

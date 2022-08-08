@@ -1,3 +1,5 @@
+import Accordion from './composite/accordion';
+import AccordionItem from './composite/accordionItem';
 import { SBAlert } from './storyblok/alert/alert';
 import { SBAlertCtaLink } from './storyblok/alert/alertCtaLink';
 import BasicCard from './cards/basicCard';
@@ -38,7 +40,11 @@ import Page from './page';
 import Perk from './content-types/perk/perk';
 import PerkCard from './cards/perkCard';
 import PerkCardHorizontal from './cards/perkCardHorizontal';
+import PromoCodeBanner from './cards/promoCodeBanner';
+import ProtectedContentWrapper from './layout/ProtectedContentWrapper';
+import protectedContentItem from './cards/protectedContentItem';
 import Poster from './composite/poster';
+import ProtectedPage from './page-types/protectedPage';
 import Redirect from './redirect/Redirect';
 import { SBSAAMainNav } from './storyblok/saaMainNav';
 import { SBSAAMainMenuGroup } from './storyblok/saaMainMenuGroup';
@@ -52,6 +58,7 @@ import Section from './layout/section';
 import SimpleImage from './media/simpleImage';
 import Story from './content-types/story/story';
 import StoryCard from './cards/storyCard';
+import SaaStoryCard from './cards/saaStoryCard';
 import { SBTripCard } from './storyblok/tripCard';
 import { SBTsContentPicker } from './storyblok/tsContentPicker';
 import { SBTsContentTemplate } from './storyblok/tsContentTemplate';
@@ -64,6 +71,8 @@ import VerticalNavItem from './navigation/verticalNavItem';
 import Wysiwyg from './simple/wysiwyg';
 
 const ComponentList = {
+  accordion: Accordion,
+  accordionItem: AccordionItem,
   alert: SBAlert,
   alertCtaLink: SBAlertCtaLink,
   basicCard: BasicCard,
@@ -103,7 +112,11 @@ const ComponentList = {
   perk: Perk,
   perkCard: PerkCard,
   perkCardHorizontal: PerkCardHorizontal,
+  protectedContentWrapper: ProtectedContentWrapper,
+  promoCodeBanner: PromoCodeBanner,
+  protectedContentItem,
   poster: Poster,
+  protectedPage: ProtectedPage,
   redirect: Redirect,
   saaMainNav: SBSAAMainNav,
   saaMainMenuGroup: SBSAAMainMenuGroup,
@@ -117,6 +130,7 @@ const ComponentList = {
   simpleImage: SimpleImage,
   story: Story,
   storyCard: StoryCard,
+  saaStoryCard: SaaStoryCard,
   trip: TripPage,
   tripCard: SBTripCard,
   tripFilterPage: TripFilterPage,

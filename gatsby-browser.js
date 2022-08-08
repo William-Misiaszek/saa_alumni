@@ -8,13 +8,17 @@ import React from 'react';
 
 // Contexts.
 import { GlobalStateProvider } from './src/contexts/GlobalContext';
+import { AuthContextProvider } from './src/contexts/AuthContext';
 
 // CSS
 import './src/styles/global.css';
+import './src/styles/localist.css';
 
 // Exports.
 export const wrapRootElement = ({ element }) => (
-  <GlobalStateProvider>{element}</GlobalStateProvider>
+  <GlobalStateProvider>
+    <AuthContextProvider>{element}</AuthContextProvider>
+  </GlobalStateProvider>
 );
 
 export const shouldUpdateScroll = (ctx) => {

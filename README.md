@@ -79,7 +79,7 @@ npm run https-proxy-start
 Or to choose your own ports:
 ```
 netlify dev
-npm run hps -- --target=3010 --source=64946
+npm run hps -- --target=64946 --source=3010
 ```
 
 You will be prompted to select from four options. You will want to select the option:

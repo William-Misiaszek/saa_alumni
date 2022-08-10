@@ -10,7 +10,7 @@
   @apply hocus:su-border-none su-text-black-30 su-bg-transparent su-p-0 su-type-1 su-font-semibold su-text-white su--mt-2;
 }
 
-.ggeWidget .ggeContent .ggeQuestion {
+.ggeWidget .ggeContent .ggeQuestion:not(.su-email) {
   @apply su-p-0 su-mb-34 md:su-mb-45;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .ggeWidget .ggeContent .ggeQuestion.ggeQuestion--instructions {
-  @apply su-m-0 su-mt-7;
+  @apply su-m-0 su-mt-7 su-mb-45;
 }
 
 .ggeWidget .ggeQuestion--instructions .ggeQuestion__field {
@@ -396,8 +396,18 @@
 }
 
 /* Registration form specific  */
-.ggeRegistrantList {
+.ggeRegistrantList,
+.ggeWidget .ggeRegistrant--prefilled .ggeSection--askArray.ggeSection--registration,
+.ggePage--payment .ggePageNav--back {
   @apply su-hidden;
+}
+
+.ggeWidget .ggeSection--askArray.ggeSection--registration > div{
+  @apply su-p-0 su-m-0;
+}
+
+.ggeWidget #AddatravelerHeader {
+  @apply su-mt-45;
 }
 
 .ggeWidget.ggeWidget--highlightIncomplete
@@ -488,28 +498,18 @@
   @apply su-pt-[1.4rem];
 }
 
-.ggeWidget
-  .ggeRegistrant--prefilled
-  .ggeSection--askArray.ggeSection--registration {
-  @apply su-hidden;
-}
-
-.ggeWidget .ggeRegistrant--prefilled .ggeContent .ggeQuestion.su-phone,
-.ggeWidget .ggeRegistrant--prefilled .ggeContent .ggeQuestion.su-email {
+.ggeWidget.public-registration .ggeContent .ggeQuestion.su-phone,
+.ggeWidget.public-registration .ggeContent .ggeQuestion.su-email {
   @apply su-text-black-30 su-mb-34 md:su-mb-45;
 }
 
-.ggePage--payment .ggeQuestion.ggeQuestion--mobilepayment,
-.ggePage--payment .ggeQuestion.ggeQuestion--mobilepayment > div {
+.ggeWidget .ggePage--payment .ggeQuestion.ggeQuestion--mobilepayment,
+.ggeWidget .ggePage--payment .ggeQuestion.ggeQuestion--mobilepayment > div {
   @apply su-mb-0;
 }
 
 .ggePage--payment .ggeQuestion.ggeQuestion--instructions #TripAgreements {
   @apply su-mb-12;
-}
-
-.ggePage--payment .ggePageNav--back {
-  @apply su-hidden;
 }
 
 .ggeWidget .ggeButton--addRegistrant {

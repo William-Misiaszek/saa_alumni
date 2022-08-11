@@ -31,6 +31,11 @@
   @apply su-flex-col;
 }
 
+.ggeWidget.public-custom-journeys .ggeContent .ggeQuestion.ggeQuestion--instructions {
+  @apply su-m-0 su-mt-7 su-mb-45;
+}
+
+
 .ggeWidget .ggeContent .ggeQuestion.ggeQuestion--instructions {
   @apply su-m-0 su-mt-7;
 }
@@ -102,11 +107,16 @@
   border-image-slice: 1;
 }
 
+.ggeWidget .ggeQuestion .ggeQuestion__field textarea[readonly],
 .ggeWidget .ggeQuestion input[type="email"][readonly],
 .ggeWidget .ggeQuestion input[type="number"][readonly],
 .ggeWidget .ggeQuestion input[type="text"][readonly] {
   @apply su-p-0 su-border-none su-text-24 su-text-black-30 hocus:su-shadow-none;
   background: transparent !important;
+}
+
+.ggeWidget .ggeQuestion .ggeQuestion__field textarea[readonly] {
+  @apply su-min-h-[2.8rem];
 }
 
 .ggeWidget .ggeQuestion--required label,
@@ -363,8 +373,8 @@
   @apply su-text-25 lg:su-text-[2.9rem];
 }
 
-.ggeConfirmation .ggeConfirmationMessage > div:last-child {
-  @apply su-pt-20 lg:su-pt-[6rem];
+.ggeConfirmation .ggeConfirmationMessage > div:first-child {
+  @apply su-pb-26;
 }
 
 .ggeConfirmation .ggeConfirmationMessage p {
@@ -388,7 +398,7 @@
 }
 
 .ggeConfirmation .ggeTally {
-  @apply su-text-left;
+  @apply su-text-left su-mb-0;
 }
 
 .ggeConfirmation .ggeConfirmationMessage > .ggeTally ~ div {
@@ -454,13 +464,16 @@
   background-position: left center;
 }
 
+.ggeWidget .ggeButton.ggeButton--tallyDeleteRegistrant:focus::after,
 .ggeWidget .ggeButton.ggeButton--tallyDeleteRegistrant:hover::after {
   text-decoration-line: underline;
-  @apply su-text-white;
+  @apply su-text-white su-shadow-none;
 }
 
+.ggeWidget .ggeButton.ggeButton--tallyEditRegistrant:focus,
 .ggeWidget .ggeButton.ggeButton--tallyEditRegistrant:hover {
   text-decoration-line: none;
+  @apply su-shadow-none;
 }
 
 .ggeWidget .ggeButton.ggeButton--tallyDeleteRegistrant::after {
@@ -468,8 +481,10 @@
   @apply su-text-white;
 }
 
+.ggeWidget .ggeButton.ggeButton--tallyEditRegistrant:focus::after,
 .ggeWidget .ggeButton.ggeButton--tallyEditRegistrant:hover::after {
   text-decoration-line: underline;
+  @apply su-shadow-none;
 }
 
 .ggeTally table td {

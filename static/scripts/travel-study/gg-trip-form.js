@@ -48,35 +48,23 @@ class ggTripForm {
       udata = await udata.json();
       this.user = udata.data[0].attributes;
     } catch (err) {
-      console.log(err);
-      this.user = {
-        uid: 0,
-        su_display_name: 'Guest',
-        display_name: 'Guest-suid',
-        mail: 'person@example.com',
-      };
+      throw this.render(
+        'An error has occured while fetching your user information, please try again later. Thank you!'
+      );
     }
   };
 
   /**
-   * Load Give Gab Form Into Place
+   * Format Date for Filemaker
    */
-  getGGScript = () => {
-    const { uuid } = this;
-    const { tripId } = this.trips[uuid];
-    const url = this.form;
-    const embedUrl = new URL(url);
-    embedUrl.searchParams.set('urlData', tripId);
-    const script = document.createElement('script');
-    script.src = embedUrl;
-    return script;
-  };
-
   formatFmDate = (tripDate) => {
     const date = new Date(tripDate).toLocaleDateString('en-US');
     return date;
   };
 
+  /**
+   * Format Date for Trip Email
+   */
   formatEmailDate = (tripDate) => {
     const dateFormat = {
       month: 'long',
@@ -152,7 +140,7 @@ class ggTripForm {
     )} - ${endDate.toLocaleDateString('en-US', dateFormat)}`;
 
     const timeDifference = endDate.getTime() - startDate.getTime();
-    const tripDuration = timeDifference / (1000 * 3600 * 24);
+    const tripDuration = Math.ceil(timeDifference / (1000 * 3600 * 24));
 
     const content = `
       <h2>Trip Information</h2>
@@ -196,7 +184,7 @@ class ggTripForm {
   };
 
   /**
-   *
+   * getTrips()
    * @returns {Promise<void>}
    */
   getTrips = async () => {
@@ -230,12 +218,38 @@ class ggTripForm {
     main.className = 'gg-form-main flex-lg-8-of-12';
     const ggScript = document.createElement('div');
     ggScript.className = 'gg-script-wrapper';
-    ggScript.appendChild(this.getGGScript());
+
+    // Display Loader while GiveGab Form renders
+    const loaderWrapper = document.createElement('div');
+    loaderWrapper.className = 'gg-loader-wrapper';
+    const loader = `
+        <div class="gg-loader"></div>
+        <p>Loading...</p>
+      `;
+    loaderWrapper.innerHTML += loader;
+    ggScript.appendChild(loaderWrapper);
+
+    // Load GiveGab Form Into Place
+    const { uuid } = this;
+    const { tripId } = this.trips[uuid];
+    const url = this.form;
+    const embedUrl = new URL(url);
+    embedUrl.searchParams.set('urlData', tripId);
+    const script = document.createElement('script');
+    script.src = embedUrl;
+
+    ggScript.appendChild(script);
     main.appendChild(ggScript);
 
     content.appendChild(sidebar);
     content.appendChild(main);
     this.render(content);
+
+    // Remove Loader once GiveGab Form completes render
+    script.addEventListener('widgetRenderEnd', () => {
+      ggScript.removeChild(loaderWrapper);
+    });
+    script.removeEventListener('widgetRenderEnd');
   };
 
   /**

@@ -698,15 +698,18 @@
   color: var(--su-digital-red-xlight)
 }
 
-.ggeWidget.staff-registration .ggeContent .ggeQuestion.su-email {
+.ggeWidget.staff-registration .ggeContent .ggeQuestion.su-email,
+.ggeWidget.staff-hold-trip-registration .ggeContent .ggeQuestion.su-email {
   margin-bottom: 0;
 }
 
-.ggeWidget.staff-registration .ggeContent #Gift-EmailInstructions {
+.ggeWidget.staff-registration .ggeContent #Gift-EmailInstructions,
+.ggeWidget.staff-hold-trip-registration .ggeContent #Gift-EmailInstructions {
   margin-bottom: 4.5rem;
 }
 
-.ggeWidget.staff-registration .ggeContent #Gift-EmailInstructions .ggeQuestion__label {
+.ggeWidget.staff-registration .ggeContent #Gift-EmailInstructions .ggeQuestion__label,
+.ggeWidget.staff-hold-trip-registration .ggeContent #Gift-EmailInstructions .ggeQuestion__label {
   padding: 0;
 }
 

@@ -418,7 +418,7 @@
 
 /* Registration form specific  */
 .ggeRegistrantList,
-.ggeWidget .ggeRegistrant--prefilled .ggeSection--askArray.ggeSection--registration,
+.ggeWidget .ggeSection--askArray.ggeSection--registration,
 .ggePage--payment .ggePageNav--back {
   @apply su-hidden;
 }

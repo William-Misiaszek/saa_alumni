@@ -121,7 +121,7 @@
 
 
 .ggeWidget .ggeQuestion.su-email .ggeQuestion__field textarea {
-  @apply su-h-[6.8rem] su-overflow-hidden;
+  @apply su-h-[6.8rem] su-overflow-hidden su-min-h-[2.8rem];
 }
 
 .ggeWidget .ggeQuestion--required label,

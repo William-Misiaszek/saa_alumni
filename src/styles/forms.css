@@ -115,6 +115,7 @@
   background: transparent !important;
 }
 
+.ggeWidget .ggeQuestion.su-email .ggeQuestion__field textarea,
 .ggeWidget .ggeQuestion .ggeQuestion__field textarea[readonly] {
   @apply su-min-h-[2.8rem];
 }

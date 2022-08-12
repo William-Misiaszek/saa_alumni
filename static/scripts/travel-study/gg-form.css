@@ -732,6 +732,11 @@
   order: 3;
 }
 
+/* Email Other Type */
+.ggeWidget .ggeQuestion [id*='EmailType'] .ggePrompt__label label {
+  text-transform: capitalize;
+}
+
 .ggeWidget .ggeButton.ggeButton--discardRegistrant {
   background: transparent;
   color: var(--su-black);

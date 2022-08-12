@@ -303,6 +303,11 @@
   opacity: 0.4;
 }
 
+/* Email Other Type */
+.ggeWidget .ggeQuestion [id*='EmailType'] .ggePrompt__label label {
+  @apply su-capitalize;
+}
+
 .form-gradient {
   @apply su-border-2 su-border-solid;
   background: linear-gradient(

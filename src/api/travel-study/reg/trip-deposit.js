@@ -61,14 +61,16 @@ export default async function handler(req, res) {
     }
 
     if (trip?.content?.tripDeposit) {
-      const dollarValue = trip.content.tripDeposit.replace(/\D/g, '');
+      const dollarValue =
+        trip.content.tripDeposit ||
+        trip.content?.depositCost.replace(/\D/g, '');
       data.push([
         'prompt',
         trip.content.tripId,
-        'Primary registrant',
+        'Primary registrant: deposit',
         'TRUE',
         '',
-        'Primary registrant',
+        'Primary registrant: deposit',
         'TRUE',
         'USD',
         `${dollarValue}00`,
@@ -81,10 +83,10 @@ export default async function handler(req, res) {
       data.push([
         'prompt',
         trip.content.tripId,
-        'Related contact',
+        'Related contact: deposit',
         'TRUE',
         '',
-        'Related contact',
+        'Related contact: deposit',
         'TRUE',
         'USD',
         `${dollarValue}00`,
@@ -97,10 +99,10 @@ export default async function handler(req, res) {
       data.push([
         'prompt',
         trip.content.tripId,
-        'Guest',
+        'Guest: deposit',
         'TRUE',
         '',
-        'Guest',
+        'Guest: deposit',
         'TRUE',
         'USD',
         `${dollarValue}00`,

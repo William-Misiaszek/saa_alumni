@@ -61,14 +61,16 @@ export default async function handler(req, res) {
     }
 
     if (trip?.content?.extendPrice) {
-      const dollarValue = trip.content.extendPrice.replace(/\D/g, '');
+      const dollarValue = trip.content.preTripExtensionDeposit
+        ? trip.content.preTripExtensionDeposit
+        : trip.content?.extendDepositPrice?.replace(/\D/g, '');
       data.push([
         'prompt',
         trip.content.tripId,
-        'No',
+        'Opt out',
         'TRUE',
         '',
-        'No',
+        'Opt out',
         'TRUE',
         'USD',
         '',
@@ -81,10 +83,10 @@ export default async function handler(req, res) {
       data.push([
         'prompt',
         trip.content.tripId,
-        'Yes',
+        'Opt in',
         'TRUE',
         '',
-        'Yes',
+        'Opt in',
         'TRUE',
         'USD',
         `${dollarValue}00`,

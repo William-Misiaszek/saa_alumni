@@ -67,7 +67,7 @@ export default async function handler(req, res) {
       data.push([
         'prompt',
         trip.content.tripId,
-        'Primary registrant',
+        'Primary registrant: deposit',
         'TRUE',
         '',
         'Primary registrant: deposit',
@@ -83,7 +83,7 @@ export default async function handler(req, res) {
       data.push([
         'prompt',
         trip.content.tripId,
-        'Related contact',
+        'Related contact: deposit',
         'TRUE',
         '',
         'Related contact: deposit',
@@ -99,7 +99,7 @@ export default async function handler(req, res) {
       data.push([
         'prompt',
         trip.content.tripId,
-        'Guest',
+        'Guest: deposit',
         'TRUE',
         '',
         'Guest: deposit',

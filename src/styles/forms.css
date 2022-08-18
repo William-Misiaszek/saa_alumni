@@ -133,8 +133,8 @@
   @apply su-min-h-[138px];
 }
 
-.ggeWidget .ggeQuestion .ggeQuestion__field fieldset[id*="TripExtension"] {
-  @apply su-mt-12;
+.ggeWidget .ggeQuestion .ggeQuestion__field fieldset[id*="TripExtension"] legend {
+  @apply su-hidden;
 }
 
 .ggeWidget .ggeQuestion--error,

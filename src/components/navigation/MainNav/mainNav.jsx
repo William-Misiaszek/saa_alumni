@@ -76,7 +76,7 @@ const MainNav = ({ blok: { mainMenuGroups }, blok, className }) => {
               !setUtilityMenuOpen ? 'Close User Menu' : 'Open User Menu'
             }
             ref={userMenuRef}
-            className="su-ml-20 su-rounded-full"
+            className="su-ml-20 su-rounded-full su-flex"
           >
             <UserHeaderIcon menuCircle />
           </button>

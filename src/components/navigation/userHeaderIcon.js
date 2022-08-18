@@ -29,14 +29,12 @@ const UserHeaderIcon = ({ menuCircle }) => {
       {({ isAuthenticated, isAuthenticating, userProfile }) => (
         <>
           {isAuthenticating && (
-            <li>
-              <div className="su-spinner su-flex su-relative su-w-[4rem] su-h-[4rem]">
-                <div className="su-block su-absolute su-w-[4rem] su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
-                <div className="su-block su-absolute su-w-[4rem] su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin su-delay-75" />
-                <div className="su-block su-absolute su-w-[4rem] su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
-                <div className="su-block su-absolute su-w-[4rem] su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
-              </div>
-            </li>
+            <div className="su-spinner su-flex su-relative su-w-[3.4rem] su-h-[3.4rem] lg:su-w-[4rem] lg:su-h-[4rem]">
+              <div className="su-block su-absolute su-w-[3.4rem] su-h-[3.4rem] lg:su-w-[4rem] lg:su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
+              <div className="su-block su-absolute su-w-[3.4rem] su-h-[3.4rem] lg:su-w-[4rem] lg:su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin su-delay-75" />
+              <div className="su-block su-absolute su-w-[3.4rem] su-h-[3.4rem] lg:su-w-[4rem] lg:su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
+              <div className="su-block su-absolute su-w-[3.4rem] su-h-[3.4rem] lg:su-w-[4rem] lg:su-h-[4rem] su-border-[.2rem] su-border-[white_transparent_transparent_transparent] su-rounded-full su-box-border su-animate-spin" />
+            </div>
           )}
 
           {!isAuthenticating && (

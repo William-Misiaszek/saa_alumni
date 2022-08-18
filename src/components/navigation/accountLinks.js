@@ -32,7 +32,7 @@ const AccountLinks = ({ mainLinkClasses }) => {
     final_destination: location.pathname,
   });
 
-  const { showDesktopXl } = useDisplay('xl');
+  const { showDesktop: showDesktopXl } = useDisplay('xl');
   const { showDesktop } = useDisplay();
 
   useOnClickOutside(ref, () => {

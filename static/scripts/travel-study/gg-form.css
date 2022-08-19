@@ -282,6 +282,10 @@
   height: 6.4rem;
 }
 
+.ggeWidget .ggeQuestion .ggeQuestion__field fieldset[id*="TripExtension"] legend {
+  display: none;
+}
+
 .ggeWidget .ggeQuestion--error,
 .ggeWidget .ggeQuestion__error,
 .ggeWidget .ggePageNav--formError {
@@ -833,7 +837,6 @@
 .ggeWidget .ggeButton.ggeButton--tallyEditRegistrant:hover::after {
   text-decoration-line: underline;
   box-shadow: none;
-}
 }
 
 .ggeWidget .ggeTally--text {

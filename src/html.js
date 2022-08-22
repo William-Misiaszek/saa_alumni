@@ -7,6 +7,16 @@ export default class HTML extends React.Component {
     return (
       <html lang="en">
         <head>
+        <script>
+    (function(ac) {
+      var d = document, s = 'script', id = 'adplugg-adjs';
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id; js.async = 1;
+      js.src = '//www.adplugg.com/serve/' + ac + '/js/1.1/ad.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }('A48220554'));
+          </script>
           <meta charSet="utf-8" />
           <meta
             name="viewport"

@@ -260,7 +260,7 @@ const InterstitialPage = (props) => {
                         </>
                       ) : (
                         <p className={styles.travelerEmptyText}>
-                          No additional travelers are available at this time
+                          No existing connections are available at this time
                         </p>
                       )}
                     </FlexBox>

@@ -120,7 +120,8 @@
 }
 
 
-.ggeWidget .ggeQuestion.su-email .ggeQuestion__field textarea {
+.ggeWidget .ggeQuestion.su-email .ggeQuestion__field textarea,
+.ggeWidget .ggeQuestion .ggeQuestion__field  textarea[id*='ContactEmail'] {
   @apply su-h-[6.8rem] su-overflow-hidden su-min-h-[2.8rem];
 }
 
@@ -324,7 +325,8 @@
 }
 
 .ggeWidget .ggeContent .ggeQuestion.su-phone,
-.ggeWidget .ggeContent .ggeQuestion.su-email {
+.ggeWidget .ggeContent .ggeQuestion.su-email,
+.ggeWidget .ggeContent .ggeQuestion textarea[id*='ContactEmail'] {
   @apply su-text-black-30;
 }
 

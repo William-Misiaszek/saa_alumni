@@ -119,11 +119,11 @@ export const TripPageSectionNav = (props) => {
         </ul>
         {status === 'reserve' && reservationURL?.cached_url && (
           <SAALinkButton
-            link={{ url: `${location.origin}/${reservationURL?.cached_url}` }}
+            link={{ url: reservationURL?.cached_url }}
             size="small-short"
             className={styles.button}
             attributes={{ target: '_blank' }}
-            rel="noopener nofollower"
+            rel="noopener nofollow"
             srText="Reserve (opens new window)"
             icon="external"
           >

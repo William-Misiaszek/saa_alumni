@@ -117,7 +117,7 @@ export const TripPageSectionNav = (props) => {
         </ul>
         {status === 'reserve' && reservationURL?.cached_url && (
           <SAALinkButton
-            link={{ url: reservationURL?.cached_url }}
+            link={reservationURL}
             size="small-short"
             className={styles.button}
             attributes={{ target: '_blank' }}

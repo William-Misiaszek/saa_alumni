@@ -21,7 +21,7 @@ const SAALinkButtonProps = {
   children: PropTypes.node,
   link: SBLinkType,
   rel: PropTypes.string,
-  attributes: PropTypes.string,
+  attributes: PropTypes.oneOfType([PropTypes.object]),
   srText: PropTypes.string,
   className: ClassNameType,
 };

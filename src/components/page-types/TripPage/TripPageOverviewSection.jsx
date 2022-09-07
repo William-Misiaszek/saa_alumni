@@ -150,7 +150,9 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
               )}
               {status === 'reserve' && reservationURL?.cached_url && (
                 <SAALinkButton
-                  link={reservationURL}
+                  link={{
+                    url: `${location.origin}/${reservationURL?.cached_url}`,
+                  }}
                   className={{ 'su-w-full': true, 'su-w-fit': false }}
                   align="center"
                   size="small"

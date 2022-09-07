@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { useLocation } from '@reach/router';
 import { Container } from '../../layout/Container';
 import * as styles from './TripPageSectionNav.styles';
 import { SBLinkType } from '../../../types/storyblok/SBLinkType';
@@ -34,6 +35,7 @@ export const TripPageSectionNav = (props) => {
     activeSection,
   } = props;
 
+  const location = useLocation();
   const [navOpened, setNavOpened] = useState(false);
   const ref = useRef(null);
   const burgerRef = useRef(null);
@@ -117,7 +119,7 @@ export const TripPageSectionNav = (props) => {
         </ul>
         {status === 'reserve' && reservationURL?.cached_url && (
           <SAALinkButton
-            link={reservationURL}
+            link={{ url: `${location.origin}/${reservationURL?.cached_url}` }}
             size="small-short"
             className={styles.button}
             attributes={{ target: '_blank' }}

@@ -18,6 +18,8 @@ import { SAALinkButton } from '../../cta/SAALinkButton';
 import { SAAButton } from '../../simple/SAAButton';
 import hasRichText from '../../../utilities/hasRichText';
 import getNumBloks from '../../../utilities/getNumBloks';
+import HeroIcon from '../../simple/heroIcon';
+import { SrOnlyText } from '../../accessibility/SrOnlyText';
 
 export const TripPageOverviewSectionProps = {
   onPrint: PropTypes.func,
@@ -149,18 +151,19 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
                 </div>
               )}
               {status === 'reserve' && reservationURL?.cached_url && (
-                <SAALinkButton
-                  link={reservationURL}
-                  className={{ 'su-w-full': true, 'su-w-fit': false }}
+                <a
+                  href={`${location.origin}/${reservationURL?.cached_url}`}
+                  className={styles.reserveBtn}
                   align="center"
                   size="small"
-                  attributes={{ target: '_blank' }}
-                  rel="noopener nofollow"
-                  srText="Reserve (opens new window)"
+                  rel="noopener nofollow noreferrer"
                   icon="external"
+                  target="_blank"
                 >
                   Reserve
-                </SAALinkButton>
+                  <SrOnlyText>(opens new window)</SrOnlyText>
+                  <HeroIcon iconType="external" isAnimate />
+                </a>
               )}
               {status === 'notify' && inquireURL?.cached_url && (
                 <SAALinkButton

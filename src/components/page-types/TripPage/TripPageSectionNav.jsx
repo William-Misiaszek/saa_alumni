@@ -9,6 +9,8 @@ import { SAALinkButton } from '../../cta/SAALinkButton';
 import useEscape from '../../../hooks/useEscape';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
 import { isExpanded } from '../../../utilities/menuHelpers';
+import HeroIcon from '../../simple/heroIcon';
+import { SrOnlyText } from '../../accessibility/SrOnlyText';
 
 export const TripPageSectionNavProps = {
   renderFacultySection: PropTypes.bool,
@@ -34,11 +36,10 @@ export const TripPageSectionNav = (props) => {
     reservationURL,
     activeSection,
   } = props;
-
-  const location = useLocation();
   const [navOpened, setNavOpened] = useState(false);
   const ref = useRef(null);
   const burgerRef = useRef(null);
+  const location = useLocation();
 
   const toggleNav = () => {
     setNavOpened(!navOpened);
@@ -118,17 +119,19 @@ export const TripPageSectionNav = (props) => {
           )}
         </ul>
         {status === 'reserve' && reservationURL?.cached_url && (
-          <SAALinkButton
-            link={reservationURL}
-            size="small-short"
-            className={styles.button}
-            attributes={{ target: '_blank' }}
-            rel="noopener nofollow"
-            srText="Reserve (opens new window)"
+          <a
+            href={`${location.origin}/${reservationURL?.cached_url}`}
+            className={styles.reserveBtn}
+            align="center"
+            size="small"
+            rel="noopener nofollow noreferrer"
             icon="external"
+            target="_blank"
           >
             Reserve
-          </SAALinkButton>
+            <SrOnlyText>(opens new window)</SrOnlyText>
+            <HeroIcon iconType="external" isAnimate />
+          </a>
         )}
         {status === 'notify' && inquireURL?.cached_url && (
           <SAALinkButton

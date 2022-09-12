@@ -120,7 +120,7 @@ export const TripPageSectionNav = (props) => {
         </ul>
         {status === 'reserve' && reservationURL?.cached_url && (
           <a
-            href={`${location.origin}/${reservationURL?.cached_url}`}
+            href={`${location.href}/register`}
             className={styles.reserveBtn}
             align="center"
             size="small"

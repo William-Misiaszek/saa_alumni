@@ -152,7 +152,7 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
               )}
               {status === 'reserve' && reservationURL?.cached_url && (
                 <a
-                  href={`${location.href}/register`}
+                  href={location.href}
                   className={styles.reserveBtn}
                   align="center"
                   size="small"

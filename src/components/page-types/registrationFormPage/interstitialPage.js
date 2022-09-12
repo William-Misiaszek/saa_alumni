@@ -205,7 +205,7 @@ const InterstitialPage = (props) => {
                       <br />
                       {extensionDeposit && (
                         <>
-                          For extensions, an additional deposit of
+                          For extensions, an additional deposit of{` `}
                           {formatUSD.format(extensionDeposit)} per traveler is
                           required.
                         </>

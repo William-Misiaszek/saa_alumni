@@ -120,8 +120,7 @@
 }
 
 
-.ggeWidget .ggeQuestion.su-email .ggeQuestion__field textarea,
-.ggeWidget .ggeQuestion .ggeQuestion__field  textarea[id*='ContactEmail'] {
+.ggeWidget .ggeQuestion.su-email .ggeQuestion__field textarea {
   @apply su-h-[6.8rem] su-overflow-hidden su-min-h-[2.8rem];
 }
 
@@ -134,7 +133,7 @@
   @apply su-min-h-[138px];
 }
 
-.ggeWidget .ggeQuestion .ggeQuestion__field fieldset[id*="TripExtension"] legend {
+.ggeWidget .ggeQuestion.su-extension .ggeQuestion__field fieldset legend {
   @apply su-hidden;
 }
 
@@ -305,7 +304,7 @@
 }
 
 /* Email Other Type */
-.ggeWidget .ggeQuestion [id*='EmailType'] .ggePrompt__label label {
+.ggeWidget .ggeQuestion su-email-type .ggePrompt__label label {
   @apply su-capitalize;
 }
 
@@ -326,7 +325,7 @@
 
 .ggeWidget .ggeContent .ggeQuestion.su-phone,
 .ggeWidget .ggeContent .ggeQuestion.su-email,
-.ggeWidget .ggeContent .ggeQuestion textarea[id*='ContactEmail'] {
+.ggeWidget .ggeContent .ggeQuestion.su-email textarea {
   @apply su-text-black-30;
 }
 

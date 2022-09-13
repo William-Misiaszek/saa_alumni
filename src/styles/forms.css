@@ -348,6 +348,10 @@
   display: none;
 }
 
+.public-additional-payment .ggeQuestion.su-reservation-id {
+  @apply su-mt-45;
+}
+
 .ggeWidget .ggeQuestion.ggeQuestion--mobilepayment #ggeNoMobileLabel {
   text-transform: lowercase;
 }

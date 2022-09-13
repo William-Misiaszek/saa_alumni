@@ -154,10 +154,7 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
                 <a
                   href={location.href}
                   className={styles.reserveBtn}
-                  align="center"
-                  size="small"
                   rel="noopener nofollow noreferrer"
-                  icon="external"
                   target="_blank"
                 >
                   Reserve

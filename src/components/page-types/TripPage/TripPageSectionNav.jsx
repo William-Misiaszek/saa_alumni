@@ -120,12 +120,9 @@ export const TripPageSectionNav = (props) => {
         </ul>
         {status === 'reserve' && reservationURL?.cached_url && (
           <a
-            href={`${location.href}/register`}
+            href={location.href}
             className={styles.reserveBtn}
-            align="center"
-            size="small"
             rel="noopener nofollow noreferrer"
-            icon="external"
             target="_blank"
           >
             Reserve
@@ -218,13 +215,16 @@ export const TripPageSectionNav = (props) => {
             </ul>
             {status === 'reserve' && reservationURL?.cached_url && (
               <div className={styles.buttonWrapperMobile}>
-                <SAALinkButton
-                  link={reservationURL}
-                  className={styles.buttonMobile}
-                  size="small"
+                <a
+                  href={location.href}
+                  className={styles.reserveBtn}
+                  rel="noopener nofollow noreferrer"
+                  target="_blank"
                 >
                   Reserve
-                </SAALinkButton>
+                  <SrOnlyText>(opens new window)</SrOnlyText>
+                  <HeroIcon iconType="external" isAnimate />
+                </a>
               </div>
             )}
             {status === 'notify' && inquireURL?.cached_url && (

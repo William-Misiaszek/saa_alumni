@@ -41,6 +41,14 @@ export const TripPageSectionNav = (props) => {
   const burgerRef = useRef(null);
   const location = useLocation();
 
+  if (
+    reservationURL.cached_url &&
+    !reservationURL.cached_url.includes('http')
+  ) {
+    location.pathname = reservationURL.cached_url;
+    reservationURL.cached_url = `${location.origin}/${location.pathname}`;
+  }
+
   const toggleNav = () => {
     setNavOpened(!navOpened);
   };

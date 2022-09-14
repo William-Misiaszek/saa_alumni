@@ -75,6 +75,7 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
   }, [startDate, endDate]);
   const location = useLocation();
 
+  // Checks to see if reservationURL is an internal or external URL
   if (
     reservationURL.cached_url &&
     !reservationURL.cached_url.includes('http')
@@ -84,9 +85,6 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
       ''
     );
   }
-
-  console.log('LOCATION: ', location);
-  console.log('URL: ', reservationURL.cached_url);
 
   return (
     <div ref={ref}>

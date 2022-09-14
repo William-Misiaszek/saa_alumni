@@ -41,6 +41,7 @@ export const TripPageSectionNav = (props) => {
   const burgerRef = useRef(null);
   const location = useLocation();
 
+  // Checks to see if reservationURL is an internal or external URL
   if (
     reservationURL.cached_url &&
     !reservationURL.cached_url.includes('http')

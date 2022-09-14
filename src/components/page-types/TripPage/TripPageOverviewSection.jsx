@@ -75,6 +75,7 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
   const location = useLocation();
 
   console.log('reservationURL: ', reservationURL);
+  console.log('windowURL: ', window.location);
 
   return (
     <div ref={ref}>

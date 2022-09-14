@@ -74,6 +74,8 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
   }, [startDate, endDate]);
   const location = useLocation();
 
+  console.log('reservationURL: ', reservationURL);
+
   return (
     <div ref={ref}>
       <TripPageSectionWrapper heading="Overview">
@@ -152,7 +154,7 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
               )}
               {status === 'reserve' && reservationURL?.cached_url && (
                 <a
-                  href={location.href}
+                  href={reservationURL?.cached_url}
                   className={styles.reserveBtn}
                   rel="noopener nofollow noreferrer"
                   target="_blank"

@@ -46,7 +46,7 @@ export const TripPageSectionNav = (props) => {
     !reservationURL.cached_url.includes('http')
   ) {
     reservationURL.cached_url = reservationURL.cached_url.replace(
-      location.pathname,
+      location.pathname.replace(/^\//, ''),
       ''
     );
   }

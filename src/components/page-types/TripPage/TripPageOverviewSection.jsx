@@ -79,7 +79,10 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
     reservationURL.cached_url &&
     !reservationURL.cached_url.includes('http')
   ) {
-    reservationURL.cached_url = `/register`;
+    reservationURL.cached_url = reservationURL.cached_url.replace(
+      location.pathname,
+      ''
+    );
   }
 
   console.log('LOCATION: ', location);

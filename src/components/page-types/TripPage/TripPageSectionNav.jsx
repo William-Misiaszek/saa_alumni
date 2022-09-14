@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { useLocation } from '@reach/router';
 import { Container } from '../../layout/Container';
 import * as styles from './TripPageSectionNav.styles';
 import { SBLinkType } from '../../../types/storyblok/SBLinkType';
@@ -38,12 +39,16 @@ export const TripPageSectionNav = (props) => {
   const [navOpened, setNavOpened] = useState(false);
   const ref = useRef(null);
   const burgerRef = useRef(null);
+  const location = useLocation();
 
   if (
     reservationURL.cached_url &&
     !reservationURL.cached_url.includes('http')
   ) {
-    reservationURL.cached_url = `/register`;
+    reservationURL.cached_url = reservationURL.cached_url.replace(
+      location.pathname,
+      ''
+    );
   }
 
   const toggleNav = () => {

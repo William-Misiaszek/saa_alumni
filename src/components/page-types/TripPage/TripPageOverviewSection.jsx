@@ -74,6 +74,15 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
   }, [startDate, endDate]);
   const location = useLocation();
 
+  if (
+    reservationURL.cached_url &&
+    !reservationURL.cached_url.includes('http')
+  ) {
+    reservationURL.cached_url = `${location.origin}/${reservationURL.cached_url}`;
+  }
+
+  console.log('URL: ', reservationURL.cached_url);
+
   return (
     <div ref={ref}>
       <TripPageSectionWrapper heading="Overview">

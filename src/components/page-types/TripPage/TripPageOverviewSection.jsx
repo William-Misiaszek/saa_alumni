@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from '@reach/router';
+import { faGameConsoleHandheld } from '@fortawesome/pro-solid-svg-icons';
 import { Grid } from '../../layout/Grid';
 import { GridCell } from '../../layout/GridCell';
 import { Heading } from '../../simple/Heading';
@@ -78,9 +79,11 @@ export const TripPageOverviewSection = React.forwardRef((props, ref) => {
     reservationURL.cached_url &&
     !reservationURL.cached_url.includes('http')
   ) {
-    reservationURL.cached_url = location.origin;
+    location.pathname = reservationURL.cached_url;
+    reservationURL.cached_url = `${location.origin}${location.pathname}`;
   }
 
+  console.log('LOCATION: ', location);
   console.log('URL: ', reservationURL.cached_url);
 
   return (

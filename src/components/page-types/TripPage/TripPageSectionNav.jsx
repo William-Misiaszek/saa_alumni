@@ -230,7 +230,7 @@ export const TripPageSectionNav = (props) => {
               <div className={styles.buttonWrapperMobile}>
                 <a
                   href={reservationURL?.cached_url}
-                  className={styles.reserveBtn}
+                  className={styles.reserveMobileBtn}
                   rel="noopener nofollow noreferrer"
                   target="_blank"
                 >

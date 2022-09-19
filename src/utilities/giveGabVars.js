@@ -189,19 +189,12 @@ export const findEmail = (emails) => {
   if (Array.isArray(emails)) {
     email = findPreferredEmail(emails);
     if (!email) {
-      email = findEmailType(emails, 'Home Email');
-    }
-    if (!email) {
-      email = findEmailType(emails, 'Business Email');
-    }
-    if (!email) {
-      email = findEmailType(emails, 'SAA Email');
-    }
-    if (!email) {
-      email = findEmailType(emails, 'GSB Email');
-    }
-    if (!email) {
-      email = findEmailType(emails, 'Other Email');
+      email =
+        findEmailType(emails, 'Home Email') ||
+        findEmailType(emails, 'Business Email') ||
+        findEmailType(emails, 'SAA Email') ||
+        findEmailType(emails, 'GSB Email') ||
+        findEmailType(emails, 'Other Email');
     }
   }
   return email;

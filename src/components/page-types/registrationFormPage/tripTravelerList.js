@@ -16,13 +16,11 @@ const TripTravelerList = () => {
       {state.travelersData.map((traveler) => {
         if (traveler.su_reg.includes('Primary')) {
           return (
-            <>
-              <TripTravelerListItem
-                key={traveler.su_did}
-                traveler={traveler}
-                isBtn={false}
-              />
-            </>
+            <TripTravelerListItem
+              key={traveler.su_did}
+              traveler={traveler}
+              isBtn={false}
+            />
           );
         }
         return (

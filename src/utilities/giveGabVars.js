@@ -101,9 +101,9 @@ export const findPreferredPhoneNumberType = (
 
   if (phoneNumbers[0]?.preferredPhoneNumberType === null) {
     phoneNumbers.forEach((val) => {
-      if (val.phoneNumberType.includes('Mobile')) pref = 'Mobile';
-      else if (val.phoneNumberType.includes('Home')) pref = 'Home';
-      else if (val.phoneNumberType.includes('Business')) pref = 'Business';
+      if (val?.phoneNumberType?.includes('Mobile')) pref = 'Mobile';
+      else if (val?.phoneNumberType?.includes('Home')) pref = 'Home';
+      else if (val?.phoneNumberType?.includes('Business')) pref = 'Business';
       return pref;
     });
   }
@@ -226,7 +226,7 @@ export const findPreferredEmailType = (emails = [], prefEmail) => {
 
   emails.forEach((val) => {
     if (val?.emailAddress === prefEmail) {
-      if (val.preferredEmailType.includes('GSB' || 'SAA')) {
+      if (val?.preferredEmailType?.includes('GSB' || 'SAA')) {
         pref = 'Other Email';
       } else {
         pref = val.preferredEmailType;

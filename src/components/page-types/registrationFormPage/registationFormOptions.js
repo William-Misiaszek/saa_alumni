@@ -88,6 +88,6 @@ export const relationshipSelectList = [
   'Guest',
 ];
 
-export const emailTypeList = ['Home', 'Business', 'Other'];
+export const emailTypeList = ['Home', 'Business', 'other'];
 
 export const phoneNumberTypeList = ['Home', 'Business', 'Mobile'];

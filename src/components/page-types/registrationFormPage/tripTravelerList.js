@@ -31,7 +31,7 @@ const TripTravelerList = () => {
       })}
       {state.travelersData.length === 1 && (
         <p className="su-text-center su-basefont-23">
-          You haven’t yet added any additional travelers.
+          You haven’t yet added any existing connections.
         </p>
       )}
     </FlexBox>

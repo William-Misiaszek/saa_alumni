@@ -216,10 +216,10 @@ export const findPreferredEmailType = (emails = [], prefEmail) => {
 
   if (emails[0]?.preferredEmailType === null) {
     emails.forEach((val) => {
-      if (val.emailType.includes('Home')) pref = 'Home Email';
-      else if (val.emailType.includes('Business')) pref = 'Business Email';
-      else if (val.emailType.includes('SAA')) pref = 'Other Email';
-      else if (val.emailType.includes('GSB')) pref = 'Other Email';
+      if (val?.emailType?.includes('Home')) pref = 'Home Email';
+      else if (val?.emailType?.includes('Business')) pref = 'Business Email';
+      else if (val?.emailType?.includes('SAA')) pref = 'Other Email';
+      else if (val?.emailType?.includes('GSB')) pref = 'Other Email';
       return pref;
     });
   }

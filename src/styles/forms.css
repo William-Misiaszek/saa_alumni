@@ -296,7 +296,7 @@
 }
 
 .ggeWidget .ggePrompt__other .ggePrompt input[type="text"] {
-  @apply  su-ml-[24px];
+  @apply su-ml-[24px];
 }
 
 .ggeWidget .ggePrompt.ggePrompt--checked .ggePrompt__radio::after,

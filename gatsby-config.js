@@ -96,11 +96,14 @@ module.exports = {
           `/travel-study/global-components/**`,
           `/travel-study/destinations/**/register`,
           `/travel-study/destinations/**/register/form`,
+          `/travel-study/destinations/**/reserve`,
+          `/travel-study/destinations/**/reserve/form`,
           `/travel-study/destinations/**/notify`,
           `/travel-study/custom-journeys/request/`,
           `/travel-study/payment`,
           `/test/**`,
           `/403-access-denied`,
+          `/user-guide/**`,
         ],
         // eslint-disable-next-line consistent-return
         filterPages: (page, excludedRoute, tools) => {

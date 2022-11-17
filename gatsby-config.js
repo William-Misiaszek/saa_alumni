@@ -94,11 +94,15 @@ module.exports = {
           `/editor`,
           `/global-components/**`,
           `/travel-study/global-components/**`,
-          `/travel-study/destinations/**/register`,
-          `/travel-study/destinations/**/register/form`,
-          `/travel-study/destinations/**/reserve`,
-          `/travel-study/destinations/**/reserve/form`,
-          `/travel-study/destinations/**/notify`,
+          // `/travel-study/destinations/**/register`,
+          // `/travel-study/destinations/**/register/form`,
+          // `/travel-study/destinations/**/reserve`,
+          // `/travel-study/destinations/**/reserve/form`,
+          // `/travel-study/destinations/**/notify`,
+          // `/travel-study/**/form`,
+          // `/travel-study/**/register`,
+          // `/travel-study/**/reserve`,
+          // `/travel-study/**/notify`,
           `/travel-study/custom-journeys/request/`,
           `/travel-study/payment`,
           `/test/**`,
@@ -111,6 +115,9 @@ module.exports = {
           if (
             // Exclude non-canonical pages.
             !page.pageContext.isCanonical ||
+            // Exlude form and registration form pages
+            page.pageContext.content.component === 'formPage' ||
+            page.pageContext.content.component === 'registrationFormPage' ||
             // Exclude pages marked with "noindex"
             page.pageContext.noIndex ||
             // Exclude pages that match the "excludes" array. (default condition)

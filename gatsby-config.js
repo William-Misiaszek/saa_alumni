@@ -116,8 +116,8 @@ module.exports = {
             // Exclude non-canonical pages.
             !page.pageContext.isCanonical ||
             // Exlude form and registration form pages
-            page.pageContext.content.component === 'formPage' ||
-            page.pageContext.content.component === 'registrationFormPage' ||
+            page.pageContext.story.content.includes('formPage') ||
+            page.pageContext.story.content.includes('registrationFormPage') ||
             // Exclude pages marked with "noindex"
             page.pageContext.noIndex ||
             // Exclude pages that match the "excludes" array. (default condition)

@@ -96,6 +96,7 @@ module.exports = {
           `/travel-study/global-components/**`,
           `/test/**`,
           `/403-access-denied`,
+          `/user-guide`,
           `/user-guide/**`,
         ],
         // eslint-disable-next-line consistent-return

@@ -29,6 +29,7 @@ const SaaStoryCard = ({
     headingLevel = 3,
     cardImageFocus,
     tabText,
+    _uid,
   },
   blok,
   isDark,
@@ -79,6 +80,8 @@ const SaaStoryCard = ({
     teaserSize = 'su-card-paragraph lg:su-text-25';
   }
 
+  const titleNoSpaces = title.replaceAll(' ', '-');
+
   return (
     <SbEditable content={blok}>
       <FlexBox
@@ -90,6 +93,7 @@ const SaaStoryCard = ({
           borderColor,
           textColor
         )}
+        id={`${titleNoSpaces}-${_uid}`}
       >
         {!hideImage && (cardFilename || filename) && (
           <div

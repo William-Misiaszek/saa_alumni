@@ -91,7 +91,19 @@ const SaaStoryCard = ({
     return location.pathname.replaceAll('/', '');
   };
 
-  const titleNoSpaces = title.replaceAll(' ', '-');
+  const replaceSpecialCharsTitle = title
+    .replaceAll(' ', '-')
+    .replaceAll(':', '')
+    .replaceAll(';', '')
+    .replaceAll('?', '')
+    .replaceAll('!', '')
+    .replaceAll('’', '')
+    .replaceAll('‘', '')
+    .replaceAll('"', '')
+    .replaceAll(',', '')
+    .replaceAll('&', '')
+    .replaceAll('/', '')
+    .replaceAll('\\', '');
 
   return (
     <SbEditable content={blok}>
@@ -104,7 +116,7 @@ const SaaStoryCard = ({
           borderColor,
           textColor
         )}
-        id={`${locationName()}-${titleNoSpaces}-${_uid}`}
+        id={`${locationName()}-${replaceSpecialCharsTitle}-${_uid}`}
       >
         {!hideImage && (cardFilename || filename) && (
           <div

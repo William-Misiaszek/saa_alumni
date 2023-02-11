@@ -30,7 +30,7 @@ const SaaStoryCard = ({
     headingLevel = 3,
     cardImageFocus,
     tabText,
-    _uid,
+    id,
   },
   blok,
   isDark,
@@ -91,20 +91,6 @@ const SaaStoryCard = ({
     return location.pathname.replaceAll('/', '');
   };
 
-  const replaceSpecialCharsTitle = title
-    .replaceAll(' ', '-')
-    .replaceAll(':', '')
-    .replaceAll(';', '')
-    .replaceAll('?', '')
-    .replaceAll('!', '')
-    .replaceAll('’', '')
-    .replaceAll('‘', '')
-    .replaceAll('"', '')
-    .replaceAll(',', '')
-    .replaceAll('&', '')
-    .replaceAll('/', '')
-    .replaceAll('\\', '');
-
   return (
     <SbEditable content={blok}>
       <FlexBox
@@ -116,7 +102,7 @@ const SaaStoryCard = ({
           borderColor,
           textColor
         )}
-        id={`${locationName()}-${replaceSpecialCharsTitle}-${_uid}`}
+        id={id ? `${locationName()}-${id}` : ''}
       >
         {!hideImage && (cardFilename || filename) && (
           <div

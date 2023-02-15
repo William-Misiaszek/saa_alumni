@@ -102,10 +102,7 @@ const SaaStoryCard = ({
           borderColor,
           textColor
         )}
-        // id={id || ''}
-        // id={id ? id : ''}
-        // id={id ? `${locationName()}-${id}` : ''}
-        id={id ? `${locationName()}-${id}` : 'something-wrong'}
+        id={id ? `${locationName()}-${id}` : null}
       >
         {!hideImage && (cardFilename || filename) && (
           <div

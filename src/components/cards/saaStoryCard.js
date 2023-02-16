@@ -83,10 +83,8 @@ const SaaStoryCard = ({
 
   const location = useLocation();
   const locationName = () => {
-    let homeLocation;
     if (location.pathname === '/') {
-      homeLocation = 'home';
-      return homeLocation;
+      return 'home';
     }
     return location.pathname.replaceAll('/', '');
   };

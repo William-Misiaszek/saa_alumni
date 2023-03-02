@@ -18,6 +18,7 @@ class ggForm {
     this.elem = document.getElementById(this.id);
     this.render('Loading user information...');
     await this.getUserInfo();
+    this.setADCVariables();
     this.embedInterstitialPage();
   };
 

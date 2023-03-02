@@ -60,8 +60,8 @@ class ggForm {
    * Put the ADC Window variables into place.
    */
   setADCVariables = () => {
-    window.su_suid = this.user.display_name;
-    window.su_staff_name = this.user.su_display_name;
+    window.su_suid = this?.user?.display_name || 'unknown';
+    window.su_staff_name = this?.user?.su_display_name || 'unkown';
   };
 
   /**

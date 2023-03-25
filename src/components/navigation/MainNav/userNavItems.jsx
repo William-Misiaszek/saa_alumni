@@ -24,10 +24,18 @@ const UserNavItems = ({ expanded, userProfile }) => {
       'EDU Student',
     ];
 
-    const directoryAccessFilter = userProfile?.affiliations?.filter((item) =>
-      affiliation.includes(item)
-    );
-    const canAccessDirectory = !!directoryAccessFilter?.length;
+    let canAccessDirectory = false;
+
+    if (
+      userProfile &&
+      userProfile.affiliations &&
+      Array.isArray(userProfile.affiliations)
+    ) {
+      const directoryAccessFilter = userProfile?.affiliations?.filter((item) =>
+        affiliation.includes(item)
+      );
+      canAccessDirectory = !!directoryAccessFilter?.length;
+    }
 
     let profileLinks = [
       {

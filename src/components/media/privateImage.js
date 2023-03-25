@@ -11,11 +11,23 @@ const PrivateImage = ({
   ...props
 }) => {
   const [signedUrl, setSignedUrl] = useState();
+  const [hasError, setHasError] = useState(false);
   useEffect(() => {
-    axios.get('/api/assets', { params: { filename } }).then((data) => {
-      setSignedUrl(data.data.signedUrl);
-    });
+    axios
+      .get('/api/assets', { params: { filename } })
+      .then((data) => {
+        setSignedUrl(data.data.signedUrl);
+      })
+      .catch((error) => {
+        setHasError(true);
+        console.error(error);
+      });
   }, [filename, setSignedUrl]);
+
+  // Todo: Show broken image.
+  if (hasError) {
+    return <span className="su-text-2 su-bold">?</span>;
+  }
 
   if (!signedUrl) {
     return null;

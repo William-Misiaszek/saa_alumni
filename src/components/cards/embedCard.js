@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-restricted-syntax */
@@ -12,15 +13,17 @@
  * is also not good practice to inject and manipulate the page outside of
  * REACT as that can lead to irregularities and troubles.
  */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import SbEditable from 'storyblok-react';
 import postscribe from 'postscribe';
 import ClipLoader from 'react-spinners/ClipLoader';
+import AuthContext from '../../contexts/AuthContext';
 
-const EmbedCard = ({ blok: { embed: html }, blok }) => {
+const EmbedCard = ({ blok: { embed: html, injectSuid }, blok }) => {
   const myEmbed = useRef(null);
   const uniqueId = `su-alumni-${blok._uid}`;
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const { userProfile } = useContext(AuthContext);
 
   useEffect(() => {
     if (!html) return;
@@ -30,11 +33,18 @@ const EmbedCard = ({ blok: { embed: html }, blok }) => {
         done: () => {
           setScriptLoaded(true);
         },
+        // Catch the error when postscribe gets blocked by ad blockers.
+        error: (err) => {
+          console.error(err);
+        },
       });
     } else {
       // Create a 'tiny' document and parse the html string.
       // https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment
       const miniDom = document.createRange().createContextualFragment(html);
+      if (injectSuid && miniDom.childNodes[0].src) {
+        miniDom.childNodes[0].src = `${miniDom.childNodes[0].src}?suid=${userProfile.session.SUID}`;
+      }
       // Clear the container.
       myEmbed.current.innerHTML = '';
       // Append the new content.

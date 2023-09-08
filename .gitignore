@@ -49,6 +49,11 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
+# .gitignore
+localhost-key.pem
+localhost.pem
+
+
 # dotenv environment variables file
 .env*
 

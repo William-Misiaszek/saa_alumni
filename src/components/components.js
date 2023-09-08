@@ -3,6 +3,7 @@ import AccordionItem from './composite/accordionItem';
 import { SBAlert } from './storyblok/alert/alert';
 import { SBAlertCtaLink } from './storyblok/alert/alertCtaLink';
 import BasicCard from './cards/basicCard';
+import willCard from './cards/willCard'; 
 import BasicCardHorizontal from './cards/basicCardHorizontal';
 import BasicPage from './page-types/basicPage';
 import { SBCollectionCard } from './storyblok/cards/collectionCard';
@@ -85,12 +86,14 @@ import VerticalNavItem from './navigation/verticalNavItem';
 import Wysiwyg from './simple/wysiwyg';
 import MembershipPaymentOptions from './page-types/membershipFormPage/membershipPaymentOptions';
 
+
 const ComponentList = {
   accordion: Accordion,
   accordionItem: AccordionItem,
   alert: SBAlert,
   alertCtaLink: SBAlertCtaLink,
   basicCard: BasicCard,
+  willCard: willCard,
   basicCardHorizontal: BasicCardHorizontal,
   basicPage: BasicPage,
   collectionCard: SBCollectionCard,
